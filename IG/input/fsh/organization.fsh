@@ -6,12 +6,12 @@ Expression:  "value.matches('^[0-9]{17}[0-9A-Za-z]$')"
 XPath:       "f:value"
 
 // 扩展字段，按照国标GB/T 20091-2021记录组织机构类型
-Extension: HealthcareMDMOrganizationTypeExtension
-Id: hc-mdm-organizationTypeExtension
-Title: "组织机构主类型"
+Extension: HealthcareInstitutionsTypeExtension
+Id: hc-mdm-healthcareinstitutionstype
+Title: "卫生机构（组织）分类"
 Context: HealthcareMDMOrganization
 * value[x] only Coding
-* value[x] from OrganizationTypeVS (required)
+* value[x] from HealthcareInstitutionsTypeVS (required)
 
 // Organization Profile
 Profile: HealthcareMDMOrganization
@@ -20,13 +20,18 @@ Title: "卫生健康机构主数据"
 Parent: Organization
 Description: "An example profile of the Organization resource."
 * language from $lan (required)
+* active ^short = "记录有效标识"
+* active ^comment = "以布尔值（true | false）表达记录是否有效，true为有效，false为无效"
 * active 1..1 MS
+* type ^short = "机构类型"
+* type ^comment = "以国家标准GB/T 20091-2021 组织机构类型表述"
+* type from OrganizationTypeVS
 * name ^short = "与统一社会信用代码对应的组织机构名称"
 * name ^comment = "其他名称应使用别名（alias）表述"
 * alias ^short = "除统一社会信用代码对应的组织机构名称之外的所有别名"
 * name 1..1 MS 
-* extension contains HealthcareMDMOrganizationTypeExtension named HealthcareMDMOrganizationTypeExtension 1..1 MS
-// identifier字段切片，用于指定组织机构所持统一社会信用代码
+* extension contains HealthcareInstitutionsTypeExtension named HealthcareInstitutionsTypeExtension 1..1 MS
+// identifier字段切片，用于指定统一社会信用代码，主索引号码和医疗机构执业许可证登记号等
 * identifier ^slicing.discriminator.type = #pattern
 * identifier ^slicing.discriminator.path = "type"
 * identifier ^slicing.rules = #open
@@ -37,7 +42,7 @@ Description: "An example profile of the Organization resource."
     miplrn 0..1 MS and
     moi 0..1 MS and
     uscc 1..1 MS
-// 机构主索引切片
+// 医疗机构执业许可证登记号切片
 * identifier[miplrn] ^short = "医疗机构执业许可证登记号"
 * identifier[miplrn] ^definition = "医疗机构执业许可证登记号"
 * identifier[miplrn].use = $iduse#official
@@ -54,13 +59,16 @@ Description: "An example profile of the Organization resource."
 * identifier[uscc].type = ChineseIdentifierTypeCS#USCC "统一社会信用代码"
 // 对社会信用代码字段添加约束
 * identifier[uscc] obeys uscc-length-18
+* partOf ^short = "上级单位"
+* partOf ^comment = "引用上级单位，形成上级单位与下级单位的一对多关联"
 
 Instance: OrganizationExample
 InstanceOf: HealthcareMDMOrganization
 Description: "An example of a Organization with a name."
 * active = true 
+* type = OrganizationTypeCS#121 "事业单位法人"
 * name = "长宁市奉孝区中心医院"
-* extension[HealthcareMDMOrganizationTypeExtension].valueCoding = OrganizationTypeCS#121 "事业单位法人"
+* extension[HealthcareInstitutionsTypeExtension].valueCoding = HealthcareInstitutionsTypeCS#A1 "综合医院"
 * identifier[miplrn].use = $iduse#official
 * identifier[miplrn].type = ChineseIdentifierTypeCS#MIPLRN "医疗机构执业许可证登记号"
 * identifier[miplrn].value = "561106500103211311"
