@@ -21,5 +21,5 @@ ValueSet: CNContactorTypeVS
 Id: cn-contactorType-vs
 Title: "中文联系人类型值集"
 Description: "中文联系人类型值集"
-* include codes from valueset http://terminology.hl7.org/CodeSystem/contactentity-type
+* include codes from valueset http://hl7.org/fhir/ValueSet/contactentity-type
 * include codes from system ChineseContactorTypeCS
