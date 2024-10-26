@@ -5,7 +5,7 @@ Severity:    #error
 Expression:  "value.matches('^[0-9]{17}[0-9A-Za-z]$')"
 XPath:       "f:value"
 
-// 扩展字段，按照国标GB/T 20091-2021记录组织机构类型
+// 扩展字段，使用WS 218-2002 卫生机构（组织）分类与代码记录卫生机构类型
 Extension: HealthcareInstitutionsTypeExtension
 Id: hc-mdm-healthcareinstitutionstype
 Title: "卫生机构（组织）分类"
