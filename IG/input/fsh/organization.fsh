@@ -20,7 +20,6 @@ Id: hc-mdm-organization
 Title: "卫生健康机构主数据"
 Parent: Organization
 Description: "中国卫生健康机构主数据数据模型"
-* language from $lan (required)
 * active ^short = "记录有效标识"
 * active ^comment = "以布尔值（true | false）表达记录是否有效，true为有效，false为无效"
 * active 1..1 MS
@@ -47,17 +46,17 @@ Description: "中国卫生健康机构主数据数据模型"
 * identifier[miplrn] ^short = "医疗机构执业许可证登记号"
 * identifier[miplrn] ^definition = "医疗机构执业许可证登记号"
 * identifier[miplrn].use = $iduse#official
-* identifier[miplrn].type = ChineseIdentifierTypeCS#MIPLRN "医疗机构执业许可证登记号"
+* identifier[miplrn].type = ChineseIdentifierTypeCS#MIPLRN
 // 机构主索引切片
 * identifier[moi] ^short = "机构主索引号码"
 * identifier[moi] ^definition = "机构主索引号码，由主数据管理平台分配和维护"
 * identifier[moi].use = $iduse#official
-* identifier[moi].type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
+* identifier[moi].type = ChineseIdentifierTypeCS#MOI
 // 统一社会信用代码切片
 * identifier[uscc] ^short = "统一社会信用代码"
 * identifier[uscc] ^definition = "统一社会信用代码，必须符合格式约束"
 * identifier[uscc].use = $iduse#official
-* identifier[uscc].type = ChineseIdentifierTypeCS#USCC "统一社会信用代码"
+* identifier[uscc].type = ChineseIdentifierTypeCS#USCC
 // 对社会信用代码字段添加约束
 * identifier[uscc] obeys uscc-length-18
 // telecom字段切片，用于指定组织电话和电子邮箱
@@ -85,6 +84,40 @@ Description: "中国卫生健康机构主数据数据模型"
 // 引用上级单位
 * partOf ^short = "上级单位"
 * partOf ^comment = "引用上级单位，形成上级单位与下级单位的一对多关联"
+// contact字段切片，用于指定组织联系人或负责人等
+* contact ^slicing.discriminator.type = #pattern
+* contact ^slicing.discriminator.path = "purpose"
+* contact ^slicing.rules = #open
+* contact ^slicing.ordered = false 
+* contact ^slicing.description = "contact字段切片，用于指定组织联系人或负责人等"
+// telecom contains规则
+* contact contains
+    contactor 0..1 MS
+// 联系人切片
+* contact[contactor] ^short = "联系人"
+* contact[contactor] ^definition = "组织机构联系人"
+* contact[contactor].purpose = ChineseContactorTypeCS#CON
+// contact[contactor].telecom字段切片，用于指定联系人电话和电子邮箱
+* contact[contactor].telecom ^slicing.discriminator.type = #pattern
+* contact[contactor].telecom ^slicing.discriminator.path = "system"
+* contact[contactor].telecom ^slicing.rules = #open
+* contact[contactor].telecom ^slicing.ordered = false 
+* contact[contactor].telecom ^slicing.description = "contact[contactor].telecom字段切片，用于指定联系人电话和电子邮箱"
+// contact[contactor].telecom contains规则
+* contact[contactor].telecom contains
+    phone 0..1 MS and
+    email 0..1 MS
+// 联系人电话号码切片
+* contact[contactor].telecom[phone] ^short = "联系人电话号码"
+* contact[contactor].telecom[phone] ^definition = "联系人电话号码"
+* contact[contactor].telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
+* contact[contactor].telecom[phone].use = $conuse#work 
+// 联系人电子邮件地址切片
+* contact[contactor].telecom[email] ^short = "联系人电子邮件地址"
+* contact[contactor].telecom[email] ^definition = "联系人电子邮件地址"
+* contact[contactor].telecom[email].system = http://hl7.org/fhir/contact-point-system#email
+* contact[contactor].telecom[email].use = $conuse#work 
+
 
 Instance: OrganizationExample
 InstanceOf: HealthcareMDMOrganization
@@ -114,4 +147,13 @@ Description: "An example of a Organization with a name."
 * address[0].type = http://hl7.org/fhir/address-type#physical
 * address[0].line = "XX省长宁市奉孝区健康路1号"
 * address[0].postalCode = "100210"
+* contact[contactor].purpose = ChineseContactorTypeCS#CON
+* contact[contactor].name.text = "张无忌"
+* contact[contactor].telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
+* contact[contactor].telecom[phone].use = $conuse#work
+* contact[contactor].telecom[phone].value = "+86-18502032240"
+* contact[contactor].telecom[email].system = http://hl7.org/fhir/contact-point-system#email
+* contact[contactor].telecom[email].use = $conuse#work
+* contact[contactor].telecom[email].value = "wj.z@cnu.org"
+
 

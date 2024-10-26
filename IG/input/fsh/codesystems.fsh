@@ -31,7 +31,7 @@ Description:  "国家标准GB/T 20091-2021 组织机构类型"
 * #229 "其他非营利性非法人组织"
 
 CodeSystem: ChineseIdentifierTypeCS
-Id: cs-identifierType-code-system
+Id: identifierType-code-system
 Title: "标识类型"
 Description: "中国标识类型，如身份证号，统一社会信用代码等"
 * #CIN "公民身份号码"
@@ -300,3 +300,9 @@ Description:  "行业标准WS 218-2002 卫生机构（组织）分类与代码"
 * #Q339 "其他卫生协会"
 * #Q9 "其他卫生社会团体"
 * #Q900 "其他卫生社会团体"
+
+CodeSystem: ChineseContactorTypeCS
+Id: contactortype-code-system
+Title: "联系人类型"
+Description: "中国联系人类型，如联系人，负责人等，更符合中文语义习惯"
+* #CON "联系人"
