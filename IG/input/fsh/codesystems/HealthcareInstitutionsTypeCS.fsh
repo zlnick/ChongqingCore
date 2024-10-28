@@ -1,44 +1,3 @@
-CodeSystem:  OrganizationTypeCS
-Id: organizationtype-code-system
-Title: "组织机构类型代码"
-Description:  "国家标准GB/T 20091-2021 组织机构类型"
-* #1 "法人"
-* #11 "营利法人"
-* #111 "有限责任公司"
-* #112 "股份有限公司"
-* #119 "其他企业法人"
-* #12 "非营利法人"
-* #121 "事业单位法人"
-* #122 "社会团体法人"
-* #123 "捐助法人(基金会)"
-* #124 "捐助法人(社会服务机构)"
-* #125 "捐助法人(宗教活动场所)"
-* #129 "其他非营利法人"
-* #13 "特别法人"
-* #131 "机关法人"
-* #132 "农村集体经济组织法人"
-* #133 "城镇农村的合作经济组织法人"
-* #134 "基层群众性自治组织法人"
-* #139 "其他特别法人"
-* #2 "非法人组织"
-* #21 "营利性非法人组织"
-* #211 "个人独资企业"
-* #212 "合伙企业"
-* #213 "不具有法人资格的营利性专业服务机构"
-* #219 "其他营利性非法人组织"
-* #22 "非营利性非法人组织"
-* #221 "不具有法人资格的非营利性专业服务机构"
-* #229 "其他非营利性非法人组织"
-
-CodeSystem: ChineseIdentifierTypeCS
-Id: identifierType-code-system
-Title: "标识类型"
-Description: "中国标识类型，如身份证号，统一社会信用代码等"
-* #CIN "公民身份号码"
-* #MIPLRN "医疗机构执业许可证登记号"
-* #MOI "机构主索引号码"
-* #USCC "统一社会信用代码"
-
 CodeSystem:  HealthcareInstitutionsTypeCS
 Id: healthcareinstitutionstype-code-system
 Title: "卫生机构（组织）分类与代码"
@@ -300,9 +259,3 @@ Description:  "行业标准WS 218-2002 卫生机构（组织）分类与代码"
 * #Q339 "其他卫生协会"
 * #Q9 "其他卫生社会团体"
 * #Q900 "其他卫生社会团体"
-
-CodeSystem: ChineseContactorTypeCS
-Id: contactortype-code-system
-Title: "联系人类型"
-Description: "中国联系人类型，如联系人，负责人等，更符合中文语义习惯"
-* #CON "联系人"

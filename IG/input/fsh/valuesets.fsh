@@ -23,3 +23,21 @@ Title: "中文联系人类型值集"
 Description: "中文联系人类型值集"
 * include codes from valueset http://hl7.org/fhir/ValueSet/contactentity-type
 * include codes from system ChineseContactorTypeCS
+
+ValueSet: CNHospitalLevelVS
+Id: cn-hospitalleve-vs
+Title: "中国医院三级评审等级值集"
+Description: "中国医院三级评审等级值集"
+* include codes from system CNHospitalLevelCS
+
+ValueSet: CNAdministrativeDivisionVS
+Id: cn-administrativedivision-vs
+Title: "中国行政区划（乡镇街道级）值集"
+Description: "中国行政区划（乡镇街道级）值集"
+* include codes from system CNAdministrativeDivisionCS
+
+ValueSet:  CNNationalEconomicIndustryClassificationVS
+Id: cn-nationaleconomicindustryclassification-vs
+Title: "经济类型分类值集"
+Description:  "国家标准GB-T12402-2000《经济类型分类与代码》值集"
+* include codes from system NationalEconomicIndustryClassificationCS
