@@ -14,6 +14,15 @@ Context: MDMOrganization
 * value[x] only Coding
 * value[x] from CNAdministrativeDivisionVS (required)
 
+// 扩展字段，记录重庆乡镇街道级行政区划
+Extension: CQAdministrativeDivisionExtension
+Id: hc-mdm-cqadministrativedivision
+Title: "所属重庆街道级行政区域"
+Description: "所属重庆街道级行政区域"
+Context: MDMOrganization
+* value[x] only Coding
+* value[x] from CQAdministrativeDivisionVS (required)
+
 // 扩展字段，记录组织机构经济类型
 Extension: EconomicIndustryClassificationExtension
 Id: hc-mdm-economicindustryclassification
@@ -23,6 +32,14 @@ Context: MDMOrganization
 * value[x] only Coding
 * value[x] from CNNationalEconomicIndustryClassificationVS
 
+// 扩展字段，引用上级管理机构
+Extension: SupervisedByExtension
+Id: hc-mdm-supervisedby
+Title: "上级监管机构"
+Description: "由被监管机构引用监管机构，例如县医院引用县卫健委。"
+Context: MDMOrganization
+* value[x] only Reference
+
 // Organization Profile
 Profile: MDMOrganization
 Id: hc-mdm-organization
@@ -30,7 +47,9 @@ Title: "组织机构主数据"
 Parent: Organization
 Description: "中国组织机构主数据数据模型"
 * extension contains AdministrativeDivisionExtension named AdministrativeDivisionExtension 1..1 MS
+* extension contains CQAdministrativeDivisionExtension named CQAdministrativeDivisionExtension 0..1 MS
 * extension contains EconomicIndustryClassificationExtension named EconomicIndustryClassificationExtension 0..1 MS
+* extension contains SupervisedByExtension named SupervisedByExtension 0..* MS
 * active ^short = "记录有效标识"
 * active ^comment = "以布尔值（true | false）表达记录是否有效，true为有效，false为无效"
 * active 1..1 MS
@@ -72,7 +91,8 @@ Description: "中国组织机构主数据数据模型"
 // telecom contains规则
 * telecom contains
     phone 0..1 MS and
-    email 0..1 MS
+    email 0..1 MS and
+    website 0..1 MS
 // 组织机构电话号码切片
 * telecom[phone] ^short = "组织机构电话号码"
 * telecom[phone] ^definition = "组织机构电话号码"
@@ -83,11 +103,16 @@ Description: "中国组织机构主数据数据模型"
 * telecom[email] ^definition = "组织机构电子邮件地址"
 * telecom[email].system = http://hl7.org/fhir/contact-point-system#email
 * telecom[email].use = $conuse#work 
+// 组织机构网站地址切片
+* telecom[website] ^short = "组织机构网站地址"
+* telecom[website] ^definition = "组织机构网站地址"
+* telecom[website].system = http://hl7.org/fhir/contact-point-system#url
+* telecom[website].use = $conuse#work 
 // 地址经过扩展，需要容纳经纬度
 * address only OrganizationAddress
-// 引用上级单位
-* partOf ^short = "上级单位"
-* partOf ^comment = "引用上级单位，形成上级单位与下级单位的一对多关联"
+// 引用主机构
+* partOf ^short = "主机构"
+* partOf ^comment = "引用主机构，形成分支机构与主机构的多对一关联，例如分院区引用主院区。"
 // contact字段切片，用于指定组织联系人或负责人等
 * contact ^slicing.discriminator.type = #pattern
 * contact ^slicing.discriminator.path = "purpose"
@@ -125,17 +150,21 @@ Description: "中国组织机构主数据数据模型"
 
 Instance: OrganizationExample
 InstanceOf: MDMOrganization
-Description: "An example of a Organization with a name."
+Description: "重庆市卫生健康委员会"
 * active = true 
 * type = OrganizationTypeCS#121 "事业单位法人"
 * name = "重庆市卫生健康委员会"
 * extension[AdministrativeDivisionExtension].valueCoding = CNAdministrativeDivisionCS#110101 "东城区"
+* extension[CQAdministrativeDivisionExtension].valueCoding = CQAdministrativeDivisionCS#500112005 "龙山街道"
 * telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
 * telecom[phone].use = $conuse#work
 * telecom[phone].value = "+86-23-67706707"
 * telecom[email].system = http://hl7.org/fhir/contact-point-system#email
 * telecom[email].use = $conuse#work
 * telecom[email].value = "abc@cnu.org"
+* telecom[website].system = http://hl7.org/fhir/contact-point-system#url
+* telecom[website].use = $conuse#work
+* telecom[website].value = "https://wsjkw.cq.gov.cn"
 * identifier[moi].use = $iduse#official
 * identifier[moi].type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
 * identifier[moi].value = "82783739457838954"

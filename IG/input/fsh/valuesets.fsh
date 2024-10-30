@@ -32,8 +32,8 @@ Description: "中国医院三级评审等级值集"
 
 ValueSet: CNAdministrativeDivisionVS
 Id: cn-administrativedivision-vs
-Title: "中国行政区划（乡镇街道级）值集"
-Description: "中国行政区划（乡镇街道级）值集"
+Title: "中国行政区划值集"
+Description: "中国行政区划值集"
 * include codes from system CNAdministrativeDivisionCS
 
 ValueSet:  CNNationalEconomicIndustryClassificationVS
@@ -41,3 +41,15 @@ Id: cn-nationaleconomicindustryclassification-vs
 Title: "经济类型分类值集"
 Description:  "国家标准GB-T12402-2000《经济类型分类与代码》值集"
 * include codes from system NationalEconomicIndustryClassificationCS
+
+ValueSet:  CNHospitalManagementTypeVS
+Id: cn-hospitalmanagementype-vs
+Title: "医院管理类型值集"
+Description:  "医院管理类型值集"
+* include codes from system CNHospitalManagementTypeCS
+
+ValueSet: CQAdministrativeDivisionVS
+Id: cq-administrativedivision-vs
+Title: "重庆（乡镇街道级）行政区划值集"
+Description: "重庆（乡镇街道级）行政区划值集"
+* include codes from system CQAdministrativeDivisionCS
