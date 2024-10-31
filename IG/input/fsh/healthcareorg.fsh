@@ -99,6 +99,9 @@ Description: "长宁市奉孝区中心医院(虚拟医院)"
 * telecom[email].system = http://hl7.org/fhir/contact-point-system#email
 * telecom[email].use = $conuse#work
 * telecom[email].value = "abc@cnu.org"
+* telecom[website].system = http://hl7.org/fhir/contact-point-system#url
+* telecom[website].use = $conuse#work
+* telecom[website].value = "https://abc.bj.org.cn"
 * identifier[miplrn].use = $iduse#official
 * identifier[miplrn].type = ChineseIdentifierTypeCS#MIPLRN "医疗机构执业许可证登记号"
 * identifier[miplrn].value = "561106500103211311"
@@ -122,5 +125,6 @@ Description: "长宁市奉孝区中心医院(虚拟医院)"
 * contact[contactor].telecom[email].system = http://hl7.org/fhir/contact-point-system#email
 * contact[contactor].telecom[email].use = $conuse#work
 * contact[contactor].telecom[email].value = "wj.z@cnu.org"
+
 
 
