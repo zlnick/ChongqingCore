@@ -2,6 +2,9 @@ CodeSystem: CQAdministrativeDivisionCS
 Id: cq-administrativedivision-code-system
 Title: "重庆（乡镇街道级）行政区划代码"
 Description: "重庆（乡镇街道级）行政区划代码"
+* ^status = $pubst#active
+* ^experimental = false
+* ^caseSensitive = true
 * #500000 "重庆市"
 * #500100 "市辖区"
 * #500101 "万州区"

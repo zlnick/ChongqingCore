@@ -2,6 +2,9 @@ CodeSystem:  OrganizationTypeCS
 Id: organizationtype-code-system
 Title: "组织机构类型代码"
 Description:  "国家标准GB/T 20091-2021 组织机构类型"
+* ^status = $pubst#active
+* ^experimental = false
+* ^caseSensitive = true
 * #1 "法人"
 * #11 "营利法人"
 * #111 "有限责任公司"

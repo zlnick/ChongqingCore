@@ -2,6 +2,9 @@ CodeSystem: CNHospitalLevelCS
 Id: cn-hospitalleve-code-system
 Title: "中国医院三级评审等级代码"
 Description: "中国医院三级评审等级代码"
+* ^status = $pubst#active
+* ^experimental = false
+* ^caseSensitive = true
 * #1 "三级特等"
 * #2 "三级甲等"
 * #3 "三级乙等"

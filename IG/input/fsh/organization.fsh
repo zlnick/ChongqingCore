@@ -70,7 +70,7 @@ Description: "中国组织机构主数据数据模型"
 // identifier contains规则
 * identifier contains
     moi 0..1 MS and
-    uscc 1..1 MS
+    uscc 0..1 MS
 // 机构主索引切片
 * identifier[moi] ^short = "机构主索引号码"
 * identifier[moi] ^definition = "机构主索引号码，由主数据管理平台分配和维护"
@@ -149,7 +149,7 @@ Description: "中国组织机构主数据数据模型"
 * contact[contactor].telecom[email].use = $conuse#work 
 
 
-Instance: OrganizationExample
+Instance: ChongqingHealthCommission
 InstanceOf: MDMOrganization
 Description: "重庆市卫生健康委员会"
 * active = true 
@@ -171,11 +171,45 @@ Description: "重庆市卫生健康委员会"
 * identifier[moi].value = "82783739457838954"
 * identifier[uscc].use = $iduse#official
 * identifier[uscc].type = ChineseIdentifierTypeCS#USCC "统一社会信用代码"
-* identifier[uscc].value = "1 1 500000 MB1670604 W"
-* address[0].extension[LongitudeExtension].valueDecimal = 106.55
-* address[0].extension[LatitudeExtension].valueDecimal = 29.55
+* identifier[uscc].value = "11500000MB1670604W"
+* address[0].extension[LongitudeExtension].valueDecimal = 106.50520499999993
+* address[0].extension[LatitudeExtension].valueDecimal = 29.593906000000015
 * address[0].use = http://hl7.org/fhir/address-use#work
 * address[0].type = http://hl7.org/fhir/address-type#physical
-* address[0].line = " 重庆市渝北区旗龙路6号"
+* address[0].line = "重庆市渝北区旗龙路6号"
 * address[0].postalCode = "401147"
+
+Instance: ChongqingYuzhongHealthCommission
+InstanceOf: MDMOrganization
+Description: "重庆市渝中区卫生健康委员会"
+* active = true 
+* type = OrganizationTypeCS#121 "事业单位法人"
+* name = "重庆市渝中区卫生健康委员会"
+* extension[AdministrativeDivisionExtension].valueCoding = CNAdministrativeDivisionCS#110100 "市辖区"
+* extension[CQAdministrativeDivisionExtension].valueCoding = CQAdministrativeDivisionCS#500103001 "七星岗街道"
+* extension[SupervisedByExtension].valueReference.type = "Organization"
+* extension[SupervisedByExtension].valueReference.identifier.type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
+* extension[SupervisedByExtension].valueReference.identifier.value = "82783739457838954"
+* extension[SupervisedByExtension].valueReference.display = "重庆市卫生健康委员会"
+* telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
+* telecom[phone].use = $conuse#work
+* telecom[phone].value = "+86-23-63765146"
+* telecom[email].system = http://hl7.org/fhir/contact-point-system#email
+* telecom[email].use = $conuse#work
+* telecom[email].value = "yzqwsj@163.com"
+* telecom[website].system = http://hl7.org/fhir/contact-point-system#url
+* telecom[website].use = $conuse#work
+* telecom[website].value = "http://www.cqyz.gov.cn/bm_229/qwsjkw/zwgk_97157/"
+* identifier[moi].use = $iduse#official
+* identifier[moi].type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
+* identifier[moi].value = "1638748745645060"
+* identifier[uscc].use = $iduse#official
+* identifier[uscc].type = ChineseIdentifierTypeCS#USCC "统一社会信用代码"
+* identifier[uscc].value = "11500103MB1849823N"
+* address[0].extension[LongitudeExtension].valueDecimal = 106.56887499999993
+* address[0].extension[LatitudeExtension].valueDecimal = 29.55277699999998
+* address[0].use = http://hl7.org/fhir/address-use#work
+* address[0].type = http://hl7.org/fhir/address-type#physical
+* address[0].line = "重庆市渝中区和平路管家巷9号"
+* address[0].postalCode = "400010"
 

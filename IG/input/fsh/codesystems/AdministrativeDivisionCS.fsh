@@ -2,14 +2,15 @@ CodeSystem: CNAdministrativeDivisionCS
 Id: cn-administrativedivision-code-system
 Title: "中国行政区划代码"
 Description: "中国行政区划代码"
+* ^status = $pubst#active
+* ^experimental = false
+* ^caseSensitive = true
 * #110000 "北京市"
 * #110100 "市辖区"
 * #110101 "东城区"
-* #110101001 "东华门街道"
-* #110101002 "景山街道"
-* #110101003 "交道口街道"
-* #110101004 "安定门街道"
-* #110101005 "北新桥街道"
+* #110102 "西城区"
+* #110105 "朝阳区"
+* #110106 "丰台区"
 /*
 * #110101006 "东四街道"
 * #110101007 "朝阳门街道"
