@@ -1,7 +1,7 @@
 CodeSystem: CNAdministrativeDivisionCS
 Id: cn-administrativedivision-code-system
 Title: "中国行政区划代码"
-Description: "中国行政区划代码（乡镇街道级）"
+Description: "中国行政区划代码"
 * #110000 "北京市"
 * #110100 "市辖区"
 * #110101 "东城区"

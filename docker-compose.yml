@@ -1,6 +1,8 @@
 services:
     iris:
-        build: ./image-iris
+        build:
+            context: ./  # 这里把当前路径的上一级加到上下文环境中
+            dockerfile: ./image-iris/Dockerfile  #指定dockerfile
         environment:
             IRIS_USERNAME: superuser
             IRIS_PASSWORD: SYS
