@@ -120,6 +120,8 @@ Description: "中国组织机构主数据数据模型"
 * contact ^slicing.rules = #open
 * contact ^slicing.ordered = false 
 * contact ^slicing.description = "contact字段切片，用于指定组织联系人或负责人等"
+// 更改联系人类型值集
+* contact.purpose from CNContactorTypeVS
 // telecom contains规则
 * contact contains
     contactor 0..1 MS
