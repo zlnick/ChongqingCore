@@ -9,20 +9,20 @@ XPath:       "f:value"
 // 扩展字段，记录所属行政区域
 Extension: AdministrativeDivisionExtension
 Id: hc-mdm-administrativedivision
-Title: "所属行政区域"
-Description: "所属行政区域"
-Context: MDMOrganization
-* value[x] only Coding
-* value[x] from CNAdministrativeDivisionVS (required)
-
-// 扩展字段，记录重庆乡镇街道级行政区划
-Extension: CQAdministrativeDivisionExtension
-Id: hc-mdm-cqadministrativedivision
-Title: "所属重庆街道级行政区域"
-Description: "所属重庆街道级行政区域"
+Title: "所属区级行政区域"
+Description: "所属区级行政区域"
 Context: MDMOrganization
 * value[x] only Coding
 * value[x] from CQAdministrativeDivisionVS (required)
+
+// 扩展字段，记录重庆乡镇街道级行政区划
+Extension: StreetDivisionExtension
+Id: hc-mdm-streetdivision
+Title: "所属街道级行政区域"
+Description: "所属街道级行政区域"
+Context: MDMOrganization
+* value[x] only Coding
+* value[x] from CQStreetDivisionVS (required)
 
 // 扩展字段，记录组织机构经济类型
 Extension: EconomicIndustryClassificationExtension
@@ -48,7 +48,7 @@ Title: "组织机构主数据"
 Parent: Organization
 Description: "中国组织机构主数据数据模型"
 * extension contains AdministrativeDivisionExtension named AdministrativeDivisionExtension 1..1 MS
-* extension contains CQAdministrativeDivisionExtension named CQAdministrativeDivisionExtension 0..1 MS
+* extension contains StreetDivisionExtension named StreetDivisionExtension 0..1 MS
 * extension contains EconomicIndustryClassificationExtension named EconomicIndustryClassificationExtension 0..1 MS
 * extension contains SupervisedByExtension named SupervisedByExtension 0..* MS
 * active ^short = "记录有效标识"
@@ -155,8 +155,8 @@ Description: "重庆市卫生健康委员会"
 * active = true 
 * type = OrganizationTypeCS#121 "事业单位法人"
 * name = "重庆市卫生健康委员会"
-* extension[AdministrativeDivisionExtension].valueCoding = CNAdministrativeDivisionCS#110101 "东城区"
-* extension[CQAdministrativeDivisionExtension].valueCoding = CQAdministrativeDivisionCS#500112005 "龙山街道"
+* extension[AdministrativeDivisionExtension].valueCoding = CQAdministrativeDivisionCS#500112 "渝北区"
+* extension[StreetDivisionExtension].valueCoding = CQStreetDivisionCS#500112005 "龙山街道"
 * telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
 * telecom[phone].use = $conuse#work
 * telecom[phone].value = "+86-23-67706707"
@@ -185,8 +185,8 @@ Description: "重庆市渝中区卫生健康委员会"
 * active = true 
 * type = OrganizationTypeCS#121 "事业单位法人"
 * name = "重庆市渝中区卫生健康委员会"
-* extension[AdministrativeDivisionExtension].valueCoding = CNAdministrativeDivisionCS#110100 "市辖区"
-* extension[CQAdministrativeDivisionExtension].valueCoding = CQAdministrativeDivisionCS#500103001 "七星岗街道"
+* extension[AdministrativeDivisionExtension].valueCoding = CQAdministrativeDivisionCS#500103 "渝中区"
+* extension[StreetDivisionExtension].valueCoding = CQStreetDivisionCS#500103001 "七星岗街道"
 * extension[SupervisedByExtension].valueReference.type = "Organization"
 * extension[SupervisedByExtension].valueReference.identifier.type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
 * extension[SupervisedByExtension].valueReference.identifier.value = "82783739457838954"

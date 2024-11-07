@@ -35,13 +35,6 @@ Description: "中国医院三级评审等级值集"
 * ^experimental = false
 * include codes from system CNHospitalLevelCS
 
-ValueSet: CNAdministrativeDivisionVS
-Id: cn-administrativedivision-vs
-Title: "中国行政区划值集"
-Description: "中国行政区划值集"
-* ^experimental = false
-* include codes from system CNAdministrativeDivisionCS
-
 ValueSet:  CNNationalEconomicIndustryClassificationVS
 Id: cn-nationaleconomicindustryclassification-vs
 Title: "经济类型分类值集"
@@ -58,7 +51,14 @@ Description:  "医院管理类型值集"
 
 ValueSet: CQAdministrativeDivisionVS
 Id: cq-administrativedivision-vs
+Title: "重庆区级行政区划值集"
+Description: "重庆区级行政区划值集"
+* ^experimental = false
+* include codes from system CQAdministrativeDivisionCS
+
+ValueSet: CQStreetDivisionVS
+Id: cq-streetdivision-vs
 Title: "重庆（乡镇街道级）行政区划值集"
 Description: "重庆（乡镇街道级）行政区划值集"
 * ^experimental = false
-* include codes from system CQAdministrativeDivisionCS
+* include codes from system CQStreetDivisionCS

@@ -1,7 +1,7 @@
 CodeSystem:  NationalEconomicIndustryClassificationCS
 Id: nationaleconomicindustryclassification-code-system
 Title: "经济类型分类代码"
-Description: "国家标准GB-T12402-2000《经济类型分类与代码》"
+Description: "国家标准 GB/T 12402-2000《经济类型分类与代码》"
 * ^status = $pubst#active
 * ^experimental = false
 * ^caseSensitive = true
