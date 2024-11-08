@@ -37,7 +37,7 @@ Context: HealthcareOrganization
 // 扩展字段，记录次要组织机构类型
 Extension: SecondaryHealthcareInstitutionsTypeExtension
 Id: hc-mdm-secondaryhealthcareinstitutionstype
-Title: "次要组织机构类型，遵循卫生机构（组织）分类"
+Title: "次要组织机构类型"
 Description: "使用WS 218-2002 卫生机构（组织）分类与代码"
 Context: SecondaryHealthcareInstitutionsInfoExtension
 * value[x] only Coding
