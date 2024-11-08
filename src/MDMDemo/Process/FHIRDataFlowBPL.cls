@@ -1,0 +1,91 @@
+/// 
+Class MDMDemo.Process.FHIRDataFlowBPL Extends Ens.BusinessProcessBPL
+{
+
+Storage Default
+{
+<Type>%Storage.Persistent</Type>
+}
+
+/// BPL Definition
+XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
+{
+<process language='objectscript' request='HS.FHIRServer.Interop.Request' response='HS.FHIRServer.Interop.Response' height='2250' width='2000' >
+<context>
+<property name='validatingStatus' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+<property name='validatingResult' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='2500' />
+</parameters>
+</property>
+<property name='profile' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='2500' />
+</parameters>
+</property>
+<property name='resource' type='HS.FHIR.DTL.vR4.Model.Base.DomainResource' instantiate='0' />
+<property name='tempResp' type='HS.FHIRServer.Interop.Response' instantiate='0' />
+<property name='tempOutCome' type='HS.FHIR.DTL.vR4.Model.Resource.OperationOutcome' instantiate='0' />
+</context>
+<sequence xend='200' yend='2000' >
+<if name='是POST请求' condition='"POST" = request.Request.RequestMethod' xpos='200' ypos='250' xend='200' yend='1900' >
+<true>
+<switch name='按资源类型分支' xpos='470' ypos='400' xend='470' yend='1800' >
+<case condition='"Organization" = request.Request.RequestPath' name='Organization' >
+<assign name="构造FHIR Organization对象" property="context.resource" value="##class(HS.FHIR.DTL.vR4.Model.Resource.Organization).FromJSON(##class(HS.SDA3.QuickStream).%OpenId(request.QuickStreamId),&quot;vR4&quot;)" action="set" languageOverride="" xpos='761' ypos='531' />
+<assign name="获得profile" property="context.profile" value="##class(MDMDemo.Utils.FHIRObjectUtils).GetProfile(context.resource)" action="set" languageOverride="" xpos='756' ypos='626' />
+<rule name='运行Profile约束规则' rule='MDMDemo.Rules.OrganizationRule'  resultLocation='context.validatingResult' reasonLocation='context.validatingStatus' ruleContext='context' xpos='757' ypos='722' >
+</rule>
+<assign name="设置请求路径 - 调用FHIR校验" property="request.Request.RequestPath" value="request.Request.RequestPath_&quot;/$validate&quot;" action="set" languageOverride="" xpos='757' ypos='823' />
+<assign name="设置profile路径 - 调用FHIR校验" property="request.Request.QueryString" value="&quot;profile=&quot;_context.profile" action="set" languageOverride="" xpos='756' ypos='922' />
+<call name='调用FHIR校验' target='HS.FHIRServer.Interop.Operation' async='0' xpos='759' ypos='1023' >
+<request type='HS.FHIRServer.Interop.Request' >
+<assign property="callrequest" value="request" action="set" languageOverride="" />
+</request>
+<response type='HS.FHIRServer.Interop.Response' >
+<assign property="context.tempResp" value="callresponse" action="set" languageOverride="" />
+</response>
+</call>
+<trace value='context.validatingResult' xpos='761' ypos='1123' disabled="true"/>
+<if name='如果有规则验证错误' condition='"" &apos;= context.validatingResult' xpos='760' ypos='1227' xend='747' yend='1460' >
+<true>
+<code name='将规则错误加入FHIR返回' xpos='896' ypos='1363' >
+<![CDATA[ Set tSC = ##Class(MDMDemo.Utils.FHIRObjectUtils).MergeOutcomes(context.tempResp ,context.validatingResult)]]>
+</code>
+</true>
+</if>
+<assign name="构造FHIR返回对象" property="context.tempOutCome" value="##class(HS.FHIR.DTL.vR4.Model.Resource.OperationOutcome).FromJSON(##class(HS.SDA3.QuickStream).%OpenId(context.tempResp.QuickStreamId),&quot;vR4&quot;)" action="set" languageOverride="" xpos='745' ypos='1551' />
+<assign name="返回FHIR验证结果" property="response" value="context.tempResp" action="set" languageOverride="" xpos='740' ypos='1687' />
+</case>
+<default name='default' >
+<call name='继续默认处理' target='HS.FHIRServer.Interop.Operation' async='0' xpos='470' ypos='550' >
+<request type='HS.FHIRServer.Interop.Request' >
+<assign property="callrequest" value="request" action="set" languageOverride="" />
+</request>
+<response type='HS.FHIRServer.Interop.Response' >
+<assign property="response" value="callresponse" action="set" languageOverride="" />
+</response>
+</call>
+</default>
+</switch>
+</true>
+<false>
+<call name='继续由FHIR Server处理' target='HS.FHIRServer.Interop.Operation' async='0' xpos='185' ypos='472' >
+<request type='HS.FHIRServer.Interop.Request' >
+<assign property="callrequest" value="request" action="set" languageOverride="" />
+</request>
+<response type='HS.FHIRServer.Interop.Response' >
+<assign property="response" value="callresponse" action="set" languageOverride="" />
+</response>
+</call>
+</false>
+</if>
+</sequence>
+</process>
+}
+
+}
