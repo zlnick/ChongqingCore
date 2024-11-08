@@ -41,4 +41,21 @@ ClassMethod MergeOutcomes(ByRef tempResp As HS.FHIRServer.Interop.Response, erro
     Quit tSC
 }
 
+ClassMethod isOutcomeError(outcome As HS.FHIR.DTL.vR4.Model.Resource.OperationOutcome) As %Boolean
+{
+    Set result = 0
+    Set issues = outcome.issue
+    for i = 1:1:issues.Count() 
+    {
+        #Dim issue As HS.FHIR.DTL.vR4.Model.Element.OperationOutcome.issue = issues.GetAt(i)
+        if (("fatal" = issue.severity) || ("error" = issue.severity))
+        {
+            Set result = 1
+            Quit
+        }
+
+    }
+    Quit result
+}
+
 }
