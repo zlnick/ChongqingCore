@@ -62,3 +62,10 @@ Title: "重庆（乡镇街道级）行政区划值集"
 Description: "重庆（乡镇街道级）行政区划值集"
 * ^experimental = false
 * include codes from system CQStreetDivisionCS
+
+ValueSet: OperatingStatusVS
+Id: operatingstatus-vs
+Title: "机构运营状态值集"
+Description: "机构运营状态值集"
+* ^experimental = false
+* include codes from system OperatingStatusCS

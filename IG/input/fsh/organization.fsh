@@ -41,6 +41,23 @@ Description: "由被监管机构引用监管机构，例如县医院引用县卫
 Context: MDMOrganization
 * value[x] only Reference
 
+// 扩展字段，是否分支机构标识
+Extension: IsBranchExtension
+Id: hc-mdm-isbranch
+Title: "是否分支机构"
+Description: "true | false，当机构为主体机构分支（如分院）时，取true，否则取false。"
+Context: MDMOrganization
+* value[x] only boolean
+
+// 扩展字段，记录机构运营状态
+Extension: OperatingStatusExtension
+Id: hc-mdm-operatingstatus
+Title: "机构运营状态"
+Description: "机构运营状态"
+Context: MDMOrganization
+* value[x] only Coding
+* value[x] from OperatingStatusVS
+
 // Organization Profile
 Profile: MDMOrganization
 Id: hc-mdm-organization
@@ -51,6 +68,8 @@ Description: "中国组织机构主数据数据模型"
 * extension contains StreetDivisionExtension named StreetDivisionExtension 0..1 MS
 * extension contains EconomicIndustryClassificationExtension named EconomicIndustryClassificationExtension 0..1 MS
 * extension contains SupervisedByExtension named SupervisedByExtension 0..* MS
+* extension contains IsBranchExtension named IsBranchExtension 0..* MS
+* extension contains OperatingStatusExtension named OperatingStatusExtension 0..* MS
 * active ^short = "记录有效标识"
 * active ^comment = "以布尔值（true | false）表达记录是否有效，true为有效，false为无效"
 * active 1..1 MS
@@ -58,7 +77,7 @@ Description: "中国组织机构主数据数据模型"
 * type ^comment = "以国家标准GB/T 20091-2021 组织机构类型表述"
 * type from OrganizationTypeVS
 * name ^short = "与统一社会信用代码对应的组织机构名称"
-* name ^comment = "其他名称应使用别名（alias）表述"
+* name ^comment = "如机构具有其他名称，应使用别名（alias）表述"
 * name 1..1 MS 
 * alias ^short = "除统一社会信用代码对应的组织机构名称之外的所有别名"
 // identifier字段切片，用于指定统一社会信用代码，主索引号码和组织机构执业许可证登记号等
@@ -150,7 +169,6 @@ Description: "中国组织机构主数据数据模型"
 * contact[contactor].telecom[email].system = http://hl7.org/fhir/contact-point-system#email
 * contact[contactor].telecom[email].use = $conuse#work 
 
-
 Instance: ChongqingHealthCommission
 InstanceOf: MDMOrganization
 Description: "重庆市卫生健康委员会"
@@ -159,6 +177,8 @@ Description: "重庆市卫生健康委员会"
 * name = "重庆市卫生健康委员会"
 * extension[AdministrativeDivisionExtension].valueCoding = CQAdministrativeDivisionCS#500112 "渝北区"
 * extension[StreetDivisionExtension].valueCoding = CQStreetDivisionCS#500112005 "龙山街道"
+* extension[IsBranchExtension].valueBoolean = false
+* extension[OperatingStatusExtension].valueCoding = OperatingStatusCS#0 "开业"
 * telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
 * telecom[phone].use = $conuse#work
 * telecom[phone].value = "+86-23-67706707"
@@ -192,7 +212,9 @@ Description: "重庆市渝中区卫生健康委员会"
 * extension[SupervisedByExtension].valueReference.type = "Organization"
 * extension[SupervisedByExtension].valueReference.identifier.type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
 * extension[SupervisedByExtension].valueReference.identifier.value = "82783739457838954"
-* extension[SupervisedByExtension].valueReference.display = "重庆市卫生健康委员会"
+* extension[SupervisedByExtension].valueReference.display = "渝中区卫健委"
+* extension[IsBranchExtension].valueBoolean = false
+* extension[OperatingStatusExtension].valueCoding = OperatingStatusCS#0 "开业"
 * telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
 * telecom[phone].use = $conuse#work
 * telecom[phone].value = "+86-23-63765146"

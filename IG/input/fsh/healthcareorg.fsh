@@ -97,6 +97,8 @@ Description: "长宁市奉孝区中心医院(虚拟医院)"
 * extension[SupervisedByExtension].valueReference.identifier.type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
 * extension[SupervisedByExtension].valueReference.identifier.value = "1638748745645060"
 * extension[SupervisedByExtension].valueReference.display = "重庆市渝中区卫生健康委员会"
+* extension[IsBranchExtension].valueBoolean = false
+* extension[OperatingStatusExtension].valueCoding = OperatingStatusCS#0 "开业"
 * telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
 * telecom[phone].use = $conuse#work
 * telecom[phone].value = "+86-23-65100171"
@@ -146,6 +148,8 @@ Description: "长宁市奉孝区中心医院龙翔路分院"
 * extension[SupervisedByExtension].valueReference.identifier.type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
 * extension[SupervisedByExtension].valueReference.identifier.value = "1638748745645060"
 * extension[SupervisedByExtension].valueReference.display = "重庆市渝中区卫生健康委员会"
+* extension[IsBranchExtension].valueBoolean = true
+* extension[OperatingStatusExtension].valueCoding = OperatingStatusCS#1 "筹建"
 * telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
 * telecom[phone].use = $conuse#work
 * telecom[phone].value = "+86-23-65203427"
