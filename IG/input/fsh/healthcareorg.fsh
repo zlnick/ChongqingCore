@@ -105,8 +105,8 @@ Description: "长宁市奉孝区中心医院(虚拟医院)"
 * identifier[uscc].use = $iduse#official
 * identifier[uscc].type = ChineseIdentifierTypeCS#USCC "统一社会信用代码"
 * identifier[uscc].value = "12330000470051726F"
-* address[0].extension[LongitudeExtension].valueDecimal = 106.55
-* address[0].extension[LatitudeExtension].valueDecimal = 29.55
+* address[0].extension[OrganizationGISExtension].extension[longitude].valueDecimal = 106.55
+* address[0].extension[OrganizationGISExtension].extension[latitude].valueDecimal = 29.55
 * address[0].use = http://hl7.org/fhir/address-use#work
 * address[0].type = http://hl7.org/fhir/address-type#physical
 * address[0].line = "XX省长宁市奉孝区健康路1号"
@@ -144,8 +144,8 @@ Description: "长宁市奉孝区中心医院龙翔路分院"
 * identifier[moi].use = $iduse#official
 * identifier[moi].type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
 * identifier[moi].value = "82783739457838954"
-* address[0].extension[LongitudeExtension].valueDecimal = 106.58
-* address[0].extension[LatitudeExtension].valueDecimal = 29.51
+* address[0].extension[OrganizationGISExtension].extension[longitude].valueDecimal = 106.58
+* address[0].extension[OrganizationGISExtension].extension[latitude].valueDecimal = 29.51
 * address[0].use = http://hl7.org/fhir/address-use#work
 * address[0].type = http://hl7.org/fhir/address-type#physical
 * address[0].line = "XX省长宁市奉孝区龙翔路42号"

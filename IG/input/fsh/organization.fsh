@@ -1,3 +1,17 @@
+// 扩展字段，记录次要组织机构类型信息
+Extension: OrganizationGISExtension
+Id: hc-mdm-organizationggis
+Title: "组织机构地理位置坐标"
+Description: "组织机构地理位置坐标，以10进制WGS84经纬度表示"
+Context: Address
+* extension contains
+    longitude 0..1 MS and
+    latitude 0..1
+* extension[longitude] ^short = "经度，以10进制WGS84经度表示"
+* extension[longitude].value[x] only decimal
+* extension[latitude] ^short = "纬度，以10进制WGS84纬度表示"
+* extension[latitude].value[x] only decimal
+
 // 使用正则表达式校验统一社会信用代码格式（18）
 Invariant:   uscc-encodingrule-18
 Description: "源于GB 32100-2015 《法人和其他组织统一社会信用代码编码规则》，中国统一社会信用代码长度为18位。第一位为登记管理部门代码[1,5,9,Y]，第二位为机构类别代码[1,2,3,9]，第3~8位遵循GB/T 2260-2007《中华人民共和国行政区划代码》，[0-9]数字格式；第9~17位遵循GB 11714-1997《全国组织机构代码编制规则》，为[0-9][A-Z]；第18位为校验码，遵循GB/T 17710-2008《信息技术 安全技术 校验字符系统》，为[0-9][A-Z][*]。"
@@ -70,6 +84,7 @@ Description: "中国组织机构主数据数据模型"
 * extension contains SupervisedByExtension named SupervisedByExtension 0..* MS
 * extension contains IsBranchExtension named IsBranchExtension 0..* MS
 * extension contains OperatingStatusExtension named OperatingStatusExtension 0..* MS
+//* extension contains OrganizationGISExtension named OrganizationGISExtension 0..* MS
 * active ^short = "记录有效标识"
 * active ^comment = "以布尔值（true | false）表达记录是否有效，true为有效，false为无效"
 * active 1..1 MS
@@ -127,9 +142,13 @@ Description: "中国组织机构主数据数据模型"
 * telecom[website] ^short = "组织机构网站地址"
 * telecom[website] ^definition = "组织机构网站地址"
 * telecom[website].system = http://hl7.org/fhir/contact-point-system#url
-* telecom[website].use = $conuse#work 
-// 地址经过扩展，需要容纳经纬度
-* address only OrganizationAddress
+* telecom[website].use = $conuse#work
+// 组织机构经纬度
+* address.extension contains OrganizationGISExtension named OrganizationGISExtension 0..* MS
+* address.line ^short = "详细地址"
+* address.line ^comment = "以字符串记录"
+* address.postalCode ^short = "邮政编码"
+* address.postalCode ^comment = "邮政编码"
 // 引用主机构
 * partOf ^short = "主机构"
 * partOf ^comment = "引用主机构，形成分支机构与主机构的多对一关联，例如分院区引用主院区。"
@@ -194,8 +213,8 @@ Description: "重庆市卫生健康委员会"
 * identifier[uscc].use = $iduse#official
 * identifier[uscc].type = ChineseIdentifierTypeCS#USCC "统一社会信用代码"
 * identifier[uscc].value = "11500000MB1670604W"
-* address[0].extension[LongitudeExtension].valueDecimal = 106.50520499999993
-* address[0].extension[LatitudeExtension].valueDecimal = 29.593906000000015
+* address[0].extension[OrganizationGISExtension].extension[longitude].valueDecimal = 106.50520499999993
+* address[0].extension[OrganizationGISExtension].extension[latitude].valueDecimal = 29.593906000000015
 * address[0].use = http://hl7.org/fhir/address-use#work
 * address[0].type = http://hl7.org/fhir/address-type#physical
 * address[0].line = "重庆市渝北区旗龙路6号"
@@ -230,8 +249,8 @@ Description: "重庆市渝中区卫生健康委员会"
 * identifier[uscc].use = $iduse#official
 * identifier[uscc].type = ChineseIdentifierTypeCS#USCC "统一社会信用代码"
 * identifier[uscc].value = "11500103MB1849823N"
-* address[0].extension[LongitudeExtension].valueDecimal = 106.56887499999993
-* address[0].extension[LatitudeExtension].valueDecimal = 29.55277699999998
+* address[0].extension[OrganizationGISExtension].extension[longitude].valueDecimal = 106.56887499999993
+* address[0].extension[OrganizationGISExtension].extension[latitude].valueDecimal = 29.55277699999998
 * address[0].use = http://hl7.org/fhir/address-use#work
 * address[0].type = http://hl7.org/fhir/address-type#physical
 * address[0].line = "重庆市渝中区和平路管家巷9号"
