@@ -29,28 +29,16 @@ Context: HealthcareOrganization
 Extension: SecondaryHealthcareInstitutionsInfoExtension
 Id: hc-mdm-secondaryhealthcareinstitutionsinfo
 Title: "次要组织机构信息"
-Description: "包含次要组织机构名称与类型两个属性"
+Description: "包含次要组织机构名称与类型两个属性，其中次要组织机构类型需使用WS 218-2002 卫生机构（组织）分类与代码。"
 Context: HealthcareOrganization
-* extension contains SecondaryHealthcareInstitutionsTypeExtension named SecondaryHealthcareInstitutionsTypeExtension 0..1 MS
-* extension contains SecondaryHealthcareInstitutionsNameExtension named SecondaryHealthcareInstitutionsNameExtension 0..1 MS
-
-// 扩展字段，记录次要组织机构类型
-Extension: SecondaryHealthcareInstitutionsTypeExtension
-Id: hc-mdm-secondaryhealthcareinstitutionstype
-Title: "次要组织机构类型"
-Description: "使用WS 218-2002 卫生机构（组织）分类与代码"
-Context: SecondaryHealthcareInstitutionsInfoExtension
-* value[x] only Coding
-* value[x] from HealthcareInstitutionsTypeVS (required)
-
-
-// 扩展字段，记录次要组织机构名称
-Extension: SecondaryHealthcareInstitutionsNameExtension
-Id: hc-mdm-secondaryhealthcareinstitutionsname
-Title: "次要组织机构名称"
-Description: "次要组织机构名称"
-Context: SecondaryHealthcareInstitutionsInfoExtension
-* value[x] only string
+* extension contains
+    secondaryType 0..1 MS and
+    secondaryName 0..1
+* extension[secondaryType] ^short = "次要组织机构类型"
+* extension[secondaryType].value[x] only Coding
+* extension[secondaryType].value[x] from HealthcareInstitutionsTypeVS (required) // OmbEthnicityCategories is a value set defined by US Core
+* extension[secondaryName] ^short = "次要组织机构名称"
+* extension[secondaryName].value[x] only string
 
 // Organization Profile
 Profile: HealthcareOrganization
@@ -61,7 +49,7 @@ Description: "中国卫生健康机构主数据数据模型"
 * extension contains HealthcareInstitutionsTypeExtension named HealthcareInstitutionsTypeExtension 1..1 MS
 * extension contains HospitalLevelExtension named HospitalLevelExtension 1..1 MS
 * extension contains HospitalManagementTypeExtension named HospitalManagementTypeExtension 1..1 MS
-* extension contains SecondaryHealthcareInstitutionsInfoExtension named SecondaryHealthcareInstitutionsInfoExtension 0..1 MS
+* extension contains SecondaryHealthcareInstitutionsInfoExtension named SecondaryHealthcareInstitutionsInfoExtension 0..* MS
 // identifier字段切片，用于指定统一社会信用代码，主索引号码和医疗机构执业许可证登记号等
 * identifier ^slicing.discriminator.type = #pattern
 * identifier ^slicing.discriminator.path = "type"
@@ -91,8 +79,8 @@ Description: "长宁市奉孝区中心医院(虚拟医院)"
 * extension[HospitalLevelExtension].valueCoding = CNHospitalLevelCS#2 "三级甲等"
 * extension[EconomicIndustryClassificationExtension].valueCoding = NationalEconomicIndustryClassificationCS#110 "国有全资"
 * extension[HospitalManagementTypeExtension].valueCoding = CNHospitalManagementTypeCS#1 "非营利性医疗机构"
-* extension[SecondaryHealthcareInstitutionsInfoExtension].extension[SecondaryHealthcareInstitutionsTypeExtension].valueCoding = HealthcareInstitutionsTypeCS#E100 "急救中心"
-* extension[SecondaryHealthcareInstitutionsInfoExtension].extension[SecondaryHealthcareInstitutionsNameExtension].valueString = "长宁市急救中心"
+* extension[SecondaryHealthcareInstitutionsInfoExtension][0].extension[secondaryType].valueCoding = HealthcareInstitutionsTypeCS#E100 "急救中心"
+* extension[SecondaryHealthcareInstitutionsInfoExtension][0].extension[secondaryName].valueString = "长宁市急救中心"
 * extension[SupervisedByExtension].valueReference.type = "Organization"
 * extension[SupervisedByExtension].valueReference.identifier.type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
 * extension[SupervisedByExtension].valueReference.identifier.value = "1638748745645060"
