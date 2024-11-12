@@ -11,23 +11,24 @@
 ## API基础
 
 ### 格式指南 
-本页介绍的交互使用格式如下：
+本页介绍的交互使用格式如下：  
 ``` 
-  VERB [基地址]/[资源类型]/[逻辑id] {?_format=[表述形式]} 
+  VERB [基地址]/[资源类型]/[逻辑id] {?_format=[mime-type]}
 ```
-VERB就是FHIR支持的几种HTTP方法，如GET/POST/PUT等  
-方括号中的内容（“基地址”、“资源类型”）是必填项，在实际使用中方括号中的内容可以有以下几种：  
-基地址：服务端提供服务的根URL地址  
-资源类型：资源的名称，如Organization，Patient等  
-逻辑id：资源实例的id，对于针对资源类型（如create）而不是实例的操作不需要。  
+VERB就是FHIR支持的几种HTTP方法，如GET/POST/PUT等    
+方括号中的内容（“基地址”、“资源类型”）是必填项，在实际使用中方括号中的内容可以有以下几种：    
+基地址(base)：服务端提供服务的根URL地址  
+资源类型(type)：资源的名称，如Organization，Patient等  
+逻辑id(id)：资源实例的id，对于针对资源类型（如create）而不是实例的操作不需要。 
+_format: 资源的表达格式。交互接口本身支持XML与JSON两种表达形态，相应地则需维护两套格式标准。因此，在本次发布的版本中，只采用JSON格式的表达。XML格式的表达方式将随标准版本的迭代和应用效果决定是否开放。 
 
 ### 服务基地址（Base URL） 
 服务基地址（Base URL）是一个API接口地址，接口中定义的所有资源都可以在这个地址里找到。  
-服务基地址格式如下：
+服务基地址格式如下：  
 ``` 
 http{s}://server{/path}
 ``` 
-path部分是可选项，path后面没有斜线，每一种resource类型都有一个起点(或者叫实体集)，在path之后添加/[type]， 这个 [type]是resource的类型。举例来说，对Organization资源来说，就是这样的：
+path部分是可选项，path后面没有斜线，每一种resource类型都有一个起点(或者叫实体集)，在path之后添加/[type]， 这个 [type]是resource的类型。举例来说，对Organization资源来说，就是这样的：   
 ``` 
 https://server/path/Patient
 ``` 
@@ -36,12 +37,12 @@ https://server/path/Patient
 
 ### 资源元数据和版本控制
 每个资源都有一组关联的资源元数据元素。这些映射到HTTP请求和响应，使用以下字段：    
-* [Version Id](https://hl7.org/fhir/R4/resource.html#Meta) 资源实例的版本号  
-* [lastUpdated](https://hl7.org/fhir/R4/resource.html#Meta) 最后更新时间  
-* [profile](https://hl7.org/fhir/R4/resource.html#Meta) 声明资源实例符合资源规范（StructureDefinition）的断言  
+* [Version Id](https://hl7.org/fhir/R4/resource.html#Meta) 资源实例的版本号    
+* [lastUpdated](https://hl7.org/fhir/R4/resource.html#Meta) 最后更新时间    
+* [profile](https://hl7.org/fhir/R4/resource.html#Meta) 声明资源实例符合资源规范（StructureDefinition）的断言    
 特别应当注意profile元素。由于本标准支持同时部署多个资源规范，例如通过同一个API接口，也可以让Organization资源分别支持0.1.0和1.0.0版本的资源定义。  
-因此，当使用POST、PUT等将改变资源实例内容的接口时，该元数据条目必需提供，以便验证数据的质量。
-以下为元数据条目的表述形式。
+因此，当使用POST、PUT等将改变资源实例内容的接口时，该元数据条目必需提供，以便验证数据的质量。  
+以下为元数据条目的表述形式。  
 ``` json
 {
 "meta": {
