@@ -77,7 +77,7 @@ Profile: MDMOrganization
 Id: hc-mdm-organization
 Title: "组织机构主数据"
 Parent: Organization
-Description: "中国组织机构主数据数据模型"
+Description: "中国组织机构主数据数据模型。本标准所指的组织，是指为实现某种形式的集体行动而组成的正式或非正式认可的人员或组织团体。包括公司、机构、企业、部门、社区团体、医疗实践团体、付款人/承保人等。"
 * extension contains AdministrativeDivisionExtension named AdministrativeDivisionExtension 1..1 MS
 * extension contains StreetDivisionExtension named StreetDivisionExtension 0..1 MS
 * extension contains EconomicIndustryClassificationExtension named EconomicIndustryClassificationExtension 0..1 MS

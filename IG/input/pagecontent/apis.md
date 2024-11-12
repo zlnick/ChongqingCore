@@ -59,7 +59,7 @@ https://server/path/Patient
 对于某些交互组合和特定的返回代码，需要返回 OperationOutcome 作为响应内容。  
 OperationOutcome 可以与任何 HTTP 4xx 或 5xx 响应一起返回，但这并不是必须的，因为许多此类错误可能是由服务器底层的通用服务器框架生成的。
 
-### Content Types and encodings 内容类型和编码
+### Content Types 与 编码
 资源的正式MIME类型是 application/fhir+json 。
 客户端和服务器交互时必须使用正确的 MIME 类型。
 
