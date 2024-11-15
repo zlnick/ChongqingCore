@@ -7,7 +7,7 @@
 组织机构数据模型中覆盖的数据需求如下：   
 
 | 数据需求 | 基数 | 元素含义 | 约束 | FHIR路径 |
-| -------------- | ---- | ------------------------ | ---------------- | -------- |
+| ------------------ | ---- | ------------------------ | ---------------- | -------- |
 | 机构主索引号 | 0..1 | 由平台统一分配管理的主索引号码 | 无 | [Organization.identifier:moi](StructureDefinition-hc-mdm-organization-definitions.html#Organization.identifier:moi) |
 | 机构名称 | 1..1 | 与统一社会信用代码对应的组织机构名称 | 无 | [Organization.name](StructureDefinition-hc-mdm-organization-definitions.html#Organization.name) |
 | 别名 | 0..* | 除首要名称之外的其他名称 | 无 | [Organization.alias](StructureDefinition-hc-mdm-organization-definitions.html#Organization.alias) |
@@ -34,8 +34,7 @@
 
 
 ## [卫生健康机构](StructureDefinition-hc-healthcare-organization.html)
-卫生健康机构提供卫生健康服务，是组织机构的一种细分类型。 卫生健康机构是组织机构的子类型，通过在本标准的组织机构资源之上扩展。  
-卫生健康机构所具有的卫生机构分类行标、医疗机构执业许可证登记号的数据元素获得。  
+卫生健康机构提供卫生健康服务，是组织机构的一种细分类型。 卫生健康机构是组织机构的子类型，通过在本标准的组织机构资源之上扩展卫生健康机构所具有的卫生机构分类行标、医疗机构执业许可证登记号的数据元素获得。  
 除包括组织机构中所有的数据元素外，卫生健康机构包括的数据元素如下：  
 
 | 数据需求 | 基数 | 元素含义 | 约束 | FHIR路径 |
