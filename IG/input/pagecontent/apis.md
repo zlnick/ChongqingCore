@@ -1,12 +1,13 @@
 
 本标准中定义的操作列表如下：    
-* [read](https://hl7.org/fhir/R4/http.html#read) 读取资源的当前内容  
-* [vread](https://hl7.org/fhir/R4/http.html#vread) 读取特定版本资源的状态  
-* [update](https://hl7.org/fhir/R4/http.html#update) 根据ID更新已有资源（如果没有，则创建它）    
-* [delete](https://hl7.org/fhir/R4/http.html#delete) 删除某个资源    
-* [create](https://hl7.org/fhir/R4/http.html#create) 使用服务器分配的ID创建新资源   
-* [history](https://hl7.org/fhir/R4/http.html#history) 检索特定资源的更改历史记录  
-* [search](https://hl7.org/fhir/R4/http.html#search) 根据某些筛选条件搜索资源类型 
+* [read](#read) 读取资源的当前内容  
+* [vread](#vread) 读取特定版本资源的状态  
+* [update](#update) 根据ID更新已有资源（如果没有，则创建它）    
+* [delete](#delete) 删除某个资源 
+* [validate](#validate) 验证资源的合规性    
+* [create](#create) 使用服务器分配的ID创建新资源   
+* [history](#history) 检索特定资源的更改历史记录  
+* [search](#search) 根据某些筛选条件搜索资源类型 
 
 ## API基础
 
@@ -30,7 +31,7 @@ http{s}://server{/path}
 ``` 
 path部分是可选项，path后面没有斜线，每一种resource类型都有一个起点(或者叫实体集)，在path之后添加/[type]， 这个 [type]是resource的类型。举例来说，对Organization资源来说，就是这样的：   
 ``` 
-https://server/path/Patient
+https://server/path/Organization
 ``` 
 所有与组织机构相关的业务交互的URL对于根URL来说都是相对的。这就意味着所有资源在整个系统都是可知的， 其他的资源基本上也是可以以此类推。  
 注意：所有规范定义的URL(所有组成URL部分的id)都是大小写敏感的。 客户端应该用utf-8对所有URL进行编码，服务端应该用UTF-8进行解码。  
@@ -66,6 +67,7 @@ OperationOutcome 可以与任何 HTTP 4xx 或 5xx 响应一起返回，但这并
 
 
 ## read 
+[详细解释](https://hl7.org/fhir/R4/http.html#read)    
 读取交互可访问资源的当前内容。交互由 HTTP GET 命令执行，如图所示：
 ```
   GET [base]/[type]/[id] {?_format=[mime-type]}
@@ -74,6 +76,7 @@ OperationOutcome 可以与任何 HTTP 4xx 或 5xx 响应一起返回，但这并
 注意：未知资源和已删除资源在读取时的处理方式不同：对已删除资源的 GET 会返回 410 状态代码，而对未知资源的 GET 会返回 404。不跟踪已删除记录的系统会将已删除记录视为未知资源。由于已删除的资源可能会被激活，因此在读取已删除记录时，服务器可能会在错误响应中包含一个 ETag，以便在资源复活时进行版本争用管理。
 
 ## vread 
+[详细解释](https://hl7.org/fhir/R4/http.html#vread)    
 vread 交互对资源执行特定版本的读取。交互由 HTTP GET 命令执行，如图所示：
 ```
   GET [base]/[type]/[id]/_history/[vid] {?_format=[mime-type]}
@@ -83,14 +86,16 @@ vread 交互对资源执行特定版本的读取。交互由 HTTP GET 命令执�
 我们鼓励服务器即使不提供对以前版本的访问，也要支持对资源当前版本的特定版本检索。如果请求的是资源的以前版本，而服务器不支持访问以前的版本（无论是一般版本还是此特定资源的版本），则应返回 404 Not Found 错误，并在操作结果中说明不支持基础资源类型或实例的历史记录。
 
 ## update 
+[详细解释](https://hl7.org/fhir/R4/http.html#update)   
 更新交互可为现有资源创建一个新的当前版本，如果给定 id 下不存在资源，则创建一个初始版本。更新交互由 HTTP PUT 命令执行，如图所示：
 ```
   PUT [base]/[type]/[id] {?_format=[mime-type]}
 ```
-必须在一个request body中包含一个完整的资源实例，其 id 元素的值与 URL 中的 [id] 相同。如果没有提供 id 元素，或者 id 与 URL 中的 id 不一致，服务器将响应 HTTP 400 错误代码，并应提供一个 OperationOutcome 来标识问题。如果请求体包含meta元素，服务器将忽略提供的 versionId 和 lastUpdated 值。如果服务器支持版本，则应使用新的正确值填充 meta.versionId 和 meta.lastUpdated。目前还不支持更新过去的版本。  
+必须在一个request body中包含一个**完整**的资源实例，其 id 元素的值与 URL 中的 [id] 相同。如果没有提供 id 元素，或者 id 与 URL 中的 id 不一致，服务器将响应 HTTP 400 错误代码，并应提供一个 OperationOutcome 来标识问题。如果请求体包含meta元素，服务器将忽略提供的 versionId 和 lastUpdated 值。如果服务器支持版本，则应使用新的正确值填充 meta.versionId 和 meta.lastUpdated。目前还不支持更新过去的版本。  
 如果交互成功，服务器将返回 200 OK HTTP 状态代码（如果资源已更新），或 201 创建状态代码（如果资源已创建（或重新激活/重新创建）），并返回 Last-Modified 标头和包含资源新版本 ID 的 ETag 标头。如果资源已创建（即交互的结果是 201 Created），服务器就应返回一个 Location 头信息（这是为了符合 HTTP 协议；在其他情况下并不需要）。
 
 ## delete
+[详细解释](https://hl7.org/fhir/R4/http.html#delete)   
 删除交互可删除现有资源。交互由 HTTP DELETE 命令执行，如图所示：
 ```
   DELETE [base]/[type]/[id]
@@ -99,7 +104,144 @@ vread 交互对资源执行特定版本的读取。交互由 HTTP GET 命令执�
 删除交互意味着对资源的后续非特定版本读取将返回 410 HTTP 状态代码，并且通过搜索交互不再能找到该资源。删除成功后，或者如果资源根本不存在，如果响应包含有效载荷，服务器应返回 200 OK；如果没有响应有效载荷，则返回 204 No Content；如果服务器希望对删除结果不做任何承诺，则返回 202 Accepted。
 许多资源都有一个与删除概念重叠的status元素。每种资源类型都定义了删除交互的语义。如果没有提供相关文档，删除交互应被理解为删除资源记录，而不涉及现实世界中相应资源的状态。对status元素的操作应通过update等可更新资源的操作实现。  
 
+## validate
+[详细解释](https://hl7.org/fhir/R4/resource-operation-validate.html)   
+验证检查附加的内容是否满足标准要求，是否可被服务器接受，用于创建、更新或删除现有资源。  
+```
+POST [base]/[Resource]/$validate?profile=[profile|version]
+```
+其中[profile|version]参数用于指定要验证的资源应遵循的profile及其版本。在本标准中，要验证组织机构主数据的合规性，profile应取值为 http://[标准发布地址]/StructureDefinition/hc-mdm-organization|0.1.0 。不指定profile参数将导致服务器无法确定使用哪一个特定规范验证其合规性，只能验证其是否符合FHIR的基本格式。   
+此操作的返回值是 [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html)。  
+此操作可用于设计和开发期间，以验证应用程序设计。它也可以在运行时使用。一种可能的用途是，当用户正在编辑对话框时，客户端询问服务器建议的更新是否有效，并向用户显示更新的错误。该操作可以用作轻量级两阶段提交协议的一部分，但并不期望服务器在使用此操作后保留资源的内容，或者服务器保证在验证操作完成后成功执行实际的创建、更新或删除。  
+无论资源是否有效，此操作都将返回 200 OK。4xx 或 5xx 错误意味着无法执行验证本身，并且不知道资源是否有效。  
+### 验证示例
+
+#### 包含完整规范执行验证
+请求：使用 POST 根据组织机构主数据标准验证组织机构。
+```
+POST /[FHIR服务器地址]/Organization/$validate?profile=http://example.org/StructureDefinition/hc-mdm-organization|0.1.0
+
+Content-Type=application/fhir+json
+```
+被验证资源如下：  
+``` json
+{
+    "resourceType": "Organization",
+    "meta": {
+        "profile": [
+            "http://example.org/StructureDefinition/hc-mdm-organization|0.1.0"
+        ]
+    },
+    "extension": [
+        {
+            "url": "http://example.org/StructureDefinition/hc-mdm-administrativedivision",
+            "valueCoding": {
+                "system": "http://example.org/CodeSystem/cq-administrativedivision-code-system",
+                "code": "500112",
+                "display": "渝北区"
+            }
+        }
+    ],
+    "identifier": [
+        {
+            "use": "official",
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://example.org/CodeSystem/identifierType-code-system",
+                        "code": "USCC",
+                        "display": "统一社会信用代码"
+                    }
+                ]
+            },
+            "value": "11500000MB1670604%"
+        }
+    ],
+    "active": true,
+    "type": [
+        {
+            "coding": [
+                {
+                    "system": "http://example.org/CodeSystem/organizationtype-code-system",
+                    "code": "121",
+                    "display": "事业单位法人"
+                }
+            ]
+        }
+    ],
+    "name": "重庆市卫生健康委员会"
+}
+```
+经验证后可见OperationOutcome内容如下：
+``` json
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "severity": "error",
+            "code": "invariant",
+            "details": {
+                "text": "generated-hc-mdm-organization-2: Constraint violation: identifier.where(type.where(coding.where(system = 'http://example.org/CodeSystem/identifierType-code-system' and code = 'USCC').exists())).exists() implies (identifier.where(type.where(coding.where(system = 'http://example.org/CodeSystem/identifierType-code-system' and code = 'USCC').exists())).count() = 1 and identifier.where(type.where(coding.where(system = 'http://example.org/CodeSystem/identifierType-code-system' and code = 'USCC').exists())).all((use.exists() implies (use = 'official')) and type.where(coding.where(system = 'http://example.org/CodeSystem/identifierType-code-system' and code = 'USCC').exists()).exists() and (value.matches('^[159Y]{1}[1239]{1}[0-9]{6}[0-9A-Z]{9}[0-9A-Z*]{1}$'))))"
+            },
+            "diagnostics": "Caused by: [[expression: value.matches('^[159Y]{1}[1239]{1}[0-9]{6}[0-9A-Z]{9}[0-9A-Z*]{1}$'), result: false, location: Organization.identifier[0]]]",
+            "expression": [
+                "Organization"
+            ]
+        },
+        {
+            "severity": "warning",
+            "code": "invariant",
+            "details": {
+                "text": "dom-6: A resource should have narrative for robust management"
+            },
+            "expression": [
+                "Organization"
+            ]
+        },
+        {
+            "severity": "information",
+            "code": "code-invalid",
+            "details": {
+                "text": "identifier-0: A code in this element must be from the specified value set 'http://hl7.org/fhir/ValueSet/identifier-type' if possible"
+            },
+            "expression": [
+                "Organization.identifier[0].type"
+            ]
+        }
+    ]
+}
+``` 
+可见其中由于统一社会信用代码未通过格式验证产生的error级错误。其中也包括warning和information级错误，用户可自行选择是否需要处理。
+
+#### 不指定规范执行验证
+如采用同样的资源内容，但不指定验证所需的profile
+请求：使用 POST 根据组织机构主数据标准验证组织机构。
+```
+POST /[FHIR服务器地址]/Organization/$validate
+
+Content-Type=application/fhir+json
+```
+则服务器将忽略验证，直接返回成功。
+``` json
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "severity": "information",
+            "code": "informational",
+            "diagnostics": "All OK",
+            "details": {
+                "text": "All OK"
+            }
+        }
+    ]
+}
+``` 
+
+
+
 ## create 
+[详细解释](https://hl7.org/fhir/R4/http.html#create)   
 创建交互会在服务器指定的位置创建一个新资源。如果客户端希望控制新提交资源的 id，则应使用update交互。创建交互由 HTTP POST 命令执行，如图所示：
 ```
   POST [base]/[type] {?_format=[mime-type]}
@@ -112,12 +254,13 @@ vread 交互对资源执行特定版本的读取。交互由 HTTP GET 命令执�
 其中，[id] 和 [vid] 是新创建的资源版本 id 和版本 id。位置标头应尽可能具体--如果服务器了解版本控制，就会包含版本。如果服务器不跟踪版本，Location 头将只包含 [base]/[type]/[id] 。位置可以是绝对或相对 URL。  
 当资源语法或数据不正确或无效，无法用于创建新资源时，服务器会返回 400 Bad Request HTTP 状态代码。当服务器因业务规则而拒绝接受资源内容时，服务器会返回 422 不可处理实体错误 HTTP 状态代码。无论是哪种情况，服务器都应该包含一个响应体，其中包含一个 OperationOutcome，并附有详细的错误信息，说明错误的原因。  
 与 FHIR 相关的错误返回的常见 HTTP 状态代码（除与安全、标头和内容类型协商问题相关的正常 HTTP 错误外）：  
-* 400 **Bad Request** - 资源无法解析或未能通过基本的 FHIR 验证规则  
-* 404 **Not Found** - 资源类型不受支持，或不是 FHIR 端点
-* 422 **Unprocessable Entity** - 建议的资源违反了适用的 FHIR 配置文件或服务器业务规则。应随附一个 OperationOutcome 资源，提供更多细节。  
+* 400 Bad Request - 资源无法解析或未能通过基本的 FHIR 验证规则  
+* 404 Not Found - 资源类型不受支持，或不是 FHIR 端点
+* 422 Unprocessable Entity - 建议的资源违反了适用的 FHIR 配置文件或服务器业务规则。应随附一个 OperationOutcome 资源，提供更多细节。  
 一般来说，如果实例不符合约束条件，则响应应为 400，而如果实例不符合其他非外部描述的业务规则，则响应应为 422 错误。不过，服务器在这些情况下也可以返回 5xx 错误，而不会被视为不符合要求。 
 
 ## history
+[详细解释](https://hl7.org/fhir/R4/http.html#history)    
 历史交互可检索特定资源、给定类型的所有资源或系统支持的所有资源的历史。如图所示，历史交互的这三种变化都是通过 HTTP GET 命令执行的：
 ```
   GET [base]/[type]/[id]/_history{?[parameters]&_format=[mime-type]}
@@ -129,6 +272,7 @@ vread 交互对资源执行特定版本的读取。交互由 HTTP GET 命令执�
 
 
 ## search
+[详细解释](https://hl7.org/fhir/R4/http.html#search)   
 这种交互方式会根据一些筛选条件搜索一组资源。该交互可通过几种不同的 HTTP 命令来执行。
 ```
   GET [base]/[type]{?[parameters]{&_format=[mime-type]}}

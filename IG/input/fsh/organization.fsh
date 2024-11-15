@@ -23,8 +23,8 @@ XPath:       "f:value"
 // 扩展字段，记录所属行政区域
 Extension: AdministrativeDivisionExtension
 Id: hc-mdm-administrativedivision
-Title: "所属区级行政区域"
-Description: "所属区级行政区域"
+Title: "民政区划(区县)"
+Description: "民政区划(区县)"
 Context: MDMOrganization
 * value[x] only Coding
 * value[x] from CQAdministrativeDivisionVS (required)
@@ -32,8 +32,8 @@ Context: MDMOrganization
 // 扩展字段，记录重庆乡镇街道级行政区划
 Extension: StreetDivisionExtension
 Id: hc-mdm-streetdivision
-Title: "所属街道级行政区域"
-Description: "所属街道级行政区域"
+Title: "民政区划(街道)"
+Description: "民政区划(街道)"
 Context: MDMOrganization
 * value[x] only Coding
 * value[x] from CQStreetDivisionVS (required)
@@ -78,13 +78,16 @@ Id: hc-mdm-organization
 Title: "组织机构主数据"
 Parent: Organization
 Description: "中国组织机构主数据数据模型。本标准所指的组织，是指为实现某种形式的集体行动而组成的正式或非正式认可的人员或组织团体。包括公司、机构、企业、部门、社区团体、医疗实践团体、付款人/承保人等。"
+* meta.id ^short = "资源物理id"
+* meta.id ^comment = "对于新增操作，资源物理id由服务器指定，不需要赋值；对于更新操作，则应赋值。"
+* meta.profile ^short = "资源所引用的profile"
+* meta.profile ^comment = "在新增、修改等操作中，组织机构主数据需引用profile，格式为http://[标准发布地址]/StructureDefinition/hc-mdm-organization|0.1.0"
 * extension contains AdministrativeDivisionExtension named AdministrativeDivisionExtension 1..1 MS
 * extension contains StreetDivisionExtension named StreetDivisionExtension 0..1 MS
 * extension contains EconomicIndustryClassificationExtension named EconomicIndustryClassificationExtension 0..1 MS
 * extension contains SupervisedByExtension named SupervisedByExtension 0..* MS
-* extension contains IsBranchExtension named IsBranchExtension 0..* MS
-* extension contains OperatingStatusExtension named OperatingStatusExtension 0..* MS
-//* extension contains OrganizationGISExtension named OrganizationGISExtension 0..* MS
+* extension contains IsBranchExtension named IsBranchExtension 1..1 MS
+* extension contains OperatingStatusExtension named OperatingStatusExtension 1..1 MS
 * active ^short = "记录有效标识"
 * active ^comment = "以布尔值（true | false）表达记录是否有效，true为有效，false为无效"
 * active 1..1 MS
@@ -144,7 +147,7 @@ Description: "中国组织机构主数据数据模型。本标准所指的组织
 * telecom[website].system = http://hl7.org/fhir/contact-point-system#url
 * telecom[website].use = $conuse#work
 // 组织机构经纬度
-* address.extension contains OrganizationGISExtension named OrganizationGISExtension 0..* MS
+* address.extension contains OrganizationGISExtension named OrganizationGISExtension 0..1 MS
 * address.line ^short = "详细地址"
 * address.line ^comment = "以字符串记录"
 * address.postalCode ^short = "邮政编码"
@@ -167,6 +170,7 @@ Description: "中国组织机构主数据数据模型。本标准所指的组织
 * contact[contactor] ^short = "联系人"
 * contact[contactor] ^definition = "组织机构联系人"
 * contact[contactor].purpose = ChineseContactorTypeCS#CON
+* contact[contactor].name ^short = "联系人姓名"
 // contact[contactor].telecom字段切片，用于指定联系人电话和电子邮箱
 * contact[contactor].telecom ^slicing.discriminator.type = #pattern
 * contact[contactor].telecom ^slicing.discriminator.path = "system"

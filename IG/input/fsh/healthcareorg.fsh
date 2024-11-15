@@ -46,6 +46,8 @@ Id: hc-healthcare-organization
 Title: "卫生健康机构主数据"
 Parent: MDMOrganization
 Description: "中国卫生健康机构主数据数据模型"
+* meta.profile ^short = "资源所引用的profile"
+* meta.profile ^comment = "在新增、修改等操作中，卫生健康机构主数据需引用profile，格式为http://[标准发布地址]/StructureDefinition/hc-healthcare-organization|0.1.0"
 * extension contains HealthcareInstitutionsTypeExtension named HealthcareInstitutionsTypeExtension 1..1 MS
 * extension contains HospitalLevelExtension named HospitalLevelExtension 1..1 MS
 * extension contains HospitalManagementTypeExtension named HospitalManagementTypeExtension 1..1 MS
