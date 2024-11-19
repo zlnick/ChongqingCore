@@ -29,7 +29,7 @@ Context: HealthcareOrganization
 Extension: SecondaryHealthcareInstitutionsInfoExtension
 Id: hc-mdm-secondaryhealthcareinstitutionsinfo
 Title: "次要组织机构信息"
-Description: "包含次要组织机构名称与类型两个属性，其中次要组织机构类型需使用WS 218-2002 卫生机构（组织）分类与代码。"
+Description: "包含次要组织机构名称与类型两个属性，其中次要组织机构类型需使用WS 218-2002 卫生机构（组织）分类与代码。次要组织机构名称为医疗机构除与统一社会信用代码对应的名称外还具有的其他具备医疗服务职能的官方名称，如某市胸痛中心，某市急救中心等，与非官方的别名不同。"
 Context: HealthcareOrganization
 * extension contains
     secondaryType 0..1 MS and
@@ -37,7 +37,7 @@ Context: HealthcareOrganization
 * extension[secondaryType] ^short = "次要组织机构类型"
 * extension[secondaryType].value[x] only Coding
 * extension[secondaryType].value[x] from HealthcareInstitutionsTypeVS (required) // OmbEthnicityCategories is a value set defined by US Core
-* extension[secondaryName] ^short = "次要组织机构名称"
+* extension[secondaryName] ^short = "次要组织机构名称。次要组织机构名称为医疗机构除与统一社会信用代码对应的名称外还具有的其他具备医疗服务职能的官方名称，如某市胸痛中心，某市急救中心等，与非官方的别名不同。"
 * extension[secondaryName].value[x] only string
 
 // Organization Profile
@@ -66,6 +66,9 @@ Description: "中国卫生健康机构主数据数据模型"
 * identifier[miplrn] ^definition = "医疗机构执业许可证登记号"
 * identifier[miplrn].use = $iduse#official
 * identifier[miplrn].type = ChineseIdentifierTypeCS#MIPLRN
+// 引用主机构
+* partOf ^short = "主机构"
+* partOf ^comment = "引用主机构，形成分支机构与主机构的多对一关联，例如分院区引用主院区。"
 
 
 
@@ -87,7 +90,6 @@ Description: "长宁市奉孝区中心医院(虚拟医院)"
 * extension[SupervisedByExtension].valueReference.identifier.type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
 * extension[SupervisedByExtension].valueReference.identifier.value = "1638748745645060"
 * extension[SupervisedByExtension].valueReference.display = "重庆市渝中区卫生健康委员会"
-* extension[IsBranchExtension].valueBoolean = false
 * extension[OperatingStatusExtension].valueCoding = OperatingStatusCS#0 "开业"
 * telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
 * telecom[phone].use = $conuse#work
@@ -138,7 +140,6 @@ Description: "长宁市奉孝区中心医院龙翔路分院"
 * extension[SupervisedByExtension].valueReference.identifier.type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
 * extension[SupervisedByExtension].valueReference.identifier.value = "1638748745645060"
 * extension[SupervisedByExtension].valueReference.display = "重庆市渝中区卫生健康委员会"
-* extension[IsBranchExtension].valueBoolean = true
 * extension[OperatingStatusExtension].valueCoding = OperatingStatusCS#1 "筹建"
 * telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
 * telecom[phone].use = $conuse#work
