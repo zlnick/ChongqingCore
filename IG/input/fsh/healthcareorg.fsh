@@ -1,3 +1,10 @@
+// 使用正则表达式校验医疗机构执业许可证登记号格式
+Invariant:   miplrn-encodingrule-format
+Description: "医疗机构执业许可证登记号为字符串，其中只包括数字，大写字母和连字符'-'"
+Severity:    #error
+Expression:  "value.matches('^[0-9A-Z-]+$')"
+XPath:       "f:value"
+
 // 扩展字段，使用WS 218-2002 卫生机构（组织）分类与代码记录卫生机构类型
 Extension: HealthcareInstitutionsTypeExtension
 Id: hc-mdm-healthcareinstitutionstype
@@ -20,7 +27,7 @@ Context: HealthcareOrganization
 Extension: HospitalManagementTypeExtension
 Id: hc-mdm-hospitalmanagementype
 Title: "医院管理类型"
-Description: "医院管理类型"
+Description: "医院管理类型，使用WS 218-2002 卫生机构（组织）分类与代码中附录B，机构分类管理代码表作为标准。"
 Context: HealthcareOrganization
 * value[x] only Coding
 * value[x] from CNHospitalManagementTypeVS (required)
@@ -48,28 +55,56 @@ Parent: MDMOrganization
 Description: "中国卫生健康机构主数据数据模型"
 * meta.profile ^short = "资源所引用的profile"
 * meta.profile ^comment = "在新增、修改等操作中，卫生健康机构主数据需引用profile，格式为http://[标准发布地址]/StructureDefinition/hc-healthcare-organization|0.1.0"
+* extension[EconomicIndustryClassificationExtension] 1..1 MS
 * extension contains HealthcareInstitutionsTypeExtension named HealthcareInstitutionsTypeExtension 1..1 MS
-* extension contains HospitalLevelExtension named HospitalLevelExtension 1..1 MS
+* extension contains HospitalLevelExtension named HospitalLevelExtension 0..1 MS
 * extension contains HospitalManagementTypeExtension named HospitalManagementTypeExtension 1..1 MS
 * extension contains SecondaryHealthcareInstitutionsInfoExtension named SecondaryHealthcareInstitutionsInfoExtension 0..* MS
-// identifier字段切片，用于指定统一社会信用代码，主索引号码和医疗机构执业许可证登记号等
-* identifier ^slicing.discriminator.type = #pattern
-* identifier ^slicing.discriminator.path = "type"
-* identifier ^slicing.rules = #open
-* identifier ^slicing.ordered = false
-* identifier ^slicing.description = "基于identifier类型的切片，使之可容纳组织机构所持统一社会信用代码"
 // identifier contains规则
 * identifier contains
-    miplrn 0..1 MS
+    miplrn 1..1 MS
 // 医疗机构执业许可证登记号切片
 * identifier[miplrn] ^short = "医疗机构执业许可证登记号"
 * identifier[miplrn] ^definition = "医疗机构执业许可证登记号"
 * identifier[miplrn].use = $iduse#official
 * identifier[miplrn].type = ChineseIdentifierTypeCS#MIPLRN
+* identifier[miplrn].period ^short = "医疗机构执业许可证登记号有效期"
+* identifier[miplrn].period ^definition = "医疗机构执业许可证登记号有效期，含开始时间和结束时间两部分。"
+// 对医疗机构执业许可证登记号添加约束
+* identifier[miplrn] obeys miplrn-encodingrule-format
 // 引用主机构
 * partOf ^short = "主机构"
 * partOf ^comment = "引用主机构，形成分支机构与主机构的多对一关联，例如分院区引用主院区。"
-
+// contact字段切片，用于指定组织负责人或负责人等
+* contact ^slicing.discriminator.type = #value
+* contact ^slicing.discriminator.path = "purpose"
+* contact ^slicing.rules = #open
+* contact ^slicing.ordered = false 
+* contact ^slicing.description = "contact字段切片，用于指定组织负责人或负责人等"
+// 更改负责人类型值集
+* contact.purpose from CNContactorTypeVS
+// telecom contains规则
+* contact contains
+    responsible 0..1 MS
+// 负责人切片
+* contact[responsible] ^short = "负责人"
+* contact[responsible] ^definition = "组织机构负责人"
+* contact[responsible].purpose = ChineseContactorTypeCS#RES
+* contact[responsible].name ^short = "负责人姓名"
+// contact[responsible].telecom字段切片，用于指定负责人电话
+* contact[responsible].telecom ^slicing.discriminator.type = #value
+* contact[responsible].telecom ^slicing.discriminator.path = "system"
+* contact[responsible].telecom ^slicing.rules = #open
+* contact[responsible].telecom ^slicing.ordered = false 
+* contact[responsible].telecom ^slicing.description = "contact[responsible].telecom字段切片，用于指定负责人电话和电子邮箱"
+// contact[responsible].telecom contains规则
+* contact[responsible].telecom contains
+    phone 0..1 MS
+// 负责人电话号码切片
+* contact[responsible].telecom[phone] ^short = "负责人电话号码"
+* contact[responsible].telecom[phone] ^definition = "负责人电话号码"
+* contact[responsible].telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
+* contact[responsible].telecom[phone].use = $conuse#work 
 
 
 Instance: ChangningFengxiaoDistrictCentralHospital
@@ -80,7 +115,7 @@ Description: "长宁市奉孝区中心医院(虚拟医院)"
 * name = "长宁市奉孝区中心医院"
 * extension[AdministrativeDivisionExtension].valueCoding = CQAdministrativeDivisionCS#500105 "江北区"
 * extension[StreetDivisionExtension].valueCoding = CQStreetDivisionCS#500105011 "石马河街道"
-* extension[HealthcareInstitutionsTypeExtension].valueCoding = HealthcareInstitutionsTypeCS#A1 "综合医院"
+* extension[HealthcareInstitutionsTypeExtension].valueCoding = HealthcareInstitutionsTypeCS#A100 "综合医院"
 * extension[HospitalLevelExtension].valueCoding = CNHospitalLevelCS#2 "三级甲等"
 * extension[EconomicIndustryClassificationExtension].valueCoding = NationalEconomicIndustryClassificationCS#110 "国有全资"
 * extension[HospitalManagementTypeExtension].valueCoding = CNHospitalManagementTypeCS#1 "非营利性医疗机构"
@@ -102,7 +137,7 @@ Description: "长宁市奉孝区中心医院(虚拟医院)"
 * telecom[website].value = "https://abc.bj.org.cn"
 * identifier[miplrn].use = $iduse#official
 * identifier[miplrn].type = ChineseIdentifierTypeCS#MIPLRN "医疗机构执业许可证登记号"
-* identifier[miplrn].value = "561106500103211311"
+* identifier[miplrn].value = "PRN561106-211311"
 * identifier[moi].use = $iduse#official
 * identifier[moi].type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
 * identifier[moi].value = "82783739457838954"
@@ -114,15 +149,13 @@ Description: "长宁市奉孝区中心医院(虚拟医院)"
 * address[0].use = http://hl7.org/fhir/address-use#work
 * address[0].type = http://hl7.org/fhir/address-type#physical
 * address[0].line = "XX省长宁市奉孝区健康路1号"
-* address[0].postalCode = "100210"
-* contact[contactor].purpose = ChineseContactorTypeCS#CON
-* contact[contactor].name.text = "张无忌"
-* contact[contactor].telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
-* contact[contactor].telecom[phone].use = $conuse#work
-* contact[contactor].telecom[phone].value = "+86-18502032240"
-* contact[contactor].telecom[email].system = http://hl7.org/fhir/contact-point-system#email
-* contact[contactor].telecom[email].use = $conuse#work
-* contact[contactor].telecom[email].value = "wj.z@cnu.org"
+* address[0].postalCode = "400210"
+* contact[responsible].purpose = ChineseContactorTypeCS#RES
+* contact[responsible].name.text = "张无忌"
+* contact[responsible].telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
+* contact[responsible].telecom[phone].use = $conuse#work
+* contact[responsible].telecom[phone].value = "+86-18502032240"
+
 
 Instance: ChangningFengxiaoDistrictCentralHospitalBranch
 InstanceOf: HealthcareOrganization
@@ -132,7 +165,7 @@ Description: "长宁市奉孝区中心医院龙翔路分院"
 * name = "长宁市奉孝区中心医院龙翔路分院"
 * extension[AdministrativeDivisionExtension].valueCoding = CQAdministrativeDivisionCS#500117 "合川区"
 * extension[StreetDivisionExtension].valueCoding = CQStreetDivisionCS#500117103 "官渡镇"
-* extension[HealthcareInstitutionsTypeExtension].valueCoding = HealthcareInstitutionsTypeCS#A1 "综合医院"
+* extension[HealthcareInstitutionsTypeExtension].valueCoding = HealthcareInstitutionsTypeCS#A516 "胸科医院"
 * extension[HospitalLevelExtension].valueCoding = CNHospitalLevelCS#5 "二级甲等"
 * extension[EconomicIndustryClassificationExtension].valueCoding = NationalEconomicIndustryClassificationCS#110 "国有全资"
 * extension[HospitalManagementTypeExtension].valueCoding = CNHospitalManagementTypeCS#1 "非营利性医疗机构"
@@ -144,6 +177,9 @@ Description: "长宁市奉孝区中心医院龙翔路分院"
 * telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
 * telecom[phone].use = $conuse#work
 * telecom[phone].value = "+86-23-65203427"
+* identifier[miplrn].use = $iduse#official
+* identifier[miplrn].type = ChineseIdentifierTypeCS#MIPLRN "医疗机构执业许可证登记号"
+* identifier[miplrn].value = "54699457698765"
 * identifier[moi].use = $iduse#official
 * identifier[moi].type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
 * identifier[moi].value = "82783739457838954"
@@ -152,20 +188,16 @@ Description: "长宁市奉孝区中心医院龙翔路分院"
 * address[0].use = http://hl7.org/fhir/address-use#work
 * address[0].type = http://hl7.org/fhir/address-type#physical
 * address[0].line = "XX省长宁市奉孝区龙翔路42号"
-* address[0].postalCode = "100210"
-* contact[contactor].purpose = ChineseContactorTypeCS#CON
-* contact[contactor].name.text = "李广利"
-* contact[contactor].telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
-* contact[contactor].telecom[phone].use = $conuse#work
-* contact[contactor].telecom[phone].value = "+86-18412594521"
-* contact[contactor].telecom[email].system = http://hl7.org/fhir/contact-point-system#email
-* contact[contactor].telecom[email].use = $conuse#work
-* contact[contactor].telecom[email].value = "lgl@fxh.orn.cn"
+* address[0].postalCode = "400210"
+* contact[responsible].purpose = ChineseContactorTypeCS#RES
+* contact[responsible].name.text = "李广利"
+* contact[responsible].telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
+* contact[responsible].telecom[phone].use = $conuse#work
+* contact[responsible].telecom[phone].value = "+86-18412594521"
 * partOf.type = "Organization"
 * partOf.identifier.type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
 * partOf.identifier.value = "82783739457838954"
 * partOf..display = "长宁市奉孝区中心医院"
-
 
 
 

@@ -1,3 +1,17 @@
+// 使用正则表达式校验统一社会信用代码格式（18）
+Invariant:   uscc-encodingrule-18
+Description: "源于GB 32100-2015 《法人和其他组织统一社会信用代码编码规则》，中国统一社会信用代码长度为18位。第一位为登记管理部门代码[1,5,9,Y]，第二位为机构类别代码[1,2,3,9]，第3~8位遵循GB/T 2260-2007《中华人民共和国行政区划代码》，[0-9]数字格式；第9~17位遵循GB 11714-1997《全国组织机构代码编制规则》，为[0-9][A-Z]；第18位为校验码，遵循GB/T 17710-2008《信息技术 安全技术 校验字符系统》，为[0-9][A-Z][*]。"
+Severity:    #error
+Expression:  "value.matches('^[159Y]{1}[1239]{1}[0-9]{6}[0-9A-Z]{9}[0-9A-Z*]{1}$')"
+XPath:       "f:value"
+
+// 使用正则表达式校验重庆邮政编码
+Invariant:   postalcode-chongqing-format
+Description: "重庆地区邮政编码，6位数字，必须以40开头。"
+Severity:    #error
+Expression:  "postalCode.matches('^40[0-9]{4}$')"
+XPath:       "f:postalCode"
+
 // 扩展字段，记录次要组织机构类型信息
 Extension: OrganizationGISExtension
 Id: hc-mdm-organizationggis
@@ -11,14 +25,6 @@ Context: Address
 * extension[longitude].value[x] only decimal
 * extension[latitude] ^short = "纬度，以10进制WGS84纬度表示"
 * extension[latitude].value[x] only decimal
-
-// 使用正则表达式校验统一社会信用代码格式（18）
-Invariant:   uscc-encodingrule-18
-Description: "源于GB 32100-2015 《法人和其他组织统一社会信用代码编码规则》，中国统一社会信用代码长度为18位。第一位为登记管理部门代码[1,5,9,Y]，第二位为机构类别代码[1,2,3,9]，第3~8位遵循GB/T 2260-2007《中华人民共和国行政区划代码》，[0-9]数字格式；第9~17位遵循GB 11714-1997《全国组织机构代码编制规则》，为[0-9][A-Z]；第18位为校验码，遵循GB/T 17710-2008《信息技术 安全技术 校验字符系统》，为[0-9][A-Z][*]。"
-Severity:    #error
-Expression:  "value.matches('^[159Y]{1}[1239]{1}[0-9]{6}[0-9A-Z]{9}[0-9A-Z*]{1}$')"
-//Expression:  "value.matches('^[0-9]{17}[0-9A-Za-z]$')"
-XPath:       "f:value"
 
 // 扩展字段，记录所属行政区域
 Extension: AdministrativeDivisionExtension
@@ -74,10 +80,11 @@ Description: "中国组织机构主数据数据模型。本标准所指的组织
 * meta.id ^comment = "对于新增操作，资源物理id由服务器指定，不需要赋值；对于更新操作，则应赋值。"
 * meta.profile ^short = "资源所引用的profile"
 * meta.profile ^comment = "在新增、修改等操作中，组织机构主数据需引用profile，格式为http://[标准发布地址]/StructureDefinition/hc-mdm-organization|0.1.0"
+* meta.profile 1..1 MS
 * extension contains AdministrativeDivisionExtension named AdministrativeDivisionExtension 1..1 MS
-* extension contains StreetDivisionExtension named StreetDivisionExtension 0..1 MS
+* extension contains StreetDivisionExtension named StreetDivisionExtension 1..1 MS
 * extension contains EconomicIndustryClassificationExtension named EconomicIndustryClassificationExtension 0..1 MS
-* extension contains SupervisedByExtension named SupervisedByExtension 0..* MS
+* extension contains SupervisedByExtension named SupervisedByExtension 0..1 MS
 * extension contains OperatingStatusExtension named OperatingStatusExtension 1..1 MS
 * type ^short = "机构类型"
 * type ^comment = "以国家标准GB/T 20091-2021 组织机构类型表述"
@@ -86,8 +93,11 @@ Description: "中国组织机构主数据数据模型。本标准所指的组织
 * name ^comment = "如机构具有其他名称，应使用别名（alias）表述"
 * name 1..1 MS 
 * alias ^short = "除统一社会信用代码对应的组织机构名称之外的所有别名，例如简称或其他非官方名称"
+// 更改identifier类型来源，使之可以兼容更多证件类型如统一社会信用代码，主数据索引号等
+* identifier.type from CNIdentifierTypeVS
+* identifier.type ^comment = "更改identifier类型来源，使之可以兼容更多证件类型如统一社会信用代码，主数据索引号等"
 // identifier字段切片，用于指定统一社会信用代码，主索引号码和组织机构执业许可证登记号等
-* identifier ^slicing.discriminator.type = #pattern
+* identifier ^slicing.discriminator.type = #value
 * identifier ^slicing.discriminator.path = "type"
 * identifier ^slicing.rules = #open
 * identifier ^slicing.ordered = false
@@ -109,14 +119,14 @@ Description: "中国组织机构主数据数据模型。本标准所指的组织
 // 对社会信用代码字段添加约束
 * identifier[uscc] obeys uscc-encodingrule-18
 // telecom字段切片，用于指定组织电话和电子邮箱
-* telecom ^slicing.discriminator.type = #pattern
+* telecom ^slicing.discriminator.type = #value
 * telecom ^slicing.discriminator.path = "system"
 * telecom ^slicing.rules = #open
 * telecom ^slicing.ordered = false 
 * telecom ^slicing.description = "telecom字段切片，用于指定组织电话和电子邮箱"
 // telecom contains规则
 * telecom contains
-    phone 0..1 MS and
+    phone 1..1 MS and
     email 0..1 MS and
     website 0..1 MS
 // 组织机构电话号码切片
@@ -140,42 +150,8 @@ Description: "中国组织机构主数据数据模型。本标准所指的组织
 * address.line ^comment = "以字符串记录"
 * address.postalCode ^short = "邮政编码"
 * address.postalCode ^comment = "邮政编码"
-// contact字段切片，用于指定组织联系人或负责人等
-* contact ^slicing.discriminator.type = #pattern
-* contact ^slicing.discriminator.path = "purpose"
-* contact ^slicing.rules = #open
-* contact ^slicing.ordered = false 
-* contact ^slicing.description = "contact字段切片，用于指定组织联系人或负责人等"
-// 更改联系人类型值集
-* contact.purpose from CNContactorTypeVS
-// telecom contains规则
-* contact contains
-    contactor 0..1 MS
-// 联系人切片
-* contact[contactor] ^short = "联系人"
-* contact[contactor] ^definition = "组织机构联系人"
-* contact[contactor].purpose = ChineseContactorTypeCS#CON
-* contact[contactor].name ^short = "联系人姓名"
-// contact[contactor].telecom字段切片，用于指定联系人电话和电子邮箱
-* contact[contactor].telecom ^slicing.discriminator.type = #pattern
-* contact[contactor].telecom ^slicing.discriminator.path = "system"
-* contact[contactor].telecom ^slicing.rules = #open
-* contact[contactor].telecom ^slicing.ordered = false 
-* contact[contactor].telecom ^slicing.description = "contact[contactor].telecom字段切片，用于指定联系人电话和电子邮箱"
-// contact[contactor].telecom contains规则
-* contact[contactor].telecom contains
-    phone 0..1 MS and
-    email 0..1 MS
-// 联系人电话号码切片
-* contact[contactor].telecom[phone] ^short = "联系人电话号码"
-* contact[contactor].telecom[phone] ^definition = "联系人电话号码"
-* contact[contactor].telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
-* contact[contactor].telecom[phone].use = $conuse#work 
-// 联系人电子邮件地址切片
-* contact[contactor].telecom[email] ^short = "联系人电子邮件地址"
-* contact[contactor].telecom[email] ^definition = "联系人电子邮件地址"
-* contact[contactor].telecom[email].system = http://hl7.org/fhir/contact-point-system#email
-* contact[contactor].telecom[email].use = $conuse#work 
+// 对邮编添加约束
+* address obeys postalcode-chongqing-format
 
 Instance: ChongqingHealthCommission
 InstanceOf: MDMOrganization
@@ -242,4 +218,3 @@ Description: "重庆市渝中区卫生健康委员会"
 * address[0].type = http://hl7.org/fhir/address-type#physical
 * address[0].line = "重庆市渝中区和平路管家巷9号"
 * address[0].postalCode = "400010"
-
