@@ -11,10 +11,12 @@ USER irisowner
 WORKDIR /dur
 COPY --chown=irisowner:irisowner --chmod=700 ./image-iris/src /dur
 COPY --chown=irisowner:irisowner --chmod=700 ./IG/output/full-ig.zip /dur/FullIG/full-ig.zip
-COPY --chown=irisowner:irisowner --chmod=700 ./IG/output/package.tgz /dur/IGPackages/package.tgz
+COPY --chown=irisowner:irisowner --chmod=700 ./IG/output/package.tgz /dur/IGPackages/local/package.tgz
 RUN find . -name '.DS_Store' -type f -delete
 
 WORKDIR /dur/IGPackages
+RUN ls *.tgz | xargs -n1 tar xzvf
+WORKDIR /dur/IGPackages/local
 RUN ls *.tgz | xargs -n1 tar xzvf
 WORKDIR /dur/FullIG
 RUN unzip full-ig.zip && rm full-ig.zip

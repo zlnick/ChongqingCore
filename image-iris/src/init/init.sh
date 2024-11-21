@@ -23,6 +23,8 @@ SET packageList=$LISTBUILD("/dur/IGPackages/hl7.terminology.r4#6.0.2/package")
 Set rtn = ##Class(HS.FHIRMeta.Load.NpmLoader).importPackages(packageList)
 SET packageList=$LISTBUILD("/dur/IGPackages/package")
 Set rtn = ##Class(HS.FHIRMeta.Load.NpmLoader).importPackages(packageList)
+SET packageList=$LISTBUILD("/dur/IGPackages/local/package")
+Set rtn = ##Class(HS.FHIRMeta.Load.NpmLoader).importPackages(packageList)
 
 
 // Install elements that are required for a FHIR-enabled namespace
