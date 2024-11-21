@@ -1,7 +1,7 @@
 CodeSystem: CQAdministrativeDivisionCS
 Id: cq-administrativedivision-code-system
 Title: "重庆区级行政区划代码"
-Description: "重庆区级行政区划代码"
+Description: "重庆区级行政区划代码，来源于统一直报系统字典。"
 * ^status = $pubst#active
 * ^experimental = false
 * ^caseSensitive = true

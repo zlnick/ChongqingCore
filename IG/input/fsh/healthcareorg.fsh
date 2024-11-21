@@ -5,6 +5,13 @@ Severity:    #error
 Expression:  "value.matches('^[0-9A-Z-]+$')"
 XPath:       "f:value"
 
+// 使用正则表达式校验卫生机构（组织）代码格式
+Invariant:   hcoc-encodingrule-format
+Description: "卫生机构（组织）代码为22位字符串，其中只包括数字，大写字母和连字符'-'"
+Severity:    #error
+Expression:  "value.matches('^[0-9A-Z-]{22}$')"
+XPath:       "f:value"
+
 // 扩展字段，使用WS 218-2002 卫生机构（组织）分类与代码记录卫生机构类型
 Extension: HealthcareInstitutionsTypeExtension
 Id: hc-mdm-healthcareinstitutionstype
@@ -62,7 +69,8 @@ Description: "中国卫生健康机构主数据数据模型"
 * extension contains SecondaryHealthcareInstitutionsInfoExtension named SecondaryHealthcareInstitutionsInfoExtension 0..* MS
 // identifier contains规则
 * identifier contains
-    miplrn 1..1 MS
+    miplrn 1..1 MS and 
+    hcoc 0..1 MS
 // 医疗机构执业许可证登记号切片
 * identifier[miplrn] ^short = "医疗机构执业许可证登记号"
 * identifier[miplrn] ^definition = "医疗机构执业许可证登记号"
@@ -72,6 +80,13 @@ Description: "中国卫生健康机构主数据数据模型"
 * identifier[miplrn].period ^definition = "医疗机构执业许可证登记号有效期，含开始时间和结束时间两部分。"
 // 对医疗机构执业许可证登记号添加约束
 * identifier[miplrn] obeys miplrn-encodingrule-format
+// 卫生机构（组织）代码切片
+* identifier[hcoc] ^short = "卫生机构（组织）代码"
+* identifier[hcoc] ^definition = "卫生机构（组织）代码，遵循WS 218-2002 卫生机构（组织）分类中的要求。"
+* identifier[hcoc].use = $iduse#official
+* identifier[hcoc].type = ChineseIdentifierTypeCS#HCOC
+// 对卫生机构（组织）代码添加约束
+* identifier[hcoc] obeys hcoc-encodingrule-format
 // 引用主机构
 * partOf ^short = "主机构"
 * partOf ^comment = "引用主机构，形成分支机构与主机构的多对一关联，例如分院区引用主院区。"
@@ -96,7 +111,7 @@ Description: "中国卫生健康机构主数据数据模型"
 * contact[responsible].telecom ^slicing.discriminator.path = "system"
 * contact[responsible].telecom ^slicing.rules = #open
 * contact[responsible].telecom ^slicing.ordered = false 
-* contact[responsible].telecom ^slicing.description = "contact[responsible].telecom字段切片，用于指定负责人电话和电子邮箱"
+* contact[responsible].telecom ^slicing.description = "contact[responsible].telecom字段切片，用于指定负责人电话。"
 // contact[responsible].telecom contains规则
 * contact[responsible].telecom contains
     phone 0..1 MS
@@ -138,6 +153,11 @@ Description: "长宁市奉孝区中心医院(虚拟医院)"
 * identifier[miplrn].use = $iduse#official
 * identifier[miplrn].type = ChineseIdentifierTypeCS#MIPLRN "医疗机构执业许可证登记号"
 * identifier[miplrn].value = "PRN561106-211311"
+* identifier[miplrn].period.start = "2022-02-07"
+* identifier[miplrn].period.end = "2027-02-07"
+* identifier[hcoc].use = $iduse#official
+* identifier[hcoc].type = ChineseIdentifierTypeCS#HCOC "卫生机构（组织）代码"
+* identifier[hcoc].value = "PRN561106-2113118450-1"
 * identifier[moi].use = $iduse#official
 * identifier[moi].type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
 * identifier[moi].value = "82783739457838954"
@@ -180,6 +200,11 @@ Description: "长宁市奉孝区中心医院龙翔路分院"
 * identifier[miplrn].use = $iduse#official
 * identifier[miplrn].type = ChineseIdentifierTypeCS#MIPLRN "医疗机构执业许可证登记号"
 * identifier[miplrn].value = "54699457698765"
+* identifier[miplrn].period.start = "2023-10-21"
+* identifier[miplrn].period.end = "2031-10-20"
+* identifier[hcoc].use = $iduse#official
+* identifier[hcoc].type = ChineseIdentifierTypeCS#HCOC "卫生机构（组织）代码"
+* identifier[hcoc].value = "74085017434152212C2101"
 * identifier[moi].use = $iduse#official
 * identifier[moi].type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
 * identifier[moi].value = "82783739457838954"

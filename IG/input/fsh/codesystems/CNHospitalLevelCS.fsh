@@ -1,7 +1,7 @@
 CodeSystem: CNHospitalLevelCS
 Id: cn-hospitalleve-code-system
 Title: "中国医院三级评审等级代码"
-Description: "中国医院三级评审等级代码"
+Description: "中国医院三级评审等级代码，整合多系统的表述以自定义代码实现。"
 * ^status = $pubst#active
 * ^experimental = false
 * ^caseSensitive = true

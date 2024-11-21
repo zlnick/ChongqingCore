@@ -16,11 +16,11 @@
 | 上级监管机构 | 0..1 | 引用上级监管机构 | 建立对上级监管机构的引用 | [Organization.extension:SupervisedByExtension](StructureDefinition-hc-mdm-organization-definitions.html#Organization.extension:SupervisedByExtension) |
 | 经济类型分类 | 0..1 | 按照国家标准划定的经济类型，对组织机构而言此项可选 | [cn-nationaleconomicindustryclassification-vs](ValueSet-cn-nationaleconomicindustryclassification-vs.html) | [Organization.extension:EconomicIndustryClassificationExtension](StructureDefinition-hc-mdm-organization-definitions.html#Organization.extension:EconomicIndustryClassificationExtension) |
 | 民政区划(区县) | 1..1 | 机构所处民政区划(区县) | [cq-administrativedivision-vs](ValueSet-cq-administrativedivision-vs.html) | [Organization.extension:AdministrativeDivisionExtension](StructureDefinition-hc-mdm-organization-definitions.html#Organization.extension:AdministrativeDivisionExtension) |
-| 民政区划(街道) | 0..1 | 机构所处民政区划(街道) | [cq-streetdivision-vs](ValueSet-cq-streetdivision-vs.html) | [Organization.extension:StreetDivisionExtension](StructureDefinition-hc-mdm-organization-definitions.html#Organization.extension:StreetDivisionExtension) |
+| 民政区划(街道) | 1..1 | 机构所处民政区划(街道) | [cq-streetdivision-vs](ValueSet-cq-streetdivision-vs.html) | [Organization.extension:StreetDivisionExtension](StructureDefinition-hc-mdm-organization-definitions.html#Organization.extension:StreetDivisionExtension) |
 | 详细地址 | 0..1 | 详细地址 | 无 | [Organization.address.line](StructureDefinition-hc-mdm-organization-definitions.html#Organization.address.line) |
 | 地理位置坐标 | 0..1 | 机构所处经纬度 | 经纬度仅能为数字，含小数。 | [Organization.address.extension:OrganizationGISExtension](StructureDefinition-hc-mdm-organization-definitions.html#Organization.address.extension:OrganizationGISExtension) |
 | 机构邮政编码 | 0..1 | 机构邮政编码 | 采用重庆地区邮政编码，6位数字，必须以40开头。 | [Organization.address.postalCode](StructureDefinition-hc-mdm-organization-definitions.html#Organization.address.postalCode) |
-| 机构联系电话 | 0..1 | 组织机构电话号码 | 无 | [Organization.telecom:phone](StructureDefinition-hc-mdm-organization-definitions.html#Organization.telecom:phone) |
+| 机构联系电话 | 1..1 | 组织机构电话号码 | 无 | [Organization.telecom:phone](StructureDefinition-hc-mdm-organization-definitions.html#Organization.telecom:phone) |
 | 机构电子邮箱 | 0..1 | 组织机构电子邮件地址 | 无 | [Organization.telecom:email](StructureDefinition-hc-mdm-organization-definitions.html#Organization.telecom:email) |
 | 机构网站域名 | 0..1 | 组织机构网站地址 | 无 | [Organization.telecom:website](StructureDefinition-hc-mdm-organization-definitions.html#Organization.telecom:website) |
 {:.grid}
@@ -34,11 +34,13 @@
 
 | 数据需求 | 基数 | 元素含义 | 约束 | FHIR路径 |
 | -------------- | ---- | ------------------------------------ | ------------ | -------- |
-| 医疗机构执业许可证登记号 | 0..1 | 医疗机构执业许可证登记号 | 医疗机构执业许可证登记号为字符串，其中只包括数字，大写字母和连字符'-' | [Organization.identifier:miplrn](StructureDefinition-hc-healthcare-organization-definitions.html#Organization.identifier:miplrn) |
-| 卫生机构分类 | 1..1 | 卫生机构（组织）分类 | [healthcareinstitutionstype-vs](ValueSet-healthcareinstitutionstype-vs.html) | [Organization.extension:HealthcareInstitutionsTypeExtension](StructureDefinition-hc-healthcare-organization-definitions.html#Organization.extension:HealthcareInstitutionsTypeExtension) |
-| 次要组织机构名称 | 0..* | 次要组织机构名称，与次要组织机构类型成对出现。次要组织机构名称为医疗机构除与统一社会信用代码对应的名称外还具有的其他具备医疗服务职能的官方名称，如某市胸痛中心，某市急救中心等，与非官方的别名不同。 | 无 | [Organization.extension:SecondaryHealthcareInstitutionsInfoExtension.extension:secondaryName](StructureDefinition-hc-mdm-secondaryhealthcareinstitutionsinfo-definitions.html#Extension.extension:secondaryName) |
-| 次要组织机构类型 | 0..* | 次要组织机构类型，与次要组织机构名称成对出现。 次要组织机构类型需使用WS 218-2002 卫生机构（组织）分类与代码。| [healthcareinstitutionstype-vs](ValueSet-healthcareinstitutionstype-vs.html) | [Organization.extension:SecondaryHealthcareInstitutionsInfoExtension.extension:secondaryType](StructureDefinition-hc-mdm-secondaryhealthcareinstitutionsinfo-definitions.html#Extension.extension:secondaryType) |
-| 中国医院三级评审等级 | 1..1 | 中国医院三级评审等级 | [cn-hospitalleve-vs](ValueSet-cn-hospitalleve-vs.html) | [Organization.extension:HospitalLevelExtension](StructureDefinition-hc-healthcare-organization-definitions.html#Organization.extension:HospitalLevelExtension) |
+| 医疗机构执业许可证登记号 | 1..1 | 医疗机构执业许可证登记号 | 医疗机构执业许可证登记号为字符串，其中只包括数字，大写字母和连字符'-' | [Organization.identifier:miplrn](StructureDefinition-hc-healthcare-organization-definitions.html#Organization.identifier:miplrn) |
+| 医疗机构执业许可证有效期 | 0..1 | 医疗机构执业许可证有效期 | 医疗机构执业许可证有效期包含开始和结束时间，格式均为YYYY-MM-DD | [Organization.identifier:miplrn.period](StructureDefinition-hc-healthcare-organization-definitions.html#Organization.identifier:miplrn.period) |
+| 卫生机构（组织）代码 | 0..1 | 卫生机构（组织）代码 | 卫生机构（组织）代码遵循WS 218-2002 卫生机构（组织）分类与代码标准要求，为22位字符串，其中只包括数字，大写字母和连字符'-' | [Organization.identifier:hcoc](StructureDefinition-hc-healthcare-organization-definitions.html#Organization.identifier:hcoc) |
+| 卫生机构分类 | 1..1 | 卫生机构（组织）分类，需使用WS 218-2002 卫生机构（组织）分类与代码。 | [healthcareinstitutionstype-vs](ValueSet-healthcareinstitutionstype-vs.html) | [Organization.extension:HealthcareInstitutionsTypeExtension](StructureDefinition-hc-healthcare-organization-definitions.html#Organization.extension:HealthcareInstitutionsTypeExtension) |
+| 次要组织机构名称 | 0..* | 次要组织机构名称，与次要组织机构类型成对出现。次要组织机构名称为医疗机构除与统一社会信用代码对应的名称外还具有的其他具备医疗服务职能的官方名称，如某市胸痛中心，某市急救中心等，与非官方的别名不同。 | 无 | [Organization.extension:SecondaryHealthcare<br>InstitutionsInfoExtension.extension:secondaryName](StructureDefinition-hc-mdm-secondaryhealthcareinstitutionsinfo-definitions.html#Extension.extension:secondaryName) |
+| 次要组织机构类型 | 0..* | 次要组织机构类型，与次要组织机构名称成对出现。 次要组织机构类型需使用WS 218-2002 卫生机构（组织）分类与代码。| [healthcareinstitutionstype-vs](ValueSet-healthcareinstitutionstype-vs.html) | [Organization.extension:SecondaryHealthcare<br>InstitutionsInfoExtension.extension:secondaryType](StructureDefinition-hc-mdm-secondaryhealthcareinstitutionsinfo-definitions.html#Extension.extension:secondaryType) |
+| 中国医院三级评审等级 | 0..1 | 中国医院三级评审等级 | [cn-hospitalleve-vs](ValueSet-cn-hospitalleve-vs.html) | [Organization.extension:HospitalLevelExtension](StructureDefinition-hc-healthcare-organization-definitions.html#Organization.extension:HospitalLevelExtension) |
 | 医院管理类型 | 1..1 | 医院管理类型，使用WS 218-2002 卫生机构（组织）分类与代码中附录B，机构分类管理代码表作为标准。 | [cn-hospitalmanagementype-vs](ValueSet-cn-hospitalmanagementype-vs.html) | [Organization.extension:HospitalManagementTypeExtension](StructureDefinition-hc-healthcare-organization-definitions.html#Organization.extension:HospitalManagementTypeExtension) |
 | 主机构 | 0..1 | 为分支机构时引用主机构 | 建立对主机构的引用 | [Organization.partOf](StructureDefinition-hc-healthcare-organization-definitions.html#Organization.partOf) |
 | 负责人姓名 | 0..1 | 负责人姓名 | 无 | [Organization.contact:responsible.name](StructureDefinition-hc-healthcare-organization-definitions.html#Organization.contact:responsible.name) |
@@ -46,7 +48,7 @@
 {:.grid}
 
 
-组织机构与卫生健康机构两种类型都是Organization资源的子类型，具有Organization资源的所有属性，但遵循不同的规范，通过绑定不同的术语集，扩展[Extension](https://hl7.org/fhir/R4/extensibility.html#Extension)元素获得适合中国国情的更多信息。    
+组织机构与卫生健康机构两种类型都是Organization资源的子类型，具有Organization资源的所有属性，但遵循不同的规范，通过绑定不同的术语集，扩展[Extension](https://hl7.org/fhir/R4/extensibility.html#Extension)元素获得适合中国国情的更多信息。     
 
 
 
