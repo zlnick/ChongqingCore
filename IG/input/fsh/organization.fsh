@@ -195,7 +195,8 @@ Description: "重庆市渝中区卫生健康委员会"
 * extension[SupervisedByExtension].valueReference.type = "Organization"
 * extension[SupervisedByExtension].valueReference.identifier.type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
 * extension[SupervisedByExtension].valueReference.identifier.value = "82783739457838954"
-* extension[SupervisedByExtension].valueReference.display = "渝中区卫健委"
+* extension[SupervisedByExtension].valueReference.display = "重庆市卫生健康委员会"
+* extension[IsBranchExtension].valueBoolean = false
 * extension[OperatingStatusExtension].valueCoding = OperatingStatusCS#0 "开业"
 * telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
 * telecom[phone].use = $conuse#work

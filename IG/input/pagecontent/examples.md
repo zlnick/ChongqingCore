@@ -6,7 +6,7 @@
 ### [重庆市卫生健康委员会](Organization-ChongqingHealthCommission.html)    
 
 ### [重庆市渝中区卫生健康委员会](Organization-ChongqingYuzhongHealthCommission.html)  
-可注意到区卫健委通过supervisedby扩展引用市卫健委，以表达行政管理上卫健委受市卫健里管辖的语义。  
+可注意到区卫健委通过supervisedby扩展引用市卫健委，以表达行政管理上区卫健委受市卫健委管辖的语义。  
 
 
 ## 卫生健康机构主数据示例  
