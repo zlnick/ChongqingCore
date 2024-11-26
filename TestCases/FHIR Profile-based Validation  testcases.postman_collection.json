@@ -51,7 +51,9 @@
 		{
 			"name": "Unknow field",
 			"protocolProfileBehavior": {
-				"disabledSystemHeaders": {}
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
 			},
 			"request": {
 				"method": "POST",
@@ -69,7 +71,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"resourceType\": \"Organization\",\r\n  \"id\": \"2.16.840.1.113883.19.5\",\r\n  \"text\": {\r\n    \"status\": \"generated\",\r\n    \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\">\\n      \\n      <p>Good Health Clinic</p>\\n    \\n    </div>\"\r\n  },\r\n   \"extension\" : [\r\n    {\r\n      \"url\" : \"http://example.org/StructureDefinition/mdm-organizationTypeExtension\",\r\n      \"valueCoding\" : {\r\n        \"system\" : \"http://example.org/CodeSystem/organizationtype-code-system\",\r\n        \"code\" : \"121\",\r\n        \"display\" : \"事业单位法人\"\r\n      }\r\n    }\r\n  ],\r\n  \"active\":true,\r\n  \"name\": \"长宁市奉孝区中心医院\",\r\n  \"isNational\":false\r\n}",
+					"raw": "{\r\n  \"resourceType\" : \"Organization\",\r\n  \"id\" : \"ChongqingHealthCommission\",\r\n  \"meta\" : {\r\n    \"profile\" : [\"http://fhir.cq.hc/StructureDefinition/hc-mdm-organization|0.1.0\"]\r\n  },\r\n  \"text\" : {\r\n    \"status\" : \"extensions\",\r\n    \"div\" : \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p class=\\\"res-header-id\\\"><b>Generated Narrative: Organization ChongqingHealthCommission</b></p><a name=\\\"ChongqingHealthCommission\\\"> </a><a name=\\\"hcChongqingHealthCommission\\\"> </a><a name=\\\"ChongqingHealthCommission-und\\\"> </a><p><b>民政区划(区县)</b>: <a href=\\\"CodeSystem-cq-administrativedivision-code-system.html#cq-administrativedivision-code-system-500112\\\">重庆区级行政区划代码 500112</a>: 渝北区</p><p><b>民政区划(街道)</b>: <a href=\\\"CodeSystem-cq-streetdivision-code-system.html#cq-streetdivision-code-system-500112005\\\">重庆（乡镇街道级）行政区划代码 500112005</a>: 龙山街道</p><p><b>机构运营状态</b>: <a href=\\\"CodeSystem-operatingstatus-code-system.html#operatingstatus-code-system-0\\\">机构运营状态代码 0</a>: 开业</p><p><b>identifier</b>: 机构主索引号码/82783739457838954\\u00a0(use:\\u00a0official,\\u00a0), 统一社会信用代码/11500000MB1670604W\\u00a0(use:\\u00a0official,\\u00a0)</p><p><b>active</b>: true</p><p><b>type</b>: <span title=\\\"Codes:{http://fhir.cq.hc/CodeSystem/organizationtype-code-system 121}\\\">事业单位法人</span></p><p><b>name</b>: 重庆市卫生健康委员会</p><p><b>telecom</b>: <a href=\\\"tel:+86-23-67706707\\\">+86-23-67706707</a>, <a href=\\\"mailto:abc@cnu.org\\\">abc@cnu.org</a>, <a href=\\\"https://wsjkw.cq.gov.cn\\\">https://wsjkw.cq.gov.cn</a></p><p><b>address</b>: 重庆市渝北区旗龙路6号 401147 (work)</p></div>\"\r\n  },\r\n  \"extension\" : [{\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-administrativedivision\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cq-administrativedivision-code-system\",\r\n      \"code\" : \"500112\",\r\n      \"display\" : \"渝北区\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-streetdivision\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cq-streetdivision-code-system\",\r\n      \"code\" : \"500112005\",\r\n      \"display\" : \"龙山街道\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-operatingstatus\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/operatingstatus-code-system\",\r\n      \"code\" : \"0\",\r\n      \"display\" : \"开业\"\r\n    }\r\n  }],\r\n  \"identifier\" : [{\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"MOI\",\r\n        \"display\" : \"机构主索引号码\"\r\n      }]\r\n    },\r\n    \"value\" : \"82783739457838954\"\r\n  },\r\n  {\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"USCC\",\r\n        \"display\" : \"统一社会信用代码\"\r\n      }]\r\n    },\r\n    \"value\" : \"11500000MB1670604W\"\r\n  }],\r\n  \"active\" : true,\r\n  \"type\" : [{\r\n    \"coding\" : [{\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/organizationtype-code-system\",\r\n      \"code\" : \"121\",\r\n      \"display\" : \"事业单位法人\"\r\n    }]\r\n  }],\r\n  \"name\" : \"重庆市卫生健康委员会\",\r\n  \"isNational\":false,\r\n  \"telecom\" : [{\r\n    \"system\" : \"phone\",\r\n    \"value\" : \"+86-23-67706707\",\r\n    \"use\" : \"work\"\r\n  },\r\n  {\r\n    \"system\" : \"email\",\r\n    \"value\" : \"abc@cnu.org\",\r\n    \"use\" : \"work\"\r\n  },\r\n  {\r\n    \"system\" : \"url\",\r\n    \"value\" : \"https://wsjkw.cq.gov.cn\",\r\n    \"use\" : \"work\"\r\n  }],\r\n  \"address\" : [{\r\n    \"extension\" : [{\r\n      \"extension\" : [{\r\n        \"url\" : \"longitude\",\r\n        \"valueDecimal\" : 106.50520499999993\r\n      },\r\n      {\r\n        \"url\" : \"latitude\",\r\n        \"valueDecimal\" : 29.593906000000015\r\n      }],\r\n      \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-organizationggis\"\r\n    }],\r\n    \"use\" : \"work\",\r\n    \"type\" : \"physical\",\r\n    \"line\" : [\"重庆市渝北区旗龙路6号\"],\r\n    \"postalCode\" : \"401147\"\r\n  }]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -77,7 +79,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{newValidatorURL}}/Organization/$validate?profile={{profile}}",
+					"raw": "{{newValidatorURL}}/Organization/$validate?profile={{orgprofile}}",
 					"host": [
 						"{{newValidatorURL}}"
 					],
@@ -88,7 +90,7 @@
 					"query": [
 						{
 							"key": "profile",
-							"value": "{{profile}}"
+							"value": "{{orgprofile}}"
 						}
 					]
 				}
@@ -116,7 +118,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"resourceType\": \"Organization\",\r\n  \"id\": \"2.16.840.1.113883.19.5\",\r\n  \"text\": {\r\n    \"status\": \"generated\",\r\n    \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\">\\n      \\n      <p>Good Health Clinic</p>\\n    \\n    </div>\"\r\n  },\r\n   \"extension\" : [\r\n    {\r\n      \"url\" : \"http://example.org/StructureDefinition/mdm-organizationTypeExtension\",\r\n      \"valueCoding\" : {\r\n        \"system\" : \"http://example.org/CodeSystem/organizationtype-code-system\",\r\n        \"code\" : \"121\",\r\n        \"display\" : \"事业单位法人\"\r\n      }\r\n    }\r\n  ],\r\n  \"identifier\": [\r\n    {\r\n      \"use\" : \"official\",\r\n      \"type\" : {\r\n        \"coding\" : [\r\n          {\r\n            \"system\" : \"http://example.org/CodeSystem/cs-identifierType-code-system\",\r\n            \"code\" : \"USCC\",\r\n            \"display\" : \"统一社会信用代码\"\r\n          }\r\n        ]\r\n      },\r\n      \"value\" : \"12330000470051726F\"\r\n    }\r\n  ],\r\n  \"active\":true\r\n}",
+					"raw": "{\r\n  \"resourceType\" : \"Organization\",\r\n  \"id\" : \"ChangningFengxiaoDistrictCentralHospital\",\r\n  \"meta\" : {\r\n    \"profile\" : [\"http://fhir.cq.hc/StructureDefinition/hc-healthcare-organization|0.1.0\"]\r\n  },\r\n  \"text\" : {\r\n    \"status\" : \"extensions\",\r\n    \"div\" : \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p class=\\\"res-header-id\\\"><b>Generated Narrative: Organization ChangningFengxiaoDistrictCentralHospital</b></p><a name=\\\"ChangningFengxiaoDistrictCentralHospital\\\"> </a><a name=\\\"hcChangningFengxiaoDistrictCentralHospital\\\"> </a><a name=\\\"ChangningFengxiaoDistrictCentralHospital-und\\\"> </a><p><b>民政区划(区县)</b>: <a href=\\\"CodeSystem-cq-administrativedivision-code-system.html#cq-administrativedivision-code-system-500105\\\">重庆区级行政区划代码 500105</a>: 江北区</p><p><b>民政区划(街道)</b>: <a href=\\\"CodeSystem-cq-streetdivision-code-system.html#cq-streetdivision-code-system-500105011\\\">重庆（乡镇街道级）行政区划代码 500105011</a>: 石马河街道</p><p><b>卫生机构（组织）分类</b>: <a href=\\\"CodeSystem-healthcareinstitutionstype-code-system.html#healthcareinstitutionstype-code-system-A100\\\">卫生机构（组织）分类与代码 A100</a>: 综合医院</p><p><b>中国医院三级评审等级</b>: <a href=\\\"CodeSystem-cn-hospitalleve-code-system.html#cn-hospitalleve-code-system-2\\\">中国医院三级评审等级代码 2</a>: 三级甲等</p><p><b>经济类型分类</b>: <a href=\\\"CodeSystem-nationaleconomicindustryclassification-code-system.html#nationaleconomicindustryclassification-code-system-110\\\">经济类型分类代码 110</a>: 国有全资</p><p><b>医院管理类型</b>: <a href=\\\"CodeSystem-cn-hospitalnanagementtype-code-system.html#cn-hospitalnanagementtype-code-system-1\\\">医院管理类型代码 1</a>: 非营利性医疗机构</p><blockquote><p><b>次要组织机构信息</b></p><ul><li>secondaryType: <a href=\\\"CodeSystem-healthcareinstitutionstype-code-system.html#healthcareinstitutionstype-code-system-E100\\\">卫生机构（组织）分类与代码 E100</a>: 急救中心</li><li>secondaryName: 长宁市急救中心</li></ul></blockquote><p><b>上级监管机构</b>: 重庆市渝中区卫生健康委员会 (Identifier: 机构主索引号码/1638748745645060)</p><p><b>机构运营状态</b>: <a href=\\\"CodeSystem-operatingstatus-code-system.html#operatingstatus-code-system-0\\\">机构运营状态代码 0</a>: 开业</p><p><b>identifier</b>: 医疗机构执业许可证登记号/PRN561106-211311\\u00a0(use:\\u00a0official,\\u00a0period:\\u00a02022-02-07 --&gt; 2027-02-07), 卫生机构（组织）代码/PRN561106-2113118450-1\\u00a0(use:\\u00a0official,\\u00a0), 机构主索引号码/82783739457838954\\u00a0(use:\\u00a0official,\\u00a0), 统一社会信用代码/12330000470051726F\\u00a0(use:\\u00a0official,\\u00a0)</p><p><b>active</b>: true</p><p><b>type</b>: <span title=\\\"Codes:{http://fhir.cq.hc/CodeSystem/organizationtype-code-system 121}\\\">事业单位法人</span></p><p><b>name</b>: 长宁市奉孝区中心医院</p><p><b>telecom</b>: <a href=\\\"tel:+86-23-65100171\\\">+86-23-65100171</a>, <a href=\\\"mailto:abc@cnu.org\\\">abc@cnu.org</a>, <a href=\\\"https://abc.bj.org.cn\\\">https://abc.bj.org.cn</a></p><p><b>address</b>: XX省长宁市奉孝区健康路1号 400210 (work)</p><h3>Contacts</h3><table class=\\\"grid\\\"><tr><td style=\\\"display: none\\\">-</td><td><b>Purpose</b></td><td><b>Name</b></td><td><b>Telecom</b></td></tr><tr><td style=\\\"display: none\\\">*</td><td><span title=\\\"Codes:{http://fhir.cq.hc/CodeSystem/contactortype-code-system RES}\\\">负责人</span></td><td>张无忌</td><td><a href=\\\"tel:+86-18502032240\\\">+86-18502032240</a></td></tr></table></div>\"\r\n  },\r\n  \"extension\" : [{\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-administrativedivision\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cq-administrativedivision-code-system\",\r\n      \"code\" : \"500105\",\r\n      \"display\" : \"江北区\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-streetdivision\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cq-streetdivision-code-system\",\r\n      \"code\" : \"500105011\",\r\n      \"display\" : \"石马河街道\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-healthcareinstitutionstype\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/healthcareinstitutionstype-code-system\",\r\n      \"code\" : \"A100\",\r\n      \"display\" : \"综合医院\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-hospitallevel\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cn-hospitalleve-code-system\",\r\n      \"code\" : \"2\",\r\n      \"display\" : \"三级甲等\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-economicindustryclassification\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/nationaleconomicindustryclassification-code-system\",\r\n      \"code\" : \"110\",\r\n      \"display\" : \"国有全资\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-hospitalmanagementype\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cn-hospitalnanagementtype-code-system\",\r\n      \"code\" : \"1\",\r\n      \"display\" : \"非营利性医疗机构\"\r\n    }\r\n  },\r\n  {\r\n    \"extension\" : [{\r\n      \"url\" : \"secondaryType\",\r\n      \"valueCoding\" : {\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/healthcareinstitutionstype-code-system\",\r\n        \"code\" : \"E100\",\r\n        \"display\" : \"急救中心\"\r\n      }\r\n    },\r\n    {\r\n      \"url\" : \"secondaryName\",\r\n      \"valueString\" : \"长宁市急救中心\"\r\n    }],\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-secondaryhealthcareinstitutionsinfo\"\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-supervisedby\",\r\n    \"valueReference\" : {\r\n      \"type\" : \"Organization\",\r\n      \"identifier\" : {\r\n        \"type\" : {\r\n          \"coding\" : [{\r\n            \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n            \"code\" : \"MOI\",\r\n            \"display\" : \"机构主索引号码\"\r\n          }]\r\n        },\r\n        \"value\" : \"1638748745645060\"\r\n      },\r\n      \"display\" : \"重庆市渝中区卫生健康委员会\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-operatingstatus\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/operatingstatus-code-system\",\r\n      \"code\" : \"0\",\r\n      \"display\" : \"开业\"\r\n    }\r\n  }],\r\n  \"identifier\" : [{\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"MIPLRN\",\r\n        \"display\" : \"医疗机构执业许可证登记号\"\r\n      }]\r\n    },\r\n    \"value\" : \"PRN561106-211311\",\r\n    \"period\" : {\r\n      \"start\" : \"2022-02-07\",\r\n      \"end\" : \"2027-02-07\"\r\n    }\r\n  },\r\n  {\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"HCOC\",\r\n        \"display\" : \"卫生机构（组织）代码\"\r\n      }]\r\n    },\r\n    \"value\" : \"PRN561106-2113118450-1\"\r\n  },\r\n  {\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"MOI\",\r\n        \"display\" : \"机构主索引号码\"\r\n      }]\r\n    },\r\n    \"value\" : \"82783739457838954\"\r\n  },\r\n  {\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"USCC\",\r\n        \"display\" : \"统一社会信用代码\"\r\n      }]\r\n    },\r\n    \"value\" : \"12330000470051726F\"\r\n  }],\r\n  \"active\" : true,\r\n  \"type\" : [{\r\n    \"coding\" : [{\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/organizationtype-code-system\",\r\n      \"code\" : \"121\",\r\n      \"display\" : \"事业单位法人\"\r\n    }]\r\n  }],\r\n  \"telecom\" : [{\r\n    \"system\" : \"phone\",\r\n    \"value\" : \"+86-23-65100171\",\r\n    \"use\" : \"work\"\r\n  },\r\n  {\r\n    \"system\" : \"email\",\r\n    \"value\" : \"abc@cnu.org\",\r\n    \"use\" : \"work\"\r\n  },\r\n  {\r\n    \"system\" : \"url\",\r\n    \"value\" : \"https://abc.bj.org.cn\",\r\n    \"use\" : \"work\"\r\n  }],\r\n  \"address\" : [{\r\n    \"extension\" : [{\r\n      \"extension\" : [{\r\n        \"url\" : \"longitude\",\r\n        \"valueDecimal\" : 106.55\r\n      },\r\n      {\r\n        \"url\" : \"latitude\",\r\n        \"valueDecimal\" : 29.55\r\n      }],\r\n      \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-organizationggis\"\r\n    }],\r\n    \"use\" : \"work\",\r\n    \"type\" : \"physical\",\r\n    \"line\" : [\"XX省长宁市奉孝区健康路1号\"],\r\n    \"postalCode\" : \"400210\"\r\n  }],\r\n  \"contact\" : [{\r\n    \"purpose\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/contactortype-code-system\",\r\n        \"code\" : \"RES\"\r\n      }]\r\n    },\r\n    \"name\" : {\r\n      \"text\" : \"张无忌\"\r\n    },\r\n    \"telecom\" : [{\r\n      \"system\" : \"phone\",\r\n      \"value\" : \"+86-18502032240\",\r\n      \"use\" : \"work\"\r\n    }]\r\n  }]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -124,7 +126,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{newValidatorURL}}/Organization/$validate?profile={{profile}}",
+					"raw": "{{newValidatorURL}}/Organization/$validate?profile={{orgprofile}}",
 					"host": [
 						"{{newValidatorURL}}"
 					],
@@ -135,54 +137,7 @@
 					"query": [
 						{
 							"key": "profile",
-							"value": "{{profile}}"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Binding strength",
-			"protocolProfileBehavior": {
-				"disabledSystemHeaders": {}
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/fhir+json",
-						"type": "default"
-					},
-					{
-						"key": "Accept",
-						"value": "application/fhir+json",
-						"type": "default"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"resourceType\": \"Organization\",\r\n  \"id\": \"2.16.840.1.113883.19.5\",\r\n  \"language\":\"wrong language\",\r\n  \"text\": {\r\n    \"status\": \"generated\",\r\n    \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\">\\n      \\n      <p>Good Health Clinic</p>\\n    \\n    </div>\"\r\n  },\r\n   \"extension\" : [\r\n    {\r\n      \"url\" : \"http://example.org/StructureDefinition/mdm-organizationTypeExtension\",\r\n      \"valueCoding\" : {\r\n        \"system\" : \"http://example.org/CodeSystem/organizationtype-code-system\",\r\n        \"code\" : \"121\",\r\n        \"display\" : \"事业单位法人\"\r\n      }\r\n    }\r\n  ],\r\n  \"identifier\": [\r\n    {\r\n      \"system\": \"urn:ietf:rfc:3986\",\r\n      \"value\": \"2.16.840.1.113883.19.5\"\r\n    }\r\n  ],\r\n  \"active\":true,\r\n  \"name\": \"长宁市奉孝区中心医院\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{newValidatorURL}}/Organization/$validate?profile={{profile}}",
-					"host": [
-						"{{newValidatorURL}}"
-					],
-					"path": [
-						"Organization",
-						"$validate"
-					],
-					"query": [
-						{
-							"key": "profile",
-							"value": "{{profile}}"
+							"value": "{{orgprofile}}"
 						}
 					]
 				}
@@ -210,7 +165,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"resourceType\": \"Organization\",\r\n  \"id\": \"2.16.840.1.113883.19.5\",\r\n  \"language\":\"zh-CN\",\r\n  \"text\": {\r\n    \"status\": \"generated\",\r\n    \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\">\\n      \\n      <p>Good Health Clinic</p>\\n    \\n    </div>\"\r\n  },\r\n   \"extension\" : [\r\n    {\r\n      \"url\" : \"http://example.org/StructureDefinition/mdm-organizationTypeExtension\",\r\n      \"valueCoding\" : {\r\n        \"system\" : \"http://example.org/CodeSystem/organizationtype-code-system\",\r\n        \"code\" : \"999\",\r\n        \"display\" : \"事业单位法人\"\r\n      }\r\n    }\r\n  ],\r\n  \"identifier\": [\r\n    {\r\n      \"system\": \"urn:ietf:rfc:3986\",\r\n      \"value\": \"2.16.840.1.113883.19.5\"\r\n    }\r\n  ],\r\n  \"active\":true,\r\n  \"name\": \"长宁市奉孝区中心医院\"\r\n}",
+					"raw": "{\r\n  \"resourceType\" : \"Organization\",\r\n  \"id\" : \"ChongqingYuzhongHealthCommission\",\r\n  \"meta\" : {\r\n    \"profile\" : [\"http://fhir.cq.hc/StructureDefinition/hc-mdm-organization|0.1.0\"]\r\n  },\r\n  \"text\" : {\r\n    \"status\" : \"extensions\",\r\n    \"div\" : \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p class=\\\"res-header-id\\\"><b>Generated Narrative: Organization ChongqingYuzhongHealthCommission</b></p><a name=\\\"ChongqingYuzhongHealthCommission\\\"> </a><a name=\\\"hcChongqingYuzhongHealthCommission\\\"> </a><a name=\\\"ChongqingYuzhongHealthCommission-und\\\"> </a><p><b>民政区划(区县)</b>: <a href=\\\"CodeSystem-cq-administrativedivision-code-system.html#cq-administrativedivision-code-system-500103\\\">重庆区级行政区划代码 500103</a>: 渝中区</p><p><b>民政区划(街道)</b>: <a href=\\\"CodeSystem-cq-streetdivision-code-system.html#cq-streetdivision-code-system-500103001\\\">重庆（乡镇街道级）行政区划代码 500103001</a>: 七星岗街道</p><p><b>上级监管机构</b>: 重庆市卫生健康委员会 (Identifier: 机构主索引号码/82783739457838954)</p><p><b>机构运营状态</b>: <a href=\\\"CodeSystem-operatingstatus-code-system.html#operatingstatus-code-system-0\\\">机构运营状态代码 0</a>: 开业</p><p><b>identifier</b>: 机构主索引号码/1638748745645060\\u00a0(use:\\u00a0official,\\u00a0), 统一社会信用代码/11500103MB1849823N\\u00a0(use:\\u00a0official,\\u00a0)</p><p><b>active</b>: true</p><p><b>type</b>: <span title=\\\"Codes:{http://fhir.cq.hc/CodeSystem/organizationtype-code-system 121}\\\">事业单位法人</span></p><p><b>name</b>: 重庆市渝中区卫生健康委员会</p><p><b>telecom</b>: <a href=\\\"tel:+86-23-63765146\\\">+86-23-63765146</a>, <a href=\\\"mailto:yzqwsj@163.com\\\">yzqwsj@163.com</a>, <a href=\\\"http://www.cqyz.gov.cn/bm_229/qwsjkw/zwgk_97157/\\\">http://www.cqyz.gov.cn/bm_229/qwsjkw/zwgk_97157/</a></p><p><b>address</b>: 重庆市渝中区和平路管家巷9号 400010 (work)</p></div>\"\r\n  },\r\n  \"extension\" : [{\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-administrativedivision\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cq-administrativedivision-code-system\",\r\n      \"code\" : \"500103\",\r\n      \"display\" : \"渝中区\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-streetdivision\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cq-streetdivision-code-system\",\r\n      \"code\" : \"500103001\",\r\n      \"display\" : \"七星岗街道\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-supervisedby\",\r\n    \"valueReference\" : {\r\n      \"type\" : \"Organization\",\r\n      \"identifier\" : {\r\n        \"type\" : {\r\n          \"coding\" : [{\r\n            \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n            \"code\" : \"MOI\",\r\n            \"display\" : \"机构主索引号码\"\r\n          }]\r\n        },\r\n        \"value\" : \"82783739457838954\"\r\n      },\r\n      \"display\" : \"重庆市卫生健康委员会\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-operatingstatus\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/operatingstatus-code-system\",\r\n      \"code\" : \"0\",\r\n      \"display\" : \"开业\"\r\n    }\r\n  }],\r\n  \"identifier\" : [{\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"MOI\",\r\n        \"display\" : \"机构主索引号码\"\r\n      }]\r\n    },\r\n    \"value\" : \"1638748745645060\"\r\n  },\r\n  {\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"USCC\",\r\n        \"display\" : \"统一社会信用代码\"\r\n      }]\r\n    },\r\n    \"value\" : \"11500103MB1849823N\"\r\n  }],\r\n  \"active\" : true,\r\n  \"type\" : [{\r\n    \"coding\" : [{\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/organizationtype-code-system\",\r\n      \"code\" : \"999\",\r\n      \"display\" : \"事业单位法人\"\r\n    }]\r\n  }],\r\n  \"name\" : \"重庆市渝中区卫生健康委员会\",\r\n  \"telecom\" : [{\r\n    \"system\" : \"phone\",\r\n    \"value\" : \"+86-23-63765146\",\r\n    \"use\" : \"work\"\r\n  },\r\n  {\r\n    \"system\" : \"email\",\r\n    \"value\" : \"yzqwsj@163.com\",\r\n    \"use\" : \"work\"\r\n  },\r\n  {\r\n    \"system\" : \"url\",\r\n    \"value\" : \"http://www.cqyz.gov.cn/bm_229/qwsjkw/zwgk_97157/\",\r\n    \"use\" : \"work\"\r\n  }],\r\n  \"address\" : [{\r\n    \"extension\" : [{\r\n      \"extension\" : [{\r\n        \"url\" : \"longitude\",\r\n        \"valueDecimal\" : 106.56887499999993\r\n      },\r\n      {\r\n        \"url\" : \"latitude\",\r\n        \"valueDecimal\" : 29.55277699999998\r\n      }],\r\n      \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-organizationggis\"\r\n    }],\r\n    \"use\" : \"work\",\r\n    \"type\" : \"physical\",\r\n    \"line\" : [\"重庆市渝中区和平路管家巷9号\"],\r\n    \"postalCode\" : \"400010\"\r\n  }]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -218,7 +173,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{newValidatorURL}}/Organization/$validate?profile={{profile}}",
+					"raw": "{{newValidatorURL}}/Organization/$validate?profile={{orgprofile}}",
 					"host": [
 						"{{newValidatorURL}}"
 					],
@@ -229,7 +184,7 @@
 					"query": [
 						{
 							"key": "profile",
-							"value": "{{profile}}"
+							"value": "{{orgprofile}}"
 						}
 					]
 				}
@@ -257,7 +212,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"resourceType\": \"Organization\",\r\n  \"id\": \"2.16.840.1.113883.19.5\",\r\n  \"language\":\"zh-CN\",\r\n  \"text\": {\r\n    \"status\": \"generated\",\r\n    \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\">\\n      \\n      <p>Good Health Clinic</p>\\n    \\n    </div>\"\r\n  },\r\n   \"extension\" : [\r\n    {\r\n      \"url\" : \"http://example.org/StructureDefinition/mdm-organizationTypeExtension\",\r\n      \"valueCoding\" : {\r\n        \"system\" : \"http://example.org/CodeSystem/organizationtype-code-system\",\r\n        \"code\" : \"121\",\r\n        \"display\" : \"事业单位法人\"\r\n      }\r\n    }\r\n  ],\r\n  \"identifier\": [\r\n    {\r\n      \"use\" : \"official\",\r\n      \"type\" : {\r\n        \"coding\" : [\r\n          {\r\n            \"system\" : \"http://example.org/CodeSystem/cs-identifierType-code-system\",\r\n            \"code\" : \"USCC\",\r\n            \"display\" : \"统一社会信用代码\"\r\n          }\r\n        ]\r\n      },\r\n      \"value\" : \"12330000470051726%\"\r\n    }\r\n  ],\r\n  \"active\":true,\r\n  \"name\": \"长宁市奉孝区中心医院\"\r\n}",
+					"raw": "{\r\n  \"resourceType\" : \"Organization\",\r\n  \"id\" : \"ChongqingYuzhongHealthCommission\",\r\n  \"meta\" : {\r\n    \"profile\" : [\"http://fhir.cq.hc/StructureDefinition/hc-mdm-organization|0.1.0\"]\r\n  },\r\n  \"text\" : {\r\n    \"status\" : \"extensions\",\r\n    \"div\" : \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p class=\\\"res-header-id\\\"><b>Generated Narrative: Organization ChongqingYuzhongHealthCommission</b></p><a name=\\\"ChongqingYuzhongHealthCommission\\\"> </a><a name=\\\"hcChongqingYuzhongHealthCommission\\\"> </a><a name=\\\"ChongqingYuzhongHealthCommission-und\\\"> </a><p><b>民政区划(区县)</b>: <a href=\\\"CodeSystem-cq-administrativedivision-code-system.html#cq-administrativedivision-code-system-500103\\\">重庆区级行政区划代码 500103</a>: 渝中区</p><p><b>民政区划(街道)</b>: <a href=\\\"CodeSystem-cq-streetdivision-code-system.html#cq-streetdivision-code-system-500103001\\\">重庆（乡镇街道级）行政区划代码 500103001</a>: 七星岗街道</p><p><b>上级监管机构</b>: 重庆市卫生健康委员会 (Identifier: 机构主索引号码/82783739457838954)</p><p><b>机构运营状态</b>: <a href=\\\"CodeSystem-operatingstatus-code-system.html#operatingstatus-code-system-0\\\">机构运营状态代码 0</a>: 开业</p><p><b>identifier</b>: 机构主索引号码/1638748745645060\\u00a0(use:\\u00a0official,\\u00a0), 统一社会信用代码/11500103MB1849823N\\u00a0(use:\\u00a0official,\\u00a0)</p><p><b>active</b>: true</p><p><b>type</b>: <span title=\\\"Codes:{http://fhir.cq.hc/CodeSystem/organizationtype-code-system 121}\\\">事业单位法人</span></p><p><b>name</b>: 重庆市渝中区卫生健康委员会</p><p><b>telecom</b>: <a href=\\\"tel:+86-23-63765146\\\">+86-23-63765146</a>, <a href=\\\"mailto:yzqwsj@163.com\\\">yzqwsj@163.com</a>, <a href=\\\"http://www.cqyz.gov.cn/bm_229/qwsjkw/zwgk_97157/\\\">http://www.cqyz.gov.cn/bm_229/qwsjkw/zwgk_97157/</a></p><p><b>address</b>: 重庆市渝中区和平路管家巷9号 400010 (work)</p></div>\"\r\n  },\r\n  \"extension\" : [{\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-administrativedivision\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cq-administrativedivision-code-system\",\r\n      \"code\" : \"500103\",\r\n      \"display\" : \"渝中区\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-streetdivision\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cq-streetdivision-code-system\",\r\n      \"code\" : \"500103001\",\r\n      \"display\" : \"七星岗街道\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-supervisedby\",\r\n    \"valueReference\" : {\r\n      \"type\" : \"Organization\",\r\n      \"identifier\" : {\r\n        \"type\" : {\r\n          \"coding\" : [{\r\n            \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n            \"code\" : \"MOI\",\r\n            \"display\" : \"机构主索引号码\"\r\n          }]\r\n        },\r\n        \"value\" : \"82783739457838954\"\r\n      },\r\n      \"display\" : \"重庆市卫生健康委员会\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-operatingstatus\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/operatingstatus-code-system\",\r\n      \"code\" : \"0\",\r\n      \"display\" : \"开业\"\r\n    }\r\n  }],\r\n  \"identifier\" : [{\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"MOI\",\r\n        \"display\" : \"机构主索引号码\"\r\n      }]\r\n    },\r\n    \"value\" : \"1638748745645060\"\r\n  },\r\n  {\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"USCC\",\r\n        \"display\" : \"统一社会信用代码\"\r\n      }]\r\n    },\r\n    \"value\" : \"11500103MB1849823%\"\r\n  }],\r\n  \"active\" : true,\r\n  \"type\" : [{\r\n    \"coding\" : [{\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/organizationtype-code-system\",\r\n      \"code\" : \"121\",\r\n      \"display\" : \"事业单位法人\"\r\n    }]\r\n  }],\r\n  \"name\" : \"重庆市渝中区卫生健康委员会\",\r\n  \"telecom\" : [{\r\n    \"system\" : \"phone\",\r\n    \"value\" : \"+86-23-63765146\",\r\n    \"use\" : \"work\"\r\n  },\r\n  {\r\n    \"system\" : \"email\",\r\n    \"value\" : \"yzqwsj@163.com\",\r\n    \"use\" : \"work\"\r\n  },\r\n  {\r\n    \"system\" : \"url\",\r\n    \"value\" : \"http://www.cqyz.gov.cn/bm_229/qwsjkw/zwgk_97157/\",\r\n    \"use\" : \"work\"\r\n  }],\r\n  \"address\" : [{\r\n    \"extension\" : [{\r\n      \"extension\" : [{\r\n        \"url\" : \"longitude\",\r\n        \"valueDecimal\" : 106.56887499999993\r\n      },\r\n      {\r\n        \"url\" : \"latitude\",\r\n        \"valueDecimal\" : 29.55277699999998\r\n      }],\r\n      \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-organizationggis\"\r\n    }],\r\n    \"use\" : \"work\",\r\n    \"type\" : \"physical\",\r\n    \"line\" : [\"重庆市渝中区和平路管家巷9号\"],\r\n    \"postalCode\" : \"400010\"\r\n  }]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -265,7 +220,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{newValidatorURL}}/Organization/$validate?profile={{profile}}",
+					"raw": "{{newValidatorURL}}/Organization/$validate?profile={{orgprofile}}",
 					"host": [
 						"{{newValidatorURL}}"
 					],
@@ -276,7 +231,7 @@
 					"query": [
 						{
 							"key": "profile",
-							"value": "{{profile}}"
+							"value": "{{orgprofile}}"
 						}
 					]
 				}
@@ -284,7 +239,7 @@
 			"response": []
 		},
 		{
-			"name": "Failing profile",
+			"name": "Org_重庆卫健委_Valid",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {}
 			},
@@ -293,18 +248,16 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/fhir+json",
-						"type": "default"
+						"value": "application/fhir+json"
 					},
 					{
 						"key": "Accept",
-						"value": "application/fhir+json",
-						"type": "default"
+						"value": "application/fhir+json"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"resourceType\": \"Organization\",\r\n  \"id\": \"2.16.840.1.113883.19.5\",\r\n  \"language\":\"wrong language\",\r\n  \"text\": {\r\n    \"status\": \"generated\",\r\n    \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\">\\n      \\n      <p>Good Health Clinic</p>\\n    \\n    </div>\"\r\n  },\r\n   \"extension\" : [\r\n    {\r\n      \"url\" : \"http://example.org/StructureDefinition/mdm-organizationTypeExtension\",\r\n      \"valueCoding\" : {\r\n        \"system\" : \"http://example.org/CodeSystem/organizationtype-code-system\",\r\n        \"code\" : \"999\",\r\n        \"display\" : \"事业单位法人\"\r\n      }\r\n    }\r\n  ],\r\n  \"identifier\": [\r\n    {\r\n      \"use\" : \"official\",\r\n      \"type\" : {\r\n        \"coding\" : [\r\n          {\r\n            \"system\" : \"http://example.org/CodeSystem/cs-identifierType-code-system\",\r\n            \"code\" : \"USCC\",\r\n            \"display\" : \"统一社会信用代码\"\r\n          }\r\n        ]\r\n      },\r\n      \"value\" : \"12330000470051726%\"\r\n    }\r\n  ],\r\n  \"active\":true\r\n}",
+					"raw": "{\r\n  \"resourceType\" : \"Organization\",\r\n  \"id\" : \"ChongqingYuzhongHealthCommission\",\r\n  \"meta\" : {\r\n    \"profile\" : [\"http://fhir.cq.hc/StructureDefinition/hc-mdm-organization|0.1.0\"]\r\n  },\r\n  \"text\" : {\r\n    \"status\" : \"extensions\",\r\n    \"div\" : \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p class=\\\"res-header-id\\\"><b>Generated Narrative: Organization ChongqingYuzhongHealthCommission</b></p><a name=\\\"ChongqingYuzhongHealthCommission\\\"> </a><a name=\\\"hcChongqingYuzhongHealthCommission\\\"> </a><a name=\\\"ChongqingYuzhongHealthCommission-und\\\"> </a><p><b>民政区划(区县)</b>: <a href=\\\"CodeSystem-cq-administrativedivision-code-system.html#cq-administrativedivision-code-system-500103\\\">重庆区级行政区划代码 500103</a>: 渝中区</p><p><b>民政区划(街道)</b>: <a href=\\\"CodeSystem-cq-streetdivision-code-system.html#cq-streetdivision-code-system-500103001\\\">重庆（乡镇街道级）行政区划代码 500103001</a>: 七星岗街道</p><p><b>上级监管机构</b>: 重庆市卫生健康委员会 (Identifier: 机构主索引号码/82783739457838954)</p><p><b>机构运营状态</b>: <a href=\\\"CodeSystem-operatingstatus-code-system.html#operatingstatus-code-system-0\\\">机构运营状态代码 0</a>: 开业</p><p><b>identifier</b>: 机构主索引号码/1638748745645060\\u00a0(use:\\u00a0official,\\u00a0), 统一社会信用代码/11500103MB1849823N\\u00a0(use:\\u00a0official,\\u00a0)</p><p><b>active</b>: true</p><p><b>type</b>: <span title=\\\"Codes:{http://fhir.cq.hc/CodeSystem/organizationtype-code-system 121}\\\">事业单位法人</span></p><p><b>name</b>: 重庆市渝中区卫生健康委员会</p><p><b>telecom</b>: <a href=\\\"tel:+86-23-63765146\\\">+86-23-63765146</a>, <a href=\\\"mailto:yzqwsj@163.com\\\">yzqwsj@163.com</a>, <a href=\\\"http://www.cqyz.gov.cn/bm_229/qwsjkw/zwgk_97157/\\\">http://www.cqyz.gov.cn/bm_229/qwsjkw/zwgk_97157/</a></p><p><b>address</b>: 重庆市渝中区和平路管家巷9号 400010 (work)</p></div>\"\r\n  },\r\n  \"extension\" : [{\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-administrativedivision\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cq-administrativedivision-code-system\",\r\n      \"code\" : \"500103\",\r\n      \"display\" : \"渝中区\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-streetdivision\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cq-streetdivision-code-system\",\r\n      \"code\" : \"500103001\",\r\n      \"display\" : \"七星岗街道\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-supervisedby\",\r\n    \"valueReference\" : {\r\n      \"type\" : \"Organization\",\r\n      \"identifier\" : {\r\n        \"type\" : {\r\n          \"coding\" : [{\r\n            \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n            \"code\" : \"MOI\",\r\n            \"display\" : \"机构主索引号码\"\r\n          }]\r\n        },\r\n        \"value\" : \"82783739457838954\"\r\n      },\r\n      \"display\" : \"重庆市卫生健康委员会\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-operatingstatus\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/operatingstatus-code-system\",\r\n      \"code\" : \"0\",\r\n      \"display\" : \"开业\"\r\n    }\r\n  }],\r\n  \"identifier\" : [{\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"MOI\",\r\n        \"display\" : \"机构主索引号码\"\r\n      }]\r\n    },\r\n    \"value\" : \"1638748745645060\"\r\n  },\r\n  {\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"USCC\",\r\n        \"display\" : \"统一社会信用代码\"\r\n      }]\r\n    },\r\n    \"value\" : \"11500103MB1849823N\"\r\n  }],\r\n  \"active\" : true,\r\n  \"type\" : [{\r\n    \"coding\" : [{\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/organizationtype-code-system\",\r\n      \"code\" : \"121\",\r\n      \"display\" : \"事业单位法人\"\r\n    }]\r\n  }],\r\n  \"name\" : \"重庆市渝中区卫生健康委员会\",\r\n  \"telecom\" : [{\r\n    \"system\" : \"phone\",\r\n    \"value\" : \"+86-23-63765146\",\r\n    \"use\" : \"work\"\r\n  },\r\n  {\r\n    \"system\" : \"email\",\r\n    \"value\" : \"yzqwsj@163.com\",\r\n    \"use\" : \"work\"\r\n  },\r\n  {\r\n    \"system\" : \"url\",\r\n    \"value\" : \"http://www.cqyz.gov.cn/bm_229/qwsjkw/zwgk_97157/\",\r\n    \"use\" : \"work\"\r\n  }],\r\n  \"address\" : [{\r\n    \"extension\" : [{\r\n      \"extension\" : [{\r\n        \"url\" : \"longitude\",\r\n        \"valueDecimal\" : 106.56887499999993\r\n      },\r\n      {\r\n        \"url\" : \"latitude\",\r\n        \"valueDecimal\" : 29.55277699999998\r\n      }],\r\n      \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-organizationggis\"\r\n    }],\r\n    \"use\" : \"work\",\r\n    \"type\" : \"physical\",\r\n    \"line\" : [\"重庆市渝中区和平路管家巷9号\"],\r\n    \"postalCode\" : \"400010\"\r\n  }]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -312,7 +265,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{newValidatorURL}}/Organization/$validate?profile={{profile}}",
+					"raw": "{{newValidatorURL}}/Organization/$validate?profile={{orgprofile}}",
 					"host": [
 						"{{newValidatorURL}}"
 					],
@@ -323,8 +276,91 @@
 					"query": [
 						{
 							"key": "profile",
-							"value": "{{profile}}"
+							"value": "{{orgprofile}}"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Org_长宁市奉孝区中心医院_Valid",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/fhir+json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/fhir+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"resourceType\" : \"Organization\",\r\n  \"id\" : \"ChangningFengxiaoDistrictCentralHospital\",\r\n  \"meta\" : {\r\n    \"profile\" : [\"http://fhir.cq.hc/StructureDefinition/hc-healthcare-organization|0.1.0\"]\r\n  },\r\n  \"text\" : {\r\n    \"status\" : \"extensions\",\r\n    \"div\" : \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p class=\\\"res-header-id\\\"><b>Generated Narrative: Organization ChangningFengxiaoDistrictCentralHospital</b></p><a name=\\\"ChangningFengxiaoDistrictCentralHospital\\\"> </a><a name=\\\"hcChangningFengxiaoDistrictCentralHospital\\\"> </a><a name=\\\"ChangningFengxiaoDistrictCentralHospital-und\\\"> </a><p><b>民政区划(区县)</b>: <a href=\\\"CodeSystem-cq-administrativedivision-code-system.html#cq-administrativedivision-code-system-500105\\\">重庆区级行政区划代码 500105</a>: 江北区</p><p><b>民政区划(街道)</b>: <a href=\\\"CodeSystem-cq-streetdivision-code-system.html#cq-streetdivision-code-system-500105011\\\">重庆（乡镇街道级）行政区划代码 500105011</a>: 石马河街道</p><p><b>卫生机构（组织）分类</b>: <a href=\\\"CodeSystem-healthcareinstitutionstype-code-system.html#healthcareinstitutionstype-code-system-A100\\\">卫生机构（组织）分类与代码 A100</a>: 综合医院</p><p><b>中国医院三级评审等级</b>: <a href=\\\"CodeSystem-cn-hospitalleve-code-system.html#cn-hospitalleve-code-system-2\\\">中国医院三级评审等级代码 2</a>: 三级甲等</p><p><b>经济类型分类</b>: <a href=\\\"CodeSystem-nationaleconomicindustryclassification-code-system.html#nationaleconomicindustryclassification-code-system-110\\\">经济类型分类代码 110</a>: 国有全资</p><p><b>医院管理类型</b>: <a href=\\\"CodeSystem-cn-hospitalnanagementtype-code-system.html#cn-hospitalnanagementtype-code-system-1\\\">医院管理类型代码 1</a>: 非营利性医疗机构</p><blockquote><p><b>次要组织机构信息</b></p><ul><li>secondaryType: <a href=\\\"CodeSystem-healthcareinstitutionstype-code-system.html#healthcareinstitutionstype-code-system-E100\\\">卫生机构（组织）分类与代码 E100</a>: 急救中心</li><li>secondaryName: 长宁市急救中心</li></ul></blockquote><p><b>上级监管机构</b>: 重庆市渝中区卫生健康委员会 (Identifier: 机构主索引号码/1638748745645060)</p><p><b>机构运营状态</b>: <a href=\\\"CodeSystem-operatingstatus-code-system.html#operatingstatus-code-system-0\\\">机构运营状态代码 0</a>: 开业</p><p><b>identifier</b>: 医疗机构执业许可证登记号/PRN561106-211311\\u00a0(use:\\u00a0official,\\u00a0period:\\u00a02022-02-07 --&gt; 2027-02-07), 卫生机构（组织）代码/PRN561106-2113118450-1\\u00a0(use:\\u00a0official,\\u00a0), 机构主索引号码/82783739457838954\\u00a0(use:\\u00a0official,\\u00a0), 统一社会信用代码/12330000470051726F\\u00a0(use:\\u00a0official,\\u00a0)</p><p><b>active</b>: true</p><p><b>type</b>: <span title=\\\"Codes:{http://fhir.cq.hc/CodeSystem/organizationtype-code-system 121}\\\">事业单位法人</span></p><p><b>name</b>: 长宁市奉孝区中心医院</p><p><b>telecom</b>: <a href=\\\"tel:+86-23-65100171\\\">+86-23-65100171</a>, <a href=\\\"mailto:abc@cnu.org\\\">abc@cnu.org</a>, <a href=\\\"https://abc.bj.org.cn\\\">https://abc.bj.org.cn</a></p><p><b>address</b>: XX省长宁市奉孝区健康路1号 400210 (work)</p><h3>Contacts</h3><table class=\\\"grid\\\"><tr><td style=\\\"display: none\\\">-</td><td><b>Purpose</b></td><td><b>Name</b></td><td><b>Telecom</b></td></tr><tr><td style=\\\"display: none\\\">*</td><td><span title=\\\"Codes:{http://fhir.cq.hc/CodeSystem/contactortype-code-system RES}\\\">负责人</span></td><td>张无忌</td><td><a href=\\\"tel:+86-18502032240\\\">+86-18502032240</a></td></tr></table></div>\"\r\n  },\r\n  \"extension\" : [{\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-administrativedivision\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cq-administrativedivision-code-system\",\r\n      \"code\" : \"500105\",\r\n      \"display\" : \"江北区\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-streetdivision\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cq-streetdivision-code-system\",\r\n      \"code\" : \"500105011\",\r\n      \"display\" : \"石马河街道\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-healthcareinstitutionstype\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/healthcareinstitutionstype-code-system\",\r\n      \"code\" : \"A100\",\r\n      \"display\" : \"综合医院\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-hospitallevel\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cn-hospitalleve-code-system\",\r\n      \"code\" : \"2\",\r\n      \"display\" : \"三级甲等\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-economicindustryclassification\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/nationaleconomicindustryclassification-code-system\",\r\n      \"code\" : \"110\",\r\n      \"display\" : \"国有全资\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-hospitalmanagementype\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cn-hospitalnanagementtype-code-system\",\r\n      \"code\" : \"1\",\r\n      \"display\" : \"非营利性医疗机构\"\r\n    }\r\n  },\r\n  {\r\n    \"extension\" : [{\r\n      \"url\" : \"secondaryType\",\r\n      \"valueCoding\" : {\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/healthcareinstitutionstype-code-system\",\r\n        \"code\" : \"E100\",\r\n        \"display\" : \"急救中心\"\r\n      }\r\n    },\r\n    {\r\n      \"url\" : \"secondaryName\",\r\n      \"valueString\" : \"长宁市急救中心\"\r\n    }],\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-secondaryhealthcareinstitutionsinfo\"\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-supervisedby\",\r\n    \"valueReference\" : {\r\n      \"type\" : \"Organization\",\r\n      \"identifier\" : {\r\n        \"type\" : {\r\n          \"coding\" : [{\r\n            \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n            \"code\" : \"MOI\",\r\n            \"display\" : \"机构主索引号码\"\r\n          }]\r\n        },\r\n        \"value\" : \"1638748745645060\"\r\n      },\r\n      \"display\" : \"重庆市渝中区卫生健康委员会\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-operatingstatus\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/operatingstatus-code-system\",\r\n      \"code\" : \"0\",\r\n      \"display\" : \"开业\"\r\n    }\r\n  }],\r\n  \"identifier\" : [{\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"MIPLRN\",\r\n        \"display\" : \"医疗机构执业许可证登记号\"\r\n      }]\r\n    },\r\n    \"value\" : \"PRN561106-211311\",\r\n    \"period\" : {\r\n      \"start\" : \"2022-02-07\",\r\n      \"end\" : \"2027-02-07\"\r\n    }\r\n  },\r\n  {\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"HCOC\",\r\n        \"display\" : \"卫生机构（组织）代码\"\r\n      }]\r\n    },\r\n    \"value\" : \"PRN561106-2113118450-1\"\r\n  },\r\n  {\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"MOI\",\r\n        \"display\" : \"机构主索引号码\"\r\n      }]\r\n    },\r\n    \"value\" : \"82783739457838954\"\r\n  },\r\n  {\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"USCC\",\r\n        \"display\" : \"统一社会信用代码\"\r\n      }]\r\n    },\r\n    \"value\" : \"12330000470051726F\"\r\n  }],\r\n  \"active\" : true,\r\n  \"type\" : [{\r\n    \"coding\" : [{\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/organizationtype-code-system\",\r\n      \"code\" : \"121\",\r\n      \"display\" : \"事业单位法人\"\r\n    }]\r\n  }],\r\n  \"name\" : \"长宁市奉孝区中心医院\",\r\n  \"telecom\" : [{\r\n    \"system\" : \"phone\",\r\n    \"value\" : \"+86-23-65100171\",\r\n    \"use\" : \"work\"\r\n  },\r\n  {\r\n    \"system\" : \"email\",\r\n    \"value\" : \"abc@cnu.org\",\r\n    \"use\" : \"work\"\r\n  },\r\n  {\r\n    \"system\" : \"url\",\r\n    \"value\" : \"https://abc.bj.org.cn\",\r\n    \"use\" : \"work\"\r\n  }],\r\n  \"address\" : [{\r\n    \"extension\" : [{\r\n      \"extension\" : [{\r\n        \"url\" : \"longitude\",\r\n        \"valueDecimal\" : 106.55\r\n      },\r\n      {\r\n        \"url\" : \"latitude\",\r\n        \"valueDecimal\" : 29.55\r\n      }],\r\n      \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-organizationggis\"\r\n    }],\r\n    \"use\" : \"work\",\r\n    \"type\" : \"physical\",\r\n    \"line\" : [\"XX省长宁市奉孝区健康路1号\"],\r\n    \"postalCode\" : \"400210\"\r\n  }],\r\n  \"contact\" : [{\r\n    \"purpose\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/contactortype-code-system\",\r\n        \"code\" : \"RES\"\r\n      }]\r\n    },\r\n    \"name\" : {\r\n      \"text\" : \"张无忌\"\r\n    },\r\n    \"telecom\" : [{\r\n      \"system\" : \"phone\",\r\n      \"value\" : \"+86-18502032240\",\r\n      \"use\" : \"work\"\r\n    }]\r\n  }]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{newValidatorURL}}/Organization/$validate?profile={{hosprofile}}",
+					"host": [
+						"{{newValidatorURL}}"
+					],
+					"path": [
+						"Organization",
+						"$validate"
+					],
+					"query": [
+						{
+							"key": "profile",
+							"value": "{{hosprofile}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POSTHospital_success",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/fhir+json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/fhir+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"resourceType\" : \"Organization\",\r\n  \"id\" : \"ChangningFengxiaoDistrictCentralHospitalBranch\",\r\n  \"meta\" : {\r\n    \"profile\" : [\"http://fhir.cq.hc/StructureDefinition/hc-healthcare-organization|0.1.0\"]\r\n  },\r\n  \"text\" : {\r\n    \"status\" : \"extensions\",\r\n    \"div\" : \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p class=\\\"res-header-id\\\"><b>Generated Narrative: Organization ChangningFengxiaoDistrictCentralHospitalBranch</b></p><a name=\\\"ChangningFengxiaoDistrictCentralHospitalBranch\\\"> </a><a name=\\\"hcChangningFengxiaoDistrictCentralHospitalBranch\\\"> </a><a name=\\\"ChangningFengxiaoDistrictCentralHospitalBranch-und\\\"> </a><p><b>民政区划(区县)</b>: <a href=\\\"CodeSystem-cq-administrativedivision-code-system.html#cq-administrativedivision-code-system-500117\\\">重庆区级行政区划代码 500117</a>: 合川区</p><p><b>民政区划(街道)</b>: <a href=\\\"CodeSystem-cq-streetdivision-code-system.html#cq-streetdivision-code-system-500117103\\\">重庆（乡镇街道级）行政区划代码 500117103</a>: 官渡镇</p><p><b>卫生机构（组织）分类</b>: <a href=\\\"CodeSystem-healthcareinstitutionstype-code-system.html#healthcareinstitutionstype-code-system-A516\\\">卫生机构（组织）分类与代码 A516</a>: 胸科医院</p><p><b>中国医院三级评审等级</b>: <a href=\\\"CodeSystem-cn-hospitalleve-code-system.html#cn-hospitalleve-code-system-5\\\">中国医院三级评审等级代码 5</a>: 二级甲等</p><p><b>经济类型分类</b>: <a href=\\\"CodeSystem-nationaleconomicindustryclassification-code-system.html#nationaleconomicindustryclassification-code-system-110\\\">经济类型分类代码 110</a>: 国有全资</p><p><b>医院管理类型</b>: <a href=\\\"CodeSystem-cn-hospitalnanagementtype-code-system.html#cn-hospitalnanagementtype-code-system-1\\\">医院管理类型代码 1</a>: 非营利性医疗机构</p><p><b>上级监管机构</b>: 重庆市渝中区卫生健康委员会 (Identifier: 机构主索引号码/1638748745645060)</p><p><b>机构运营状态</b>: <a href=\\\"CodeSystem-operatingstatus-code-system.html#operatingstatus-code-system-1\\\">机构运营状态代码 1</a>: 筹建</p><p><b>identifier</b>: 医疗机构执业许可证登记号/54699457698765\\u00a0(use:\\u00a0official,\\u00a0period:\\u00a02023-10-21 --&gt; 2031-10-20), 卫生机构（组织）代码/74085017434152212C2101\\u00a0(use:\\u00a0official,\\u00a0), 机构主索引号码/82783739457838954\\u00a0(use:\\u00a0official,\\u00a0)</p><p><b>active</b>: true</p><p><b>type</b>: <span title=\\\"Codes:{http://fhir.cq.hc/CodeSystem/organizationtype-code-system 121}\\\">事业单位法人</span></p><p><b>name</b>: 长宁市奉孝区中心医院龙翔路分院</p><p><b>telecom</b>: <a href=\\\"tel:+86-23-65203427\\\">+86-23-65203427</a></p><p><b>address</b>: XX省长宁市奉孝区龙翔路42号 400210 (work)</p><p><b>partOf</b>: 长宁市奉孝区中心医院 (Identifier: 机构主索引号码/82783739457838954)</p><h3>Contacts</h3><table class=\\\"grid\\\"><tr><td style=\\\"display: none\\\">-</td><td><b>Purpose</b></td><td><b>Name</b></td><td><b>Telecom</b></td></tr><tr><td style=\\\"display: none\\\">*</td><td><span title=\\\"Codes:{http://fhir.cq.hc/CodeSystem/contactortype-code-system RES}\\\">负责人</span></td><td>李广利</td><td><a href=\\\"tel:+86-18412594521\\\">+86-18412594521</a></td></tr></table></div>\"\r\n  },\r\n  \"extension\" : [{\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-administrativedivision\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cq-administrativedivision-code-system\",\r\n      \"code\" : \"500117\",\r\n      \"display\" : \"合川区\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-streetdivision\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cq-streetdivision-code-system\",\r\n      \"code\" : \"500117103\",\r\n      \"display\" : \"官渡镇\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-healthcareinstitutionstype\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/healthcareinstitutionstype-code-system\",\r\n      \"code\" : \"A516\",\r\n      \"display\" : \"胸科医院\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-hospitallevel\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cn-hospitalleve-code-system\",\r\n      \"code\" : \"5\",\r\n      \"display\" : \"二级甲等\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-economicindustryclassification\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/nationaleconomicindustryclassification-code-system\",\r\n      \"code\" : \"110\",\r\n      \"display\" : \"国有全资\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-hospitalmanagementype\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/cn-hospitalnanagementtype-code-system\",\r\n      \"code\" : \"1\",\r\n      \"display\" : \"非营利性医疗机构\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-supervisedby\",\r\n    \"valueReference\" : {\r\n      \"type\" : \"Organization\",\r\n      \"identifier\" : {\r\n        \"type\" : {\r\n          \"coding\" : [{\r\n            \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n            \"code\" : \"MOI\",\r\n            \"display\" : \"机构主索引号码\"\r\n          }]\r\n        },\r\n        \"value\" : \"1638748745645060\"\r\n      },\r\n      \"display\" : \"重庆市渝中区卫生健康委员会\"\r\n    }\r\n  },\r\n  {\r\n    \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-operatingstatus\",\r\n    \"valueCoding\" : {\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/operatingstatus-code-system\",\r\n      \"code\" : \"1\",\r\n      \"display\" : \"筹建\"\r\n    }\r\n  }],\r\n  \"identifier\" : [{\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"MIPLRN\",\r\n        \"display\" : \"医疗机构执业许可证登记号\"\r\n      }]\r\n    },\r\n    \"value\" : \"54699457698765\",\r\n    \"period\" : {\r\n      \"start\" : \"2023-10-21\",\r\n      \"end\" : \"2031-10-20\"\r\n    }\r\n  },\r\n  {\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"HCOC\",\r\n        \"display\" : \"卫生机构（组织）代码\"\r\n      }]\r\n    },\r\n    \"value\" : \"74085017434152212C2101\"\r\n  },\r\n  {\r\n    \"use\" : \"official\",\r\n    \"type\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n        \"code\" : \"MOI\",\r\n        \"display\" : \"机构主索引号码\"\r\n      }]\r\n    },\r\n    \"value\" : \"82783739457838954\"\r\n  }],\r\n  \"active\" : true,\r\n  \"type\" : [{\r\n    \"coding\" : [{\r\n      \"system\" : \"http://fhir.cq.hc/CodeSystem/organizationtype-code-system\",\r\n      \"code\" : \"121\",\r\n      \"display\" : \"事业单位法人\"\r\n    }]\r\n  }],\r\n  \"name\" : \"长宁市奉孝区中心医院龙翔路分院\",\r\n  \"telecom\" : [{\r\n    \"system\" : \"phone\",\r\n    \"value\" : \"+86-23-65203427\",\r\n    \"use\" : \"work\"\r\n  }],\r\n  \"address\" : [{\r\n    \"extension\" : [{\r\n      \"extension\" : [{\r\n        \"url\" : \"longitude\",\r\n        \"valueDecimal\" : 106.58\r\n      },\r\n      {\r\n        \"url\" : \"latitude\",\r\n        \"valueDecimal\" : 29.51\r\n      }],\r\n      \"url\" : \"http://fhir.cq.hc/StructureDefinition/hc-mdm-organizationggis\"\r\n    }],\r\n    \"use\" : \"work\",\r\n    \"type\" : \"physical\",\r\n    \"line\" : [\"XX省长宁市奉孝区龙翔路42号\"],\r\n    \"postalCode\" : \"400210\"\r\n  }],\r\n  \"partOf\" : {\r\n    \"type\" : \"Organization\",\r\n    \"identifier\" : {\r\n      \"type\" : {\r\n        \"coding\" : [{\r\n          \"system\" : \"http://fhir.cq.hc/CodeSystem/identifierType-code-system\",\r\n          \"code\" : \"MOI\",\r\n          \"display\" : \"机构主索引号码\"\r\n        }]\r\n      },\r\n      \"value\" : \"82783739457838954\"\r\n    },\r\n    \"display\" : \"长宁市奉孝区中心医院\"\r\n  },\r\n  \"contact\" : [{\r\n    \"purpose\" : {\r\n      \"coding\" : [{\r\n        \"system\" : \"http://fhir.cq.hc/CodeSystem/contactortype-code-system\",\r\n        \"code\" : \"RES\"\r\n      }]\r\n    },\r\n    \"name\" : {\r\n      \"text\" : \"李广利\"\r\n    },\r\n    \"telecom\" : [{\r\n      \"system\" : \"phone\",\r\n      \"value\" : \"+86-18412594521\",\r\n      \"use\" : \"work\"\r\n    }]\r\n  }]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{newValidatorURL}}/Organization",
+					"host": [
+						"{{newValidatorURL}}"
+					],
+					"path": [
+						"Organization"
 					]
 				}
 			},
@@ -373,8 +409,13 @@
 			"type": "string"
 		},
 		{
-			"key": "profile",
-			"value": "http://example.org/StructureDefinition/mdm-organization|0.1.0",
+			"key": "orgprofile",
+			"value": "http://fhir.cq.hc/StructureDefinition/mdm-organization|0.1.0",
+			"type": "string"
+		},
+		{
+			"key": "hosprofile",
+			"value": "http://fhir.cq.hc/StructureDefinition/hc-healthcare-organization|0.1.0",
 			"type": "string"
 		}
 	]
