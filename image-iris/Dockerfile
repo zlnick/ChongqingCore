@@ -10,8 +10,8 @@ RUN apt install unzip
 USER irisowner
 WORKDIR /dur
 COPY --chown=irisowner:irisowner --chmod=700 ./image-iris/src /dur
-COPY --chown=irisowner:irisowner --chmod=700 ./IG/output/full-ig.zip /dur/FullIG/full-ig.zip
-COPY --chown=irisowner:irisowner --chmod=700 ./IG/output/package.tgz /dur/IGPackages/local/package.tgz
+COPY --chown=irisowner:irisowner --chmod=700 ./image-iris/src/IGPackages/coreIG/full-ig.zip /dur/FullIG/full-ig.zip
+COPY --chown=irisowner:irisowner --chmod=700 ./image-iris/src/IGPackages/coreIG/package.tgz /dur/IGPackages/local/package.tgz
 RUN find . -name '.DS_Store' -type f -delete
 
 WORKDIR /dur/IGPackages
