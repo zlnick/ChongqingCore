@@ -82,7 +82,7 @@ Description: "中国组织机构主数据数据模型。本标准所指的组织
 * meta.profile ^comment = "在新增、修改等操作中，组织机构主数据需引用profile，格式为http://[标准发布地址]/StructureDefinition/hc-mdm-organization|0.1.0"
 * meta.profile 1..1 MS
 * extension contains AdministrativeDivisionExtension named AdministrativeDivisionExtension 1..1 MS
-* extension contains StreetDivisionExtension named StreetDivisionExtension 1..1 MS
+* extension contains StreetDivisionExtension named StreetDivisionExtension 0..1 MS
 * extension contains EconomicIndustryClassificationExtension named EconomicIndustryClassificationExtension 0..1 MS
 * extension contains SupervisedByExtension named SupervisedByExtension 0..1 MS
 * extension contains OperatingStatusExtension named OperatingStatusExtension 1..1 MS
