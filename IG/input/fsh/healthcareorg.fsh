@@ -7,9 +7,9 @@ XPath:       "f:value"
 
 // 使用正则表达式校验卫生机构（组织）代码格式
 Invariant:   hcoc-encodingrule-format
-Description: "卫生机构（组织）代码为22位字符串，其中只包括数字，大写字母和连字符'-'"
+Description: "卫生机构（组织）代码为22位或23位字符串，其中只包括数字，大写字母和连字符'-'"
 Severity:    #error
-Expression:  "value.matches('^[0-9A-Z-]{22}$')"
+Expression:  "value.matches('^[0-9A-Z-]{22,23}$')"
 XPath:       "f:value"
 
 // 扩展字段，使用WS 218-2002 卫生机构（组织）分类与代码记录卫生机构类型
@@ -57,11 +57,11 @@ Context: HealthcareOrganization
 // Organization Profile
 Profile: HealthcareOrganization
 Id: hc-healthcare-organization
-Title: "卫生健康机构主数据"
+Title: "卫生机构主数据"
 Parent: MDMOrganization
-Description: "中国卫生健康机构主数据数据模型"
+Description: "中国卫生机构主数据数据模型"
 * meta.profile ^short = "资源所引用的profile"
-* meta.profile ^comment = "在新增、修改等操作中，卫生健康机构主数据需引用profile，格式为http://[标准发布地址]/StructureDefinition/hc-healthcare-organization|0.1.0"
+* meta.profile ^comment = "在新增、修改等操作中，卫生机构主数据需引用profile，格式为http://[标准发布地址]/StructureDefinition/hc-healthcare-organization|0.1.0"
 * extension[EconomicIndustryClassificationExtension] 1..1 MS
 * extension contains HealthcareInstitutionsTypeExtension named HealthcareInstitutionsTypeExtension 1..1 MS
 * extension contains HospitalLevelExtension named HospitalLevelExtension 0..1 MS
@@ -125,6 +125,7 @@ Description: "中国卫生健康机构主数据数据模型"
 Instance: ChangningFengxiaoDistrictCentralHospital
 InstanceOf: HealthcareOrganization
 Description: "长宁市奉孝区中心医院(虚拟医院)"
+//* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-healthcare-organization|0.1.0"
 * active = true 
 * type = OrganizationTypeCS#121 "事业单位法人"
 * name = "长宁市奉孝区中心医院"
@@ -179,7 +180,8 @@ Description: "长宁市奉孝区中心医院(虚拟医院)"
 
 Instance: ChangningFengxiaoDistrictCentralHospitalBranch
 InstanceOf: HealthcareOrganization
-Description: "长宁市奉孝区中心医院龙翔路分院"
+Description: "长宁市奉孝区中心医院龙翔路分院(虚拟分院区)。"
+//* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-healthcare-organization|0.1.0"
 * active = true 
 * type = OrganizationTypeCS#121 "事业单位法人"
 * name = "长宁市奉孝区中心医院龙翔路分院"
@@ -219,10 +221,14 @@ Description: "长宁市奉孝区中心医院龙翔路分院"
 * contact[responsible].telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
 * contact[responsible].telecom[phone].use = $conuse#work
 * contact[responsible].telecom[phone].value = "+86-18412594521"
+//* partOf.reference = "http://localhost:52880/csp/healthshare/fhirserver/fhir/r4/Organization/2"
 * partOf.type = "Organization"
 * partOf.identifier.type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
 * partOf.identifier.value = "82783739457838954"
-* partOf..display = "长宁市奉孝区中心医院"
+* partOf.display = "长宁市奉孝区中心医院"
+
+
+
 
 
 

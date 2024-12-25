@@ -156,6 +156,7 @@ Description: "中国组织机构主数据数据模型。本标准所指的组织
 Instance: ChongqingHealthCommission
 InstanceOf: MDMOrganization
 Description: "重庆市卫生健康委员会"
+//* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-mdm-organization|0.1.0"
 * active = true 
 * type = OrganizationTypeCS#121 "事业单位法人"
 * name = "重庆市卫生健康委员会"
@@ -187,6 +188,7 @@ Description: "重庆市卫生健康委员会"
 Instance: ChongqingYuzhongHealthCommission
 InstanceOf: MDMOrganization
 Description: "重庆市渝中区卫生健康委员会"
+//* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-mdm-organization|0.1.0"
 * active = true 
 * type = OrganizationTypeCS#121 "事业单位法人"
 * name = "重庆市渝中区卫生健康委员会"
