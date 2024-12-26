@@ -54,7 +54,7 @@ Context: HealthcareOrganization
 * extension[secondaryName] ^short = "次要组织机构名称。次要组织机构名称为医疗机构除与统一社会信用代码对应的名称外还具有的其他具备医疗服务职能的官方名称，如某市胸痛中心，某市急救中心等，与非官方的别名不同。"
 * extension[secondaryName].value[x] only string
 
-// Organization Profile
+// HealthcareOrganization Profile
 Profile: HealthcareOrganization
 Id: hc-healthcare-organization
 Title: "卫生机构主数据"
@@ -221,7 +221,7 @@ Description: "长宁市奉孝区中心医院龙翔路分院(虚拟分院区)。"
 * contact[responsible].telecom[phone].system = http://hl7.org/fhir/contact-point-system#phone
 * contact[responsible].telecom[phone].use = $conuse#work
 * contact[responsible].telecom[phone].value = "+86-18412594521"
-//* partOf.reference = "http://localhost:52880/csp/healthshare/fhirserver/fhir/r4/Organization/2"
+* partOf.reference = "http://localhost/fhir/r4/Organization/2"
 * partOf.type = "Organization"
 * partOf.identifier.type = ChineseIdentifierTypeCS#MOI "机构主索引号码"
 * partOf.identifier.value = "82783739457838954"
