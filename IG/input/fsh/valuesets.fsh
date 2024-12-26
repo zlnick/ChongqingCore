@@ -8,9 +8,11 @@ Description: "国家标准GB/T 20091-2021 组织机构类型值集"
 ValueSet: HealthcareInstitutionsTypeVS
 Id: healthcareinstitutionstype-vs
 Title: "卫生机构（组织）分类与代码值集"
-Description: "行业标准WS 218-2002 卫生机构（组织）分类与代码值集"
+Description: "行业标准WS 218-2002 卫生机构（组织）分类与代码值集，还附加了自定义卫生机构（组织）分类与代码。"
 * ^experimental = false
 * include codes from system HealthcareInstitutionsTypeCS
+//Just remained here, do not include customerized codes yet
+//* include codes from system CustomedHealthcareInstitutionsTypeCS
 
 ValueSet: CNIdentifierTypeVS
 Id: cn-identifierType-vs
