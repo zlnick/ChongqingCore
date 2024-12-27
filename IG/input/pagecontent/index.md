@@ -6,7 +6,7 @@
  * @Description: 
  * @FilePath: \ChongqingCore\IG\input\pagecontent\index.md
 -->
-重庆市卫生健康主数据实施指南。
+重庆市卫生健康主数据实施指南。[变更记录](changelog.html)
 
 ## 范围
 本标准规定了重庆市医疗健康行业主数据标准，包含主数据术语标准和数据模型标准两部分。  
