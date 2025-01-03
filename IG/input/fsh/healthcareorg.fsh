@@ -62,14 +62,14 @@ Parent: MDMOrganization
 Description: "中国卫生机构主数据数据模型"
 * meta.profile ^short = "资源所引用的profile"
 * meta.profile ^comment = "在新增、修改等操作中，卫生机构主数据需引用profile，格式为http://[标准发布地址]/StructureDefinition/hc-healthcare-organization|0.1.0"
-* extension[EconomicIndustryClassificationExtension] 1..1 MS
-* extension contains HealthcareInstitutionsTypeExtension named HealthcareInstitutionsTypeExtension 1..1 MS
+* extension[EconomicIndustryClassificationExtension] 0..1 MS
+* extension contains HealthcareInstitutionsTypeExtension named HealthcareInstitutionsTypeExtension 0..1 MS
 * extension contains HospitalLevelExtension named HospitalLevelExtension 0..1 MS
-* extension contains HospitalManagementTypeExtension named HospitalManagementTypeExtension 1..1 MS
+* extension contains HospitalManagementTypeExtension named HospitalManagementTypeExtension 0..1 MS
 * extension contains SecondaryHealthcareInstitutionsInfoExtension named SecondaryHealthcareInstitutionsInfoExtension 0..* MS
 // identifier contains规则
 * identifier contains
-    miplrn 1..1 MS and 
+    miplrn 0..1 MS and 
     hcoc 0..1 MS
 // 医疗机构执业许可证登记号切片
 * identifier[miplrn] ^short = "医疗机构执业许可证登记号"
@@ -125,7 +125,7 @@ Description: "中国卫生机构主数据数据模型"
 Instance: ChangningFengxiaoDistrictCentralHospital
 InstanceOf: HealthcareOrganization
 Description: "长宁市奉孝区中心医院(虚拟医院)"
-//* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-healthcare-organization|0.1.0"
+* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-healthcare-organization|0.1.1"
 * active = true 
 * type = OrganizationTypeCS#121 "事业单位法人"
 * name = "长宁市奉孝区中心医院"
@@ -181,7 +181,7 @@ Description: "长宁市奉孝区中心医院(虚拟医院)"
 Instance: ChangningFengxiaoDistrictCentralHospitalBranch
 InstanceOf: HealthcareOrganization
 Description: "长宁市奉孝区中心医院龙翔路分院(虚拟分院区)。"
-//* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-healthcare-organization|0.1.0"
+* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-healthcare-organization|0.1.1"
 * active = true 
 * type = OrganizationTypeCS#121 "事业单位法人"
 * name = "长宁市奉孝区中心医院龙翔路分院"
