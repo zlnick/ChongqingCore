@@ -5,11 +5,11 @@ Severity:    #error
 Expression:  "value.matches('^[159Y]{1}[1239]{1}[0-9]{6}[0-9A-Z]{9}[0-9A-Z*]{1}$')"
 XPath:       "f:value"
 
-// 使用正则表达式校验重庆邮政编码
+// 使用正则表达式校验邮政编码
 Invariant:   postalcode-chongqing-format
-Description: "重庆地区邮政编码，6位数字，必须以40开头。"
+Description: "邮政编码，6位数字。"
 Severity:    #error
-Expression:  "postalCode.matches('^40[0-9]{4}$')"
+Expression:  "postalCode.matches('^[0-9]{6}$')"
 XPath:       "f:postalCode"
 
 // 扩展字段，记录次要组织机构类型信息
@@ -29,8 +29,8 @@ Context: Address
 // 扩展字段，记录所属行政区域
 Extension: AdministrativeDivisionExtension
 Id: hc-mdm-administrativedivision
-Title: "民政区划(区县)"
-Description: "民政区划(区县)"
+Title: "行政区划(区县)"
+Description: "行政区划(区县)"
 Context: MDMOrganization
 * value[x] only Coding
 * value[x] from CQAdministrativeDivisionVS (required)
@@ -38,8 +38,8 @@ Context: MDMOrganization
 // 扩展字段，记录重庆乡镇街道级行政区划
 Extension: StreetDivisionExtension
 Id: hc-mdm-streetdivision
-Title: "民政区划(街道)"
-Description: "民政区划(街道)"
+Title: "行政区划(街道)"
+Description: "行政区划(街道)"
 Context: MDMOrganization
 * value[x] only Coding
 * value[x] from CQStreetDivisionVS (required)
@@ -79,7 +79,7 @@ Description: "中国组织机构主数据数据模型。本标准所指的组织
 * id ^short = "资源物理id"
 * id ^comment = "对于新增操作，资源物理id由服务器指定，不需要赋值；对于更新操作，则应赋值。"
 * meta.profile ^short = "资源所引用的profile"
-* meta.profile ^comment = "在新增、修改等操作中，组织机构主数据需引用profile，格式为http://[标准发布地址]/StructureDefinition/hc-mdm-organization|0.1.1"
+* meta.profile ^comment = "在新增、修改等操作中，组织机构主数据需引用profile，格式为http://[标准发布地址]/StructureDefinition/hc-mdm-organization|0.1.4"
 * meta.profile 1..1 MS
 * extension contains AdministrativeDivisionExtension named AdministrativeDivisionExtension 0..1 MS
 * extension contains StreetDivisionExtension named StreetDivisionExtension 0..1 MS
@@ -156,7 +156,7 @@ Description: "中国组织机构主数据数据模型。本标准所指的组织
 Instance: ChongqingHealthCommission
 InstanceOf: MDMOrganization
 Description: "重庆市卫生健康委员会"
-* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-mdm-organization|0.1.1"
+* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-mdm-organization|0.1.4"
 * active = true 
 * type = OrganizationTypeCS#121 "事业单位法人"
 * name = "重庆市卫生健康委员会"
@@ -188,7 +188,7 @@ Description: "重庆市卫生健康委员会"
 Instance: ChongqingYuzhongHealthCommission
 InstanceOf: MDMOrganization
 Description: "重庆市渝中区卫生健康委员会"
-* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-mdm-organization|0.1.1"
+* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-mdm-organization|0.1.4"
 * active = true 
 * type = OrganizationTypeCS#121 "事业单位法人"
 * name = "重庆市渝中区卫生健康委员会"

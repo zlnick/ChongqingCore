@@ -1,7 +1,7 @@
 本标准中包括如下数据模型。
 
 ## [组织机构](StructureDefinition-hc-mdm-organization.html)
-组织机构对应的profile是：[标准发布地址]/StructureDefinition/hc-mdm-organization|0.1.1    
+组织机构对应的profile是：[标准发布地址]/StructureDefinition/hc-mdm-organization|0.1.4    
 本标准中所指的组织机构，是指除[卫生机构](#卫生机构)外的，为实现某种形式的集体行动而组成的正式或非正式认可的人员或组织团体。包括公司、机构、企业、部门、社区团体、付款人/承保人等。  
 本标准中的组织机构定义基于[HL7 FHIR](https://hl7.org/fhir/R4/)标准的[Organization](https://hl7.org/fhir/R4/organization.html)资源进行扩展，加入了适应国内应用所需的国标机构类型，联系人等信息。  
 组织机构数据模型中覆盖的数据需求如下：   
@@ -15,11 +15,11 @@
 | 机构运营状态 | 0..1 | 机构处于何种运营状态 | [operatingstatus-vs](ValueSet-operatingstatus-vs.html) | [Organization.extension:OperatingStatusExtension](StructureDefinition-hc-mdm-organization-definitions.html#Organization.extension:OperatingStatusExtension) |
 | 上级监管机构 | 0..1 | 引用上级监管机构 | 建立对上级监管机构的引用 | [Organization.extension:SupervisedByExtension](StructureDefinition-hc-mdm-organization-definitions.html#Organization.extension:SupervisedByExtension) |
 | 经济类型分类 | 0..1 | 按照国家标准划定的经济类型，对组织机构而言此项可选 | [cn-nationaleconomicindustryclassification-vs](ValueSet-cn-nationaleconomicindustryclassification-vs.html) | [Organization.extension:EconomicIndustry<br>ClassificationExtension](StructureDefinition-hc-mdm-organization-definitions.html#Organization.extension:EconomicIndustryClassificationExtension) |
-| 民政区划(区县) | 0..1 | 机构所处民政区划(区县) | [cq-administrativedivision-vs](ValueSet-cq-administrativedivision-vs.html) | [Organization.extension:AdministrativeDivisionExtension](StructureDefinition-hc-mdm-organization-definitions.html#Organization.extension:AdministrativeDivisionExtension) |
-| 民政区划(街道) | 0..1 | 机构所处民政区划(街道) | [cq-streetdivision-vs](ValueSet-cq-streetdivision-vs.html) | [Organization.extension:StreetDivisionExtension](StructureDefinition-hc-mdm-organization-definitions.html#Organization.extension:StreetDivisionExtension) |
+| 行政区划(区县) | 0..1 | 机构所处行政区划(区县) | [cq-administrativedivision-vs](ValueSet-cq-administrativedivision-vs.html) | [Organization.extension:AdministrativeDivisionExtension](StructureDefinition-hc-mdm-organization-definitions.html#Organization.extension:AdministrativeDivisionExtension) |
+| 行政区划(街道) | 0..1 | 机构所处行政区划(街道) | [cq-streetdivision-vs](ValueSet-cq-streetdivision-vs.html) | [Organization.extension:StreetDivisionExtension](StructureDefinition-hc-mdm-organization-definitions.html#Organization.extension:StreetDivisionExtension) |
 | 详细地址 | 0..1 | 详细地址 | 无 | [Organization.address.line](StructureDefinition-hc-mdm-organization-definitions.html#Organization.address.line) |
 | 地理位置坐标 | 0..1 | 机构所处经纬度 | 经纬度仅能为数字，含小数。 | [Organization.address.extension:OrganizationGISExtension](StructureDefinition-hc-mdm-organization-definitions.html#Organization.address.extension:OrganizationGISExtension) |
-| 机构邮政编码 | 0..1 | 机构邮政编码 | 采用重庆地区邮政编码，6位数字，必须以40开头。 | [Organization.address.postalCode](StructureDefinition-hc-mdm-organization-definitions.html#Organization.address.postalCode) |
+| 机构邮政编码 | 0..1 | 机构邮政编码 | 6位数字。 | [Organization.address.postalCode](StructureDefinition-hc-mdm-organization-definitions.html#Organization.address.postalCode) |
 | 机构联系电话 | 0..1 | 组织机构电话号码 | 无 | [Organization.telecom:phone](StructureDefinition-hc-mdm-organization-definitions.html#Organization.telecom:phone) |
 | 机构电子邮箱 | 0..1 | 组织机构电子邮件地址 | 无 | [Organization.telecom:email](StructureDefinition-hc-mdm-organization-definitions.html#Organization.telecom:email) |
 | 机构网站域名 | 0..1 | 组织机构网站地址 | 无 | [Organization.telecom:website](StructureDefinition-hc-mdm-organization-definitions.html#Organization.telecom:website) |
@@ -28,7 +28,7 @@
 
 
 ## [卫生机构](StructureDefinition-hc-healthcare-organization.html)  
-卫生机构对应的profile是：[标准发布地址]/StructureDefinition/hc-healthcare-organization|0.1.1    
+卫生机构对应的profile是：[标准发布地址]/StructureDefinition/hc-healthcare-organization|0.1.4    
 卫生机构(组织)是指从卫生行政部门取得《医疗机构执业许可证》,或从民政、工商行政、机构编制管理部门取得法人单位登记证书,为社会提供医疗保健、疾病控制、卫生监督等服务或从事医学科研、医学教育等卫生单位和卫生社会团体。不包括卫生行政机构、香港和澳门特别行政区以及台湾所属卫生机构(组织)。   
 除包括组织机构中所有的数据元素外，卫生机构包括的数据元素如下：  
 

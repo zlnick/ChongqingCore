@@ -61,7 +61,7 @@ Title: "卫生机构主数据"
 Parent: MDMOrganization
 Description: "中国卫生机构主数据数据模型"
 * meta.profile ^short = "资源所引用的profile"
-* meta.profile ^comment = "在新增、修改等操作中，卫生机构主数据需引用profile，格式为http://[标准发布地址]/StructureDefinition/hc-healthcare-organization|0.1.0"
+* meta.profile ^comment = "在新增、修改等操作中，卫生机构主数据需引用profile，格式为http://[标准发布地址]/StructureDefinition/hc-healthcare-organization|0.1.4"
 * extension[EconomicIndustryClassificationExtension] 0..1 MS
 * extension contains HealthcareInstitutionsTypeExtension named HealthcareInstitutionsTypeExtension 0..1 MS
 * extension contains HospitalLevelExtension named HospitalLevelExtension 0..1 MS
@@ -86,7 +86,8 @@ Description: "中国卫生机构主数据数据模型"
 * identifier[hcoc].use = $iduse#official
 * identifier[hcoc].type = ChineseIdentifierTypeCS#HCOC
 // 对卫生机构（组织）代码添加约束
-* identifier[hcoc] obeys hcoc-encodingrule-format
+// 目前卫健委的原始数据大部分不满足这个约束，只能暂时取消校验
+//* identifier[hcoc] obeys hcoc-encodingrule-format
 // 引用主机构
 * partOf ^short = "主机构"
 * partOf ^comment = "引用主机构，形成分支机构与主机构的多对一关联，例如分院区引用主院区。"
@@ -125,7 +126,7 @@ Description: "中国卫生机构主数据数据模型"
 Instance: ChangningFengxiaoDistrictCentralHospital
 InstanceOf: HealthcareOrganization
 Description: "长宁市奉孝区中心医院(虚拟医院)"
-* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-healthcare-organization|0.1.1"
+* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-healthcare-organization|0.1.4"
 * active = true 
 * type = OrganizationTypeCS#121 "事业单位法人"
 * name = "长宁市奉孝区中心医院"
@@ -181,7 +182,7 @@ Description: "长宁市奉孝区中心医院(虚拟医院)"
 Instance: ChangningFengxiaoDistrictCentralHospitalBranch
 InstanceOf: HealthcareOrganization
 Description: "长宁市奉孝区中心医院龙翔路分院(虚拟分院区)。"
-* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-healthcare-organization|0.1.1"
+* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-healthcare-organization|0.1.4"
 * active = true 
 * type = OrganizationTypeCS#121 "事业单位法人"
 * name = "长宁市奉孝区中心医院龙翔路分院"
