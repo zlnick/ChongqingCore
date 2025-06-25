@@ -1,8 +1,8 @@
 // 使用正则表达式校验统一社会信用代码格式（18）
 Invariant:   uscc-encodingrule-18
-Description: "源于GB 32100-2015 《法人和其他组织统一社会信用代码编码规则》，中国统一社会信用代码长度为18位。第一位为登记管理部门代码[1,5,9,Y]，第二位为机构类别代码[1,2,3,9]，第3~8位遵循GB/T 2260-2007《中华人民共和国行政区划代码》，[0-9]数字格式；第9~17位遵循GB 11714-1997《全国组织机构代码编制规则》，为[0-9][A-Z]；第18位为校验码，遵循GB/T 17710-2008《信息技术 安全技术 校验字符系统》，为[0-9][A-Z][*]。"
+Description: "源于GB 32100-2015 《法人和其他组织统一社会信用代码编码规则》，中国统一社会信用代码长度为18位。第一位为登记管理部门代码[1,5,9,Y]，第二位为机构类别代码[1,2,3,9]，第3~8位遵循GB/T 2260-2007《中华人民共和国行政区划代码》，[0-9]数字格式；第9~17位遵循GB 11714-1997《全国组织机构代码编制规则》，为[0-9][A-Z]；第18位为校验码，遵循GB/T 17710-2008《信息技术 安全技术 校验字符系统》，为[0-9][A-Z][*]。另对首位追加可用字符[A]，使之能兼容特殊的部队医院。"
 Severity:    #error
-Expression:  "value.matches('^[159Y]{1}[1239]{1}[0-9]{6}[0-9A-Z]{9}[0-9A-Z*]{1}$')"
+Expression:  "value.matches('^[159YA]{1}[1239]{1}[0-9]{6}[0-9A-Z]{9}[0-9A-Z*]{1}$')"
 XPath:       "f:value"
 
 // 使用正则表达式校验邮政编码
@@ -79,7 +79,7 @@ Description: "中国组织机构主数据数据模型。本标准所指的组织
 * id ^short = "资源物理id"
 * id ^comment = "对于新增操作，资源物理id由服务器指定，不需要赋值；对于更新操作，则应赋值。"
 * meta.profile ^short = "资源所引用的profile"
-* meta.profile ^comment = "在新增、修改等操作中，组织机构主数据需引用profile，格式为http://[标准发布地址]/StructureDefinition/hc-mdm-organization|0.1.4"
+* meta.profile ^comment = "在新增、修改等操作中，组织机构主数据需引用profile，格式为http://[标准发布地址]/StructureDefinition/hc-mdm-organization|0.1.5"
 * meta.profile 1..1 MS
 * extension contains AdministrativeDivisionExtension named AdministrativeDivisionExtension 0..1 MS
 * extension contains StreetDivisionExtension named StreetDivisionExtension 0..1 MS
@@ -156,7 +156,7 @@ Description: "中国组织机构主数据数据模型。本标准所指的组织
 Instance: ChongqingHealthCommission
 InstanceOf: MDMOrganization
 Description: "重庆市卫生健康委员会"
-* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-mdm-organization|0.1.4"
+* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-mdm-organization|0.1.5"
 * active = true 
 * type = OrganizationTypeCS#121 "事业单位法人"
 * name = "重庆市卫生健康委员会"
@@ -188,7 +188,7 @@ Description: "重庆市卫生健康委员会"
 Instance: ChongqingYuzhongHealthCommission
 InstanceOf: MDMOrganization
 Description: "重庆市渝中区卫生健康委员会"
-* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-mdm-organization|0.1.4"
+* meta.profile = "http://fhir.cq.hc/StructureDefinition/hc-mdm-organization|0.1.5"
 * active = true 
 * type = OrganizationTypeCS#121 "事业单位法人"
 * name = "重庆市渝中区卫生健康委员会"

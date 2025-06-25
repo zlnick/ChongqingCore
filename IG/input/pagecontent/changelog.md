@@ -1,5 +1,15 @@
 本 FHIR 实施指南的所有重大更改都将记录在此页面上。
 
+### 0.1.5 (2025-06-19)
+
+#### 新增
+
+#### 变更
+* [卫生机构（组织）分类与代码](CodeSystem-healthcareinstitutionstype-code-system.html)：  
+根据卫健委要求，追加了一部分代码，修改了一部分代码以与华宇系统相兼容。 又将“部队医院”改为“部队综合医院”，追加 A730 "护理中心"  
+* [统一社会信用代码](StructureDefinition-hc-mdm-organization-definitions.html#key_Organization.identifier:uscc)格式校验规则：  
+对首位追加可用字符[A]，使之能兼容特殊的部队医院。
+
 ### 0.1.4 (2025-04-28)
 
 #### 新增

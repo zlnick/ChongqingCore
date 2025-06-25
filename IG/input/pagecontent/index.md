@@ -1,11 +1,3 @@
-<!--
- * @Author: Lin Zhu
- * @Date: 2024-11-12 18:14:54
- * @LastEditors: Lin Zhu
- * @LastEditTime: 2024-11-12 20:37:56
- * @Description: 
- * @FilePath: \ChongqingCore\IG\input\pagecontent\index.md
--->
 重庆市卫生健康主数据实施指南。[变更记录](changelog.html)
 
 ## 范围

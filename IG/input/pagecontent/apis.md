@@ -41,14 +41,14 @@ https://server/path/Organization
 * [Version Id](https://hl7.org/fhir/R4/resource.html#Meta) 资源实例的版本号    
 * [lastUpdated](https://hl7.org/fhir/R4/resource.html#Meta) 最后更新时间    
 * [profile](https://hl7.org/fhir/R4/resource.html#Meta) 声明资源实例符合资源规范（StructureDefinition）的断言    
-特别应当注意profile元素。由于本标准支持同时部署多个资源规范，例如通过同一个API接口，也可以让Organization资源分别支持0.1.4和1.0.0版本的资源定义。  
+特别应当注意profile元素。由于本标准支持同时部署多个资源规范，例如通过同一个API接口，也可以让Organization资源分别支持0.1.5和1.0.0版本的资源定义。  
 因此，当使用POST、PUT等将改变资源实例内容的接口时，该元数据条目必需提供，以便验证数据的质量。  
 以下为元数据条目的表述形式。  
 ``` json
 {
 "meta": {
         "profile": [
-            "http://example.org/StructureDefinition/hc-mdm-organization|0.1.4"
+            "http://example.org/StructureDefinition/hc-mdm-organization|0.1.5"
         ],
         "lastUpdated": "2024-11-10T14:01:08Z",
         "versionId": "1"
@@ -110,7 +110,7 @@ vread 交互对资源执行特定版本的读取。交互由 HTTP GET 命令执�
 ```
 POST [base]/[Resource]/$validate?profile=[profile|version]
 ```
-其中[profile|version]参数用于指定要验证的资源应遵循的profile及其版本。在本标准中，要验证组织机构主数据的合规性，profile应取值为 http://[标准发布地址]/StructureDefinition/hc-mdm-organization|0.1.4 。不指定profile参数将导致服务器无法确定使用哪一个特定规范验证其合规性，只能验证其是否符合FHIR的基本格式。   
+其中[profile|version]参数用于指定要验证的资源应遵循的profile及其版本。在本标准中，要验证组织机构主数据的合规性，profile应取值为 http://[标准发布地址]/StructureDefinition/hc-mdm-organization|0.1.5 。不指定profile参数将导致服务器无法确定使用哪一个特定规范验证其合规性，只能验证其是否符合FHIR的基本格式。   
 此操作的返回值是 [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html)。  
 此操作可用于设计和开发期间，以验证应用程序设计。它也可以在运行时使用。一种可能的用途是，当用户正在编辑对话框时，客户端询问服务器建议的更新是否有效，并向用户显示更新的错误。该操作可以用作轻量级两阶段提交协议的一部分，但并不期望服务器在使用此操作后保留资源的内容，或者服务器保证在验证操作完成后成功执行实际的创建、更新或删除。  
 无论资源是否有效，此操作都将返回 200 OK。4xx 或 5xx 错误意味着无法执行验证本身，并且不知道资源是否有效。  
@@ -119,7 +119,7 @@ POST [base]/[Resource]/$validate?profile=[profile|version]
 #### 包含完整规范执行验证
 请求：使用 POST 根据组织机构主数据标准验证组织机构。
 ```
-POST /[FHIR服务器地址]/Organization/$validate?profile=http://example.org/StructureDefinition/hc-mdm-organization|0.1.4
+POST /[FHIR服务器地址]/Organization/$validate?profile=http://example.org/StructureDefinition/hc-mdm-organization|0.1.5
 
 Content-Type=application/fhir+json
 ```
@@ -129,7 +129,7 @@ Content-Type=application/fhir+json
     "resourceType": "Organization",
     "meta": {
         "profile": [
-            "http://example.org/StructureDefinition/hc-mdm-organization|0.1.4"
+            "http://example.org/StructureDefinition/hc-mdm-organization|0.1.5"
         ]
     },
     "extension": [
@@ -181,9 +181,9 @@ Content-Type=application/fhir+json
             "severity": "error",
             "code": "invariant",
             "details": {
-                "text": "generated-hc-mdm-organization-2: Constraint violation: identifier.where(type.where(coding.where(system = 'http://example.org/CodeSystem/identifierType-code-system' and code = 'USCC').exists())).exists() implies (identifier.where(type.where(coding.where(system = 'http://example.org/CodeSystem/identifierType-code-system' and code = 'USCC').exists())).count() = 1 and identifier.where(type.where(coding.where(system = 'http://example.org/CodeSystem/identifierType-code-system' and code = 'USCC').exists())).all((use.exists() implies (use = 'official')) and type.where(coding.where(system = 'http://example.org/CodeSystem/identifierType-code-system' and code = 'USCC').exists()).exists() and (value.matches('^[159Y]{1}[1239]{1}[0-9]{6}[0-9A-Z]{9}[0-9A-Z*]{1}$'))))"
+                "text": "generated-hc-mdm-organization-2: Constraint violation: identifier.where(type.where(coding.where(system = 'http://example.org/CodeSystem/identifierType-code-system' and code = 'USCC').exists())).exists() implies (identifier.where(type.where(coding.where(system = 'http://example.org/CodeSystem/identifierType-code-system' and code = 'USCC').exists())).count() = 1 and identifier.where(type.where(coding.where(system = 'http://example.org/CodeSystem/identifierType-code-system' and code = 'USCC').exists())).all((use.exists() implies (use = 'official')) and type.where(coding.where(system = 'http://example.org/CodeSystem/identifierType-code-system' and code = 'USCC').exists()).exists() and (value.matches('^[159YA]{1}[1239]{1}[0-9]{6}[0-9A-Z]{9}[0-9A-Z*]{1}$'))))"
             },
-            "diagnostics": "Caused by: [[expression: value.matches('^[159Y]{1}[1239]{1}[0-9]{6}[0-9A-Z]{9}[0-9A-Z*]{1}$'), result: false, location: Organization.identifier[0]]]",
+            "diagnostics": "Caused by: [[expression: value.matches('^[159YA]{1}[1239]{1}[0-9]{6}[0-9A-Z]{9}[0-9A-Z*]{1}$'), result: false, location: Organization.identifier[0]]]",
             "expression": [
                 "Organization"
             ]

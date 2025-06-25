@@ -1,7 +1,7 @@
 本标准中包括如下数据模型。
 
 ## [组织机构](StructureDefinition-hc-mdm-organization.html)
-组织机构对应的profile是：[标准发布地址]/StructureDefinition/hc-mdm-organization|0.1.4    
+组织机构对应的profile是：[标准发布地址]/StructureDefinition/hc-mdm-organization|0.1.5    
 本标准中所指的组织机构，是指除[卫生机构](#卫生机构)外的，为实现某种形式的集体行动而组成的正式或非正式认可的人员或组织团体。包括公司、机构、企业、部门、社区团体、付款人/承保人等。  
 本标准中的组织机构定义基于[HL7 FHIR](https://hl7.org/fhir/R4/)标准的[Organization](https://hl7.org/fhir/R4/organization.html)资源进行扩展，加入了适应国内应用所需的国标机构类型，联系人等信息。  
 组织机构数据模型中覆盖的数据需求如下：   
@@ -28,7 +28,7 @@
 
 
 ## [卫生机构](StructureDefinition-hc-healthcare-organization.html)  
-卫生机构对应的profile是：[标准发布地址]/StructureDefinition/hc-healthcare-organization|0.1.4    
+卫生机构对应的profile是：[标准发布地址]/StructureDefinition/hc-healthcare-organization|0.1.5    
 卫生机构(组织)是指从卫生行政部门取得《医疗机构执业许可证》,或从民政、工商行政、机构编制管理部门取得法人单位登记证书,为社会提供医疗保健、疾病控制、卫生监督等服务或从事医学科研、医学教育等卫生单位和卫生社会团体。不包括卫生行政机构、香港和澳门特别行政区以及台湾所属卫生机构(组织)。   
 除包括组织机构中所有的数据元素外，卫生机构包括的数据元素如下：  
 
