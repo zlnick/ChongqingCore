@@ -9,7 +9,7 @@ name: ChongqingCore
 title: 重庆市卫生健康信息主数据（ChongqingCore）实施指南
 description: ChongqingCore基于FHIR版本R4，定义访问卫生健康机构、卫生健康从业人员等主数据的最低一致性要求。
 status: draft # draft | active | retired | unknown
-version: 0.1.5
+version: 0.1.6
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2024+
 releaseLabel: STU1

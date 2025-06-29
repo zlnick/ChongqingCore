@@ -1,8 +1,8 @@
 #IRIS
-FROM containers.intersystems.com/intersystems/irishealth-community:2024.2
+FROM containers.intersystems.com/intersystems/irishealth-community:2024.3
 
 USER root
-RUN apt -y remove temurin-8-jdk*
+#RUN apt -y remove temurin-8-jdk*
 RUN apt update
 RUN apt install -y openjdk-11-jdk
 RUN apt install unzip
